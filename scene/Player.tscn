@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://8f1xie1ib44e"]
+
+[ext_resource type="Script" uid="uid://dyc5jclq5383a" path="res://scripts/PlayerController.cs" id="1_si3wx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_si3wx"]
+friction = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_si3wx"]
+size = Vector3(2, 1, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vviyk"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_si3wx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_si3wx"]
+
+[node name="Player" type="Node3D" unique_id=1794909711 node_paths=PackedStringArray("rigidbody", "cameraMount", "camera", "floorCaster", "holdCaster", "cameraHoldObj", "unholdCooldownTimer")]
+script = ExtResource("1_si3wx")
+rigidbody = NodePath("RigidBody3D")
+cameraMount = NodePath("RigidBody3D/CameraMount")
+camera = NodePath("RigidBody3D/CameraMount/PlayerCamera")
+floorCaster = NodePath("RigidBody3D/FloorCast")
+holdCaster = NodePath("RigidBody3D/CameraMount/PlayerCamera/ShapeCast3D")
+movementSpeed = 10.0
+movementAccel = 100.0
+gravMultiplier = 3.0
+jumpVelocity = 150.0
+frictionMultiplier = 1.5
+objectAcceleration = 800.0
+maximumDistance = 30.0
+objectFrictionMultiplier = 5.0
+throwAcceleration = 10.0
+cameraHoldObj = NodePath("RigidBody3D/CameraMount/PlayerCamera/CameraHoldObj")
+unholdCooldownTimer = NodePath("Timer")
+turnSens = 0.002
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1112512398]
+collision_layer = 5
+collision_mask = 5
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_si3wx")
+gravity_scale = 0.0
+can_sleep = false
+continuous_cd = true
+
+[node name="CameraMount" type="Node3D" parent="RigidBody3D" unique_id=621386934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51269805, 0)
+
+[node name="PlayerCamera" type="Camera3D" parent="RigidBody3D/CameraMount" unique_id=873350284]
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="RigidBody3D/CameraMount/PlayerCamera" unique_id=1017961479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041485965, -2.2347746)
+shape = SubResource("BoxShape3D_si3wx")
+target_position = Vector3(0, 0, -1)
+collision_mask = 4
+
+[node name="CameraHoldObj" type="Node3D" parent="RigidBody3D/CameraMount/PlayerCamera" unique_id=135337377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5447998)
+
+[node name="PhysicalBody" type="MeshInstance3D" parent="RigidBody3D" unique_id=866019454]
+material_override = SubResource("StandardMaterial3D_vviyk")
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_si3wx")
+
+[node name="FloorCast" type="RayCast3D" parent="RigidBody3D" unique_id=1083794848]
+target_position = Vector3(0, -1.2, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1757042287]
+shape = SubResource("CapsuleShape3D_si3wx")
+
+[node name="Timer" type="Timer" parent="." unique_id=1315276468]
+one_shot = true
+autostart = true

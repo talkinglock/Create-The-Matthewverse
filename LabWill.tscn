@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://5k2c1fi2rg4g"]
+
+[ext_resource type="PackedScene" uid="uid://2hg760fkp5hc" path="res://models/meLab.glb" id="1_qix3v"]
+
+[node name="meLab" unique_id=634272704 instance=ExtResource("1_qix3v")]
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(624395284) index="0" unique_id=1078711070]
+bones/1/rotation = Quaternion(1.9470704e-07, -0.001279916, 0.99999917, -2.4921112e-10)
