@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://160d6syvmiks"]
+
+[ext_resource type="Script" uid="uid://cjuhjw3gt6tga" path="res://scripts/SingleDoor.cs" id="1_gjpqs"]
+[ext_resource type="PackedScene" uid="uid://ds5qjrabipv83" path="res://models/door.glb" id="1_tpt6y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gjpqs"]
+size = Vector3(1, 2.2035522, 1)
+
+[node name="SingleDoor" type="Node3D" unique_id=1136261755]
+
+[node name="DoorHinge" type="Node3D" parent="." unique_id=1486509021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+
+[node name="DoorModel" parent="DoorHinge" unique_id=1575649129 instance=ExtResource("1_tpt6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2132255136 node_paths=PackedStringArray("DoorHinge", "DoorPhysical")]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("1_gjpqs")
+DoorHinge = NodePath("../DoorHinge")
+DoorPhysical = NodePath("../DoorHinge/DoorModel")
+DefaultTime = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=534812664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48879707, 1.0056579, 0)
+shape = SubResource("BoxShape3D_gjpqs")

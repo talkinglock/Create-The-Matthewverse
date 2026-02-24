@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://8f1xie1ib44e"]
 
 [ext_resource type="Script" uid="uid://dyc5jclq5383a" path="res://scripts/PlayerController.cs" id="1_si3wx"]
+[ext_resource type="Script" uid="uid://5yx23d4bnd21" path="res://scripts/InteractableClass.cs" id="2_62i1b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_si3wx"]
 friction = 0.1
@@ -15,8 +16,9 @@ albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_si3wx"]
 
-[node name="Player" type="Node3D" unique_id=1794909711 node_paths=PackedStringArray("rigidbody", "cameraMount", "camera", "floorCaster", "holdCaster", "cameraHoldObj", "unholdCooldownTimer")]
+[node name="Player" type="Node3D" unique_id=1794909711 node_paths=PackedStringArray("interactableClass", "rigidbody", "cameraMount", "camera", "floorCaster", "holdCaster", "cameraHoldObj", "unholdCooldownTimer")]
 script = ExtResource("1_si3wx")
+interactableClass = NodePath("InteractableClass")
 rigidbody = NodePath("RigidBody3D")
 cameraMount = NodePath("RigidBody3D/CameraMount")
 camera = NodePath("RigidBody3D/CameraMount/PlayerCamera")
@@ -26,7 +28,7 @@ movementSpeed = 10.0
 movementAccel = 100.0
 gravMultiplier = 3.0
 jumpVelocity = 150.0
-frictionMultiplier = 1.5
+frictionMultiplier = 3.0
 objectAcceleration = 800.0
 maximumDistance = 30.0
 objectFrictionMultiplier = 5.0
@@ -60,6 +62,12 @@ collision_mask = 4
 [node name="CameraHoldObj" type="Node3D" parent="RigidBody3D/CameraMount/PlayerCamera" unique_id=135337377]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5447998)
 
+[node name="InteractableRaycast" type="RayCast3D" parent="RigidBody3D/CameraMount/PlayerCamera" unique_id=1229468415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6636249)
+target_position = Vector3(0, 0, -20)
+collision_mask = 64
+collide_with_areas = true
+
 [node name="PhysicalBody" type="MeshInstance3D" parent="RigidBody3D" unique_id=866019454]
 material_override = SubResource("StandardMaterial3D_vviyk")
 cast_shadow = 0
@@ -76,3 +84,8 @@ shape = SubResource("CapsuleShape3D_si3wx")
 [node name="Timer" type="Timer" parent="." unique_id=1315276468]
 one_shot = true
 autostart = true
+
+[node name="InteractableClass" type="Node" parent="." unique_id=1065133666 node_paths=PackedStringArray("plrController", "caster")]
+script = ExtResource("2_62i1b")
+plrController = NodePath("..")
+caster = NodePath("../RigidBody3D/CameraMount/PlayerCamera/InteractableRaycast")

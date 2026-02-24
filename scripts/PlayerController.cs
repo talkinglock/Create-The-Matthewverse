@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 public partial class PlayerController : Node3D
 {
 	[ExportGroup("Object References")]
+	[Export] public InteractableClass interactableClass;
 	[Export] public RigidBody3D rigidbody;
 	[Export] public Node3D cameraMount;
 	[Export] public Camera3D camera;
@@ -283,9 +284,15 @@ public partial class PlayerController : Node3D
 	{
 		
 	}
+
+	public bool IsHoldingObject()
+	{
+		return holdingObject;
+	}
 	public override void _PhysicsProcess(double delta)
 	{
 		UpdateMovement(delta);
+		interactableClass.Update();
 		HandlePickup();
 	}
 

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://n282pnx65266" path="res://models/mouse.glb" id="4_b7qpn"]
 [ext_resource type="PackedScene" uid="uid://8f1xie1ib44e" path="res://scene/Player.tscn" id="5_0263l"]
 [ext_resource type="Texture2D" uid="uid://b74v8tl2bd1ka" path="res://textures/drywall.jpg" id="6_xek2x"]
+[ext_resource type="PackedScene" uid="uid://160d6syvmiks" path="res://scene/GameObjects/SingleDoor.tscn" id="7_c8opq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xek2x"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -196,3 +197,6 @@ mesh = SubResource("ArrayMesh_d3o0s")
 [node name="Cube_001" type="MeshInstance3D" parent="wallHelper4" unique_id=1249794687]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9531765, 1.0332566, 0)
 mesh = SubResource("ArrayMesh_vn37j")
+
+[node name="SingleDoor" parent="." unique_id=1136261755 instance=ExtResource("7_c8opq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1452384, 0.21985137, -1.3544856)

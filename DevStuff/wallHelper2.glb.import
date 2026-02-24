@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ch0ev60gqpb08"
-path="res://.godot/imported/wallHelper4.glb-e9a317f5b78bba970819fcba88944dc8.scn"
+uid="uid://bnysmohqgh60t"
+path="res://.godot/imported/wallHelper2.glb-2c0ff0c3c054d130878f49de023d5451.scn"
 
 [deps]
 
-source_file="res://DevStuff/wallHelper4.glb"
-dest_files=["res://.godot/imported/wallHelper4.glb-e9a317f5b78bba970819fcba88944dc8.scn"]
+source_file="res://DevStuff/wallHelper2.glb"
+dest_files=["res://.godot/imported/wallHelper2.glb-2c0ff0c3c054d130878f49de023d5451.scn"]
 
 [params]
 
