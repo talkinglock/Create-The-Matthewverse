@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://d0x1krjwu67yp"]
 
 [ext_resource type="PackedScene" uid="uid://8f1xie1ib44e" path="res://scene/Player.tscn" id="1_q65a1"]
-[ext_resource type="Texture2D" uid="uid://c2ona3mgyoeur" path="res://textures/fabric.jpg" id="2_whext"]
+[ext_resource type="Material" uid="uid://cmctdk80sx03y" path="res://materials/Carpet.tres" id="2_q4ei2"]
 [ext_resource type="Texture2D" uid="uid://40juxb48dclk" path="res://textures/ceilingpanels.jpg" id="3_bdjnc"]
 [ext_resource type="Texture2D" uid="uid://b74v8tl2bd1ka" path="res://textures/drywall.jpg" id="4_4rute"]
 [ext_resource type="PackedScene" uid="uid://bbly3abvliklf" path="res://scene/LabGuy1.tscn" id="5_4rute"]
@@ -21,13 +21,6 @@ background_energy_multiplier = 0.4
 sky = SubResource("Sky_4rute")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_whext"]
-albedo_texture = ExtResource("2_whext")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 0.9330328
-uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_whext"]
 
@@ -158,7 +151,7 @@ transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 5.2312193, 1.8386468, 2
 
 [node name="Floor" type="MeshInstance3D" parent="Physical" unique_id=2102225437]
 transform = Transform3D(23.618462, 0, 0, 0, 0.25705647, 0, 0, 0, 214.55316, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_whext")
+material_override = ExtResource("2_q4ei2")
 mesh = SubResource("BoxMesh_whext")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Physical/Floor" unique_id=541199005]

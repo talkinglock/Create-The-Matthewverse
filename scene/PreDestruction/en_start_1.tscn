@@ -1,5 +1,91 @@
 [gd_scene format=3 uid="uid://bp3x0q3worpdi"]
 
+[ext_resource type="Material" uid="uid://cmctdk80sx03y" path="res://materials/Carpet.tres" id="1_868a5"]
+[ext_resource type="PackedScene" uid="uid://dnpjche4g8n0r" path="res://models/Desk.glb" id="1_p62b2"]
+[ext_resource type="PackedScene" uid="uid://8f1xie1ib44e" path="res://scene/Player.tscn" id="3_agaj5"]
+[ext_resource type="ArrayMesh" uid="uid://30vjkvveovvm" path="res://models/Chair.obj" id="4_wiqup"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_agaj5"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_wiqup"]
+sky_material = SubResource("ProceduralSkyMaterial_agaj5")
+
+[sub_resource type="Environment" id="Environment_xbgkn"]
+background_mode = 2
+sky = SubResource("Sky_wiqup")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_868a5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agaj5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_agaj5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wiqup"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xbgkn"]
+size = Vector3(1.7808838, 2.6469727, 7.9818115)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lmfvo"]
+size = Vector3(1.6287231, 2.6469727, 4.09848)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vgvt4"]
+size = Vector3(1.6287231, 2.6469727, 4.09848)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wiqup"]
+albedo_color = Color(0.27752772, 0.27752772, 0.27752772, 1)
+
 [node name="EnStart1" type="Node3D" unique_id=387762242]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1410281966]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1322375927]
+environment = SubResource("Environment_xbgkn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=132224044]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Physical" type="Node" parent="." unique_id=2113270323]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Physical" unique_id=1410281966]
+transform = Transform3D(30.369719, 0, 0, 0, 1, 0, 0, 0, 28.892456, 0.00040626526, 9.536743e-07, 0.17378765)
+material_override = ExtResource("1_868a5")
+mesh = SubResource("BoxMesh_868a5")
+surface_material_override/0 = SubResource("StandardMaterial3D_agaj5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Physical/MeshInstance3D" unique_id=1600204421]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Physical/MeshInstance3D/StaticBody3D" unique_id=376419392]
+shape = SubResource("BoxShape3D_agaj5")
+
+[node name="Area3D" type="Area3D" parent="Physical/MeshInstance3D" unique_id=292321330]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Physical/MeshInstance3D/Area3D" unique_id=2084552321]
+shape = SubResource("BoxShape3D_wiqup")
+
+[node name="Desk" parent="." unique_id=1430712363 instance=ExtResource("1_p62b2")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 3.789689, 0.9095013, 0.48385027)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Desk" unique_id=1244835217]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk/StaticBody3D" unique_id=1054715893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030944824, -0.13110304, -0.06475854)
+shape = SubResource("BoxShape3D_xbgkn")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Desk/StaticBody3D" unique_id=531330841]
+transform = Transform3D(0.82454115, 0, -0.565802, 0, 1, 0, 0.565802, 0, 0.82454115, 0.8370762, -0.13110304, -5.4865236)
+shape = SubResource("BoxShape3D_lmfvo")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Desk/StaticBody3D" unique_id=1775944872]
+transform = Transform3D(0.85237557, 0, 0.52292997, 0, 1, 0, -0.52292997, 0, 0.85237557, 0.65095615, -0.06927395, 5.0773025)
+shape = SubResource("BoxShape3D_vgvt4")
+
+[node name="Player" parent="." unique_id=1794909711 instance=ExtResource("3_agaj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0479014, 1.7267637, -0.17062378)
+
+[node name="Chair" type="MeshInstance3D" parent="." unique_id=100352669]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 5.194269, 0.5106612, 0.3758843)
+mesh = ExtResource("4_wiqup")
+surface_material_override/0 = SubResource("StandardMaterial3D_wiqup")

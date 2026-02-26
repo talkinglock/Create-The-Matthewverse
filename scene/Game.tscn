@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://diu7t8willwa3"]
 
-[ext_resource type="PackedScene" uid="uid://cyveyekocqvjb" path="res://scene/Zoo.tscn" id="1_4aemu"]
+[ext_resource type="PackedScene" uid="uid://bp3x0q3worpdi" path="res://scene/PreDestruction/en_start_1.tscn" id="1_4aemu"]
 
 [node name="Game" type="Node3D" unique_id=291478700]
 
-[node name="Zoo" parent="." unique_id=305419520 instance=ExtResource("1_4aemu")]
+[node name="EnStart1" parent="." unique_id=387762242 instance=ExtResource("1_4aemu")]
