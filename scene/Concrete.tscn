@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cfo7wrw72rfrx"]
+
+[ext_resource type="Texture2D" uid="uid://c5c1xg11irrnm" path="res://textures/concretebrick2.jpg" id="1_snv75"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkvrv"]
+albedo_texture = ExtResource("1_snv75")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.9518623
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_fdodd"]
+material = SubResource("StandardMaterial3D_jkvrv")
+
+[node name="Node3D" type="Node3D" unique_id=1448038929]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1082442124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.099999964, 0, 0, 0)
+mesh = SubResource("BoxMesh_fdodd")

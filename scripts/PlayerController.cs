@@ -9,6 +9,8 @@ using System.Runtime.CompilerServices;
 public partial class PlayerController : Node3D
 {
 	[ExportGroup("Object References")]
+	[Export] public Node music;
+	[Export] public ChapterTitle title;
 	[Export] public InteractableClass interactableClass;
 	[Export] public RigidBody3D rigidbody;
 	[Export] public Node3D cameraMount;
@@ -116,29 +118,30 @@ public partial class PlayerController : Node3D
 
 		if (Input.IsKeyPressed(Key.W))
 		{
-			horzMovement.Z -= 1.0f;
+			horzMovement.Z += 1.0f;
 		}
 
 		if (Input.IsKeyPressed(Key.S))
 		{
-			horzMovement.Z += 1.0f;
+			horzMovement.Z -= 1.0f;
 		}
 
 		if (Input.IsKeyPressed(Key.A))
 		{
-			horzMovement.X -= 1.0f;
+			horzMovement.X += 1.0f;
 		}
 
 		if (Input.IsKeyPressed(Key.D))
 		{
-			horzMovement.X += 1.0f;
+			horzMovement.X -= 1.0f;
 		}
 
-		Vector3 finalMovement = horzMovement.Normalized();
+		Vector3 finalMovement = (horzMovement * Transform.Basis).Normalized();
 		finalMovement = finalMovement.Rotated(new Vector3(0,1,0), cameraAngle);		
 		ApplyForceToSpeed(finalMovement * movementAccel, movementSpeed);
 		if (IsOnFloor())
 		{
+
 			if (Input.IsKeyPressed(Key.Space))
 			{
 				rigidbody.ApplyForce(new Vector3(0, jumpVelocity, 0));
@@ -152,8 +155,7 @@ public partial class PlayerController : Node3D
 		{
 			rigidbody.ApplyForce(new Vector3(0, -9.81f * gravMultiplier * rigidbody.Mass, 0));
 		}
-
-		rigidbody.ApplyForce(-rigidbody.LinearVelocity * frictionMultiplier);
+		rigidbody.ApplyForce(new Vector3(-rigidbody.LinearVelocity.X, 0, -rigidbody.LinearVelocity.Z) * frictionMultiplier);
 	}
 
 	public override void _Ready()
@@ -195,7 +197,7 @@ public partial class PlayerController : Node3D
 		if (colliderCount != 1)
 		{
 			
-			Debug.WriteLine("Hold multiple GameObjects. Scaning for distance");
+			Debug.WriteLine("Hold multiple GameObjects. Scanning for distance");
 			
 			float closestColliderDistance = -1;
 
@@ -225,6 +227,10 @@ public partial class PlayerController : Node3D
 			closestCollider = (RigidBody3D) holdCaster.GetCollider(0);
 		}
 		
+		closestCollider.SetCollisionLayerValue(3, false);
+		closestCollider.SetCollisionMaskValue(3, false);
+		closestCollider.SetCollisionLayerValue(1, false);
+		closestCollider.SetCollisionMaskValue(1, false);
 		objToHold = closestCollider;
 		objectRotation = objToHold.Rotation;
 		objToHold.GravityScale = 0.0f;
@@ -233,6 +239,10 @@ public partial class PlayerController : Node3D
 	{
 		objToHold.AngularVelocity = Vector3.Zero;
 		objToHold.GravityScale = 1.0f;
+		objToHold.SetCollisionLayerValue(3, true);
+		objToHold.SetCollisionMaskValue(3, true);
+		objToHold.SetCollisionLayerValue(1, true);
+		objToHold.SetCollisionMaskValue(1, true);
 		objToHold = null;
 		holdingObject = false;
 		unholdCooldownTimer.Start();
@@ -280,9 +290,28 @@ public partial class PlayerController : Node3D
 		}
 	}
 
-	public override void _Process(double delta)
+	public void PlayMusic(string name)
 	{
 		
+		AudioStreamPlayer3D song =  music.GetNodeOrNull<AudioStreamPlayer3D>(name);
+		if (song != null)
+		{
+			song.Play();
+		}
+	}
+	public void FadeMusic(string name, float timeToFade)
+	{
+		
+		AudioStreamPlayer3D song =  music.GetNodeOrNull<AudioStreamPlayer3D>(name);
+		if (song != null)
+		{
+			Tween tween = GetTree().CreateTween();
+			tween.TweenProperty(song, "volume_linear", 0, timeToFade);
+		}
+	}
+	public ChapterTitle GetChapterTitle()
+	{
+		return title;
 	}
 
 	public bool IsHoldingObject()

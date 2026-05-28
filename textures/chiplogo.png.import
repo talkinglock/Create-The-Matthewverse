@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://d1k3pr4h7cqv8"
+path="res://.godot/imported/chiplogo.png-5cc7f1f3159b2f9e34b2728d9aa29ae0.image"
+
+[deps]
+
+source_file="res://textures/chiplogo.png"
+dest_files=["res://.godot/imported/chiplogo.png-5cc7f1f3159b2f9e34b2728d9aa29ae0.image"]
+
+[params]
+

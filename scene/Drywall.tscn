@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b8vslxr5io55e"]
+
+[ext_resource type="Texture2D" uid="uid://b74v8tl2bd1ka" path="res://textures/drywall.jpg" id="1_s5hcj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5hcj"]
+size = Vector3(2.4945068, 3.9640503, 0.16333008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdv06"]
+albedo_color = Color(0.5609549, 0.5609549, 0.5609549, 1)
+albedo_texture = ExtResource("1_s5hcj")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1.515715
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_8sfqn"]
+material = SubResource("StandardMaterial3D_tdv06")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5hcj"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Drywall" type="Node3D" unique_id=1511267501]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=496273966]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=333001505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017700195, 0.77797735, 0.0037841797)
+shape = SubResource("BoxShape3D_s5hcj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1973584528]
+transform = Transform3D(2.4999998, 0, 0, 0, 3.9418695, 0, 0, 0, 0.14999996, 0, 0.79187274, 0)
+mesh = SubResource("BoxMesh_8sfqn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1912260923]
+transform = Transform3D(2.4999998, 0, 0, 0, 0.027294075, 0, 0, 0, 0.02115117, 0, -1.1602489, 0.079967946)
+mesh = SubResource("BoxMesh_8sfqn")
+surface_material_override/0 = SubResource("StandardMaterial3D_s5hcj")

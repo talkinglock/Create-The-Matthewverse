@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 public partial class SingleDoor : Node3D, IInteractable
 {
 	[ExportGroup("Objects")]
+	[Export] public StaticBody3D colliderStatic;
 	[Export] public Node3D DoorHinge;
 	[Export] public Node3D DoorPhysical;
 	[ExportGroup("Options")]
@@ -42,5 +43,6 @@ public partial class SingleDoor : Node3D, IInteractable
 	{
 		float sign = GetAngleSignFromBearing(objToReference.GlobalPosition);
 		MoveToAngle((3.14f/2.0f) * sign, time);
+		colliderStatic.QueueFree();
 	}
 }

@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://ci8mlkefse86"]
+
+[ext_resource type="Script" uid="uid://ce5yv37ewx32h" path="res://scripts/Person.cs" id="1_urjm7"]
+[ext_resource type="Texture2D" uid="uid://haihorj5kjs8" path="res://textures/RoofGuy.png" id="1_utnbb"]
+[ext_resource type="AudioStream" uid="uid://cjlntsxb0txvt" path="res://audio/NPC/Roof/ImOnTheRoof.wav" id="2_urjm7"]
+[ext_resource type="AudioStream" uid="uid://blltmm7gupxxr" path="res://audio/NPC/Roof/DoNotHurtMeIAmOnTheRoof.wav" id="3_y02c5"]
+[ext_resource type="AudioStream" uid="uid://b4nagyfk1ag10" path="res://audio/NPC/Roof/IAmOnTheRoof.wav" id="4_3f2gx"]
+[ext_resource type="AudioStream" uid="uid://bwuyuun6dwo2d" path="res://audio/NPC/Roof/YouWillBeLeftHereInTheDark.wav" id="5_de0ti"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8adbq"]
+radius = 0.4
+height = 1.9733906
+
+[node name="RoofGuy" type="Node3D" unique_id=1741136426 node_paths=PackedStringArray("sprite", "rigidbody", "OnApproach", "HitSoundsFolder", "DialogueSoundsFolder")]
+script = ExtResource("1_urjm7")
+sprite = NodePath("Rigid/Sprite3D")
+rigidbody = NodePath("Rigid")
+OnApproach = NodePath("Rigid/Sprite3D/OnApproach")
+HitSoundsFolder = NodePath("Rigid/HitSounds")
+DialogueSoundsFolder = NodePath("Rigid/RandomSounds")
+OnApproachDistance = 5.0
+hitSoundCooldown = 5
+hitSoundMinimumVelocity = 2.0
+lowerRandomTimeForDialogue = 20.0
+higherRandomTimeForDialogue = 30.0
+
+[node name="Rigid" type="RigidBody3D" parent="." unique_id=1183047639]
+collision_layer = 40
+collision_mask = 40
+can_sleep = false
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigid" unique_id=1835580343]
+shape = SubResource("CapsuleShape3D_8adbq")
+
+[node name="Sprite3D" type="Sprite3D" parent="Rigid" unique_id=1199255160]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+billboard = 1
+texture = ExtResource("1_utnbb")
+
+[node name="OnApproach" type="AudioStreamPlayer3D" parent="Rigid/Sprite3D" unique_id=842476465]
+stream = ExtResource("2_urjm7")
+
+[node name="HitSounds" type="Node3D" parent="Rigid" unique_id=1389075089]
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=138059155]
+stream = ExtResource("3_y02c5")
+
+[node name="RandomSounds" type="Node3D" parent="Rigid" unique_id=69713302]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rigid/RandomSounds" unique_id=1132615924]
+stream = ExtResource("4_3f2gx")
+max_distance = 50.88
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rigid/RandomSounds" unique_id=755773655]
+stream = ExtResource("2_urjm7")
+max_distance = 50.88
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rigid/RandomSounds" unique_id=1386312977]
+stream = ExtResource("5_de0ti")
+max_distance = 50.88

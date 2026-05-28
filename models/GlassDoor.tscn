@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cvubhhjbkvoy8"]
+
+[ext_resource type="Script" uid="uid://c1pmgx1exgrbo" path="res://scripts/GlassDoor.cs" id="1_0mcww"]
+[ext_resource type="ArrayMesh" uid="uid://b1hab06tsb3gf" path="res://DevStuff/DoorFrame.obj" id="1_oocex"]
+[ext_resource type="ArrayMesh" uid="uid://bn2cl3abp6wk4" path="res://DevStuff/DoorCenter.obj" id="2_0mcww"]
+[ext_resource type="AudioStream" uid="uid://b040tlbod6hva" path="res://audio/SoundEffects/GlassDoor/DoorOpen.wav" id="4_reoxt"]
+[ext_resource type="AudioStream" uid="uid://8urqr1si44lh" path="res://audio/SoundEffects/GlassDoor/DoorClose.wav" id="5_t6quj"]
+[ext_resource type="Texture2D" uid="uid://b74v8tl2bd1ka" path="res://textures/drywall.jpg" id="6_t6quj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cd2oj"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_reoxt"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.48235294, 0.48235294, 0.48235294, 0.5529412)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oocex"]
+size = Vector3(0.1743164, 2.2642822, 2.8012695)
+
+[sub_resource type="BoxMesh" id="BoxMesh_reoxt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cposg"]
+albedo_color = Color(0.45954162, 0.5519, 0.8785613, 1)
+albedo_texture = ExtResource("6_t6quj")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.6597578
+uv1_world_triplanar = true
+
+[node name="GlassDoor" type="Node3D" unique_id=339560846 node_paths=PackedStringArray("doorOpen", "doorClose")]
+script = ExtResource("1_0mcww")
+DetectionRadius = 20
+ignoreRadiusTaxiCab = 40
+timeToOpen = 0.1
+doorOpen = NodePath("DoorOpen")
+doorClose = NodePath("DoorClose")
+
+[node name="DoorLeft" type="Node3D" parent="." unique_id=1596827160]
+transform = Transform3D(0.13904822, 0, 0, 0, 0.22, 0, 0, 0, 0.22, -0.048882738, 0, 1.159)
+
+[node name="DoorFrame" type="MeshInstance3D" parent="DoorLeft" unique_id=834187694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027362596, 0, 0)
+mesh = ExtResource("1_oocex")
+surface_material_override/0 = SubResource("StandardMaterial3D_cd2oj")
+
+[node name="DoorCenter" type="MeshInstance3D" parent="DoorLeft" unique_id=279500262]
+mesh = ExtResource("2_0mcww")
+surface_material_override/0 = SubResource("StandardMaterial3D_reoxt")
+
+[node name="DoorRight" type="Node3D" parent="." unique_id=1566026074]
+transform = Transform3D(-0.13904822, 0, -1.923301e-08, 0, 0.22, 0, 1.2155981e-08, 0, -0.21999998, -0.22711727, 0, -1.159)
+
+[node name="DoorFrame" type="MeshInstance3D" parent="DoorRight" unique_id=769034091]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 0, 0, 0.028808117)
+mesh = ExtResource("1_oocex")
+surface_material_override/0 = SubResource("StandardMaterial3D_cd2oj")
+
+[node name="DoorCenter" type="MeshInstance3D" parent="DoorRight" unique_id=1660175161]
+mesh = ExtResource("2_0mcww")
+surface_material_override/0 = SubResource("StandardMaterial3D_reoxt")
+
+[node name="Static" type="StaticBody3D" parent="." unique_id=1881380441]
+collision_layer = 33
+collision_mask = 33
+
+[node name="Collider" type="CollisionShape3D" parent="Static" unique_id=1168468717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14282227, 0.90216064, -0.004638672)
+shape = SubResource("BoxShape3D_oocex")
+
+[node name="DoorOpen" type="AudioStreamPlayer3D" parent="." unique_id=1440430726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88341725, 0)
+stream = ExtResource("4_reoxt")
+
+[node name="DoorClose" type="AudioStreamPlayer3D" parent="." unique_id=439938893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88341725, 0)
+stream = ExtResource("5_t6quj")
+
+[node name="Decoration" type="Node3D" parent="." unique_id=1319970379]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Decoration" unique_id=570550742]
+transform = Transform3D(0.248, 0, 0, 0, 2.682, 0, 0, 0, 0.369, -0.141, 0.83900857, 1.5366039)
+mesh = SubResource("BoxMesh_reoxt")
+surface_material_override/0 = SubResource("StandardMaterial3D_cposg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Decoration" unique_id=1450120048]
+transform = Transform3D(0.24764286, 0, 0, 0, 2.682038, 0, 0, 0, 0.3689689, -0.141, 0.83900857, -1.5355957)
+mesh = SubResource("BoxMesh_reoxt")
+surface_material_override/0 = SubResource("StandardMaterial3D_cposg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Decoration" unique_id=1207128332]
+transform = Transform3D(0.2471339, 0, 0, 0, -1.5020981e-07, -0.30454043, 0, 3.4364002, -1.3311885e-08, -0.141, 2.1746237, -1.3534227e-05)
+mesh = SubResource("BoxMesh_reoxt")
+surface_material_override/0 = SubResource("StandardMaterial3D_cposg")

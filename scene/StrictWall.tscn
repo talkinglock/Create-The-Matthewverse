@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cii7tdbh4kdoj"]
+
+[ext_resource type="Texture2D" uid="uid://b74v8tl2bd1ka" path="res://textures/drywall.jpg" id="1_pp1t6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vsk58"]
+size = Vector3(0.071777344, 5.0703297, 28.722107)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4r67"]
+albedo_texture = ExtResource("1_pp1t6")
+uv1_scale = Vector3(0.65, 0.65, 0.65)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.28717422
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3vxdd"]
+material = SubResource("StandardMaterial3D_f4r67")
+
+[node name="Node3D" type="Node3D" unique_id=386178843]
+
+[node name="Wall" type="StaticBody3D" parent="." unique_id=629511947]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=824830487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02880001, 0.004623413)
+shape = SubResource("BoxShape3D_vsk58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=1481400155]
+transform = Transform3D(0.043264605, 0, 0, 0, 5.101377, 0, 0, 0, 28.840052, 0, 0, 0)
+mesh = SubResource("BoxMesh_3vxdd")

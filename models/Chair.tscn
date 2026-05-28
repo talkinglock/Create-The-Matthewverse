@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ctpvbr4kndilk"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_14n1p"]
+[ext_resource type="ArrayMesh" uid="uid://30vjkvveovvm" path="res://models/Chair.obj" id="1_ghh2k"]
+[ext_resource type="AudioStream" uid="uid://cqfticy4tumxf" path="res://audio/SoundEffects/Other/Impact.wav" id="3_46u1w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ti57"]
+size = Vector3(0.7219391, 0.1699524, 0.7168579)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14n1p"]
+albedo_color = Color(0.27752772, 0.27752772, 0.27752772, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_46u1w"]
+size = Vector3(1, 0.15141296, 0.87457275)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bdsfu"]
+size = Vector3(0.13092041, 0.43255615, 0.1508789)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_daeoa"]
+size = Vector3(0.56933594, 0.774292, 0.04272461)
+
+[node name="Node3D" type="Node3D" unique_id=1358509261 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_14n1p")
+rigid = NodePath("Chair")
+
+[node name="Chair" type="RigidBody3D" parent="." unique_id=1305997368]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+collision_layer = 44
+collision_mask = 44
+mass = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chair" unique_id=246989241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010553747, 0.65844554, -0.006598415)
+shape = SubResource("BoxShape3D_7ti57")
+
+[node name="Chair" type="MeshInstance3D" parent="Chair" unique_id=317809084]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("1_ghh2k")
+surface_material_override/0 = SubResource("StandardMaterial3D_14n1p")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Chair" unique_id=1857023778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.326673e-17, 0.06694794, -0.006500244)
+shape = SubResource("BoxShape3D_46u1w")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Chair" unique_id=864691507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0038146968, 0.36776733, 0.009521484)
+shape = SubResource("BoxShape3D_bdsfu")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Chair" unique_id=1818126480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0043945303, 1.0288696, -0.4876709)
+shape = SubResource("BoxShape3D_daeoa")
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="Chair" unique_id=1774410616]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+stream = ExtResource("3_46u1w")

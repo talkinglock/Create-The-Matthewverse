@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://cyveyekocqvjb"]
 
 [ext_resource type="PackedScene" uid="uid://bbly3abvliklf" path="res://scene/LabGuy1.tscn" id="1_k3csr"]
-[ext_resource type="PackedScene" uid="uid://ck8mepkbn8ylj" path="res://models/monitor.glb" id="2_6srdg"]
-[ext_resource type="PackedScene" uid="uid://bwbikxdhb3ah" path="res://models/keyboard.glb" id="3_b7qpn"]
-[ext_resource type="PackedScene" uid="uid://n282pnx65266" path="res://models/mouse.glb" id="4_b7qpn"]
 [ext_resource type="PackedScene" uid="uid://8f1xie1ib44e" path="res://scene/Player.tscn" id="5_0263l"]
+[ext_resource type="PackedScene" uid="uid://dp44niaqp4f0t" path="res://models/monitor.tscn" id="6_d3o0s"]
 [ext_resource type="Texture2D" uid="uid://b74v8tl2bd1ka" path="res://textures/drywall.jpg" id="6_xek2x"]
 [ext_resource type="PackedScene" uid="uid://160d6syvmiks" path="res://scene/GameObjects/SingleDoor.tscn" id="7_c8opq"]
+[ext_resource type="PackedScene" uid="uid://c0d12wm67prp4" path="res://models/mouse.tscn" id="7_vn37j"]
+[ext_resource type="PackedScene" uid="uid://cvubhhjbkvoy8" path="res://models/GlassDoor.tscn" id="8_d3o0s"]
+[ext_resource type="PackedScene" uid="uid://ex0elictdsi3" path="res://models/keyboard.tscn" id="8_f2gk8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xek2x"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -26,18 +27,6 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_d3o0s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vn37j"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_b7qpn"]
-size = Vector3(1.5616455, 2.2022095, 3.3781128)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0263l"]
-size = Vector3(0.5234375, 0.8577423, 1.627243)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xek2x"]
-size = Vector3(0.82836914, 0.10726929, 0.36953735)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_c8opq"]
-size = Vector3(3.9057617, 1.7907715, 2.356018)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8opq"]
 albedo_color = Color(0.5089541, 0.62233424, 1, 1)
@@ -144,50 +133,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.244137, 1.0327806, 9.04368
 
 [node name="PhysicsObjects" type="Node" parent="." unique_id=1330908180]
 
-[node name="Monitor" type="RigidBody3D" parent="PhysicsObjects" unique_id=2133676351]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3665786, 1.7200496, -1.2489054)
-disable_mode = 2
-collision_layer = 5
-collision_mask = 5
-can_sleep = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsObjects/Monitor" unique_id=1434580609]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.024353981, -0.034870148, 0.0016784668)
-shape = SubResource("BoxShape3D_b7qpn")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="PhysicsObjects/Monitor" unique_id=1942657684]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.055780888, -0.4939934, -0.0034389496)
-shape = SubResource("BoxShape3D_0263l")
-
-[node name="monitor" parent="PhysicsObjects/Monitor" unique_id=1528680904 instance=ExtResource("2_6srdg")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.035042286, 0)
-
-[node name="Keyboard" type="RigidBody3D" parent="PhysicsObjects" unique_id=1253785340]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.8526589, 1.4682847, -0.98778075)
-collision_layer = 5
-collision_mask = 5
-can_sleep = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsObjects/Keyboard" unique_id=235535931]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0025633574, 0.0031280518, 0.0066987276)
-shape = SubResource("BoxShape3D_xek2x")
-
-[node name="keyboard" parent="PhysicsObjects/Keyboard" unique_id=1941847389 instance=ExtResource("3_b7qpn")]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0, 0)
-
-[node name="Mouse" type="RigidBody3D" parent="PhysicsObjects" unique_id=426936001]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8349729, 1.4861032, -1.5697184)
-collision_layer = 5
-collision_mask = 5
-can_sleep = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsObjects/Mouse" unique_id=1101307717]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.032985926, 0, -0.04817283)
-shape = SubResource("BoxShape3D_c8opq")
-
-[node name="mouse" parent="PhysicsObjects/Mouse" unique_id=827000738 instance=ExtResource("4_b7qpn")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
-
 [node name="wallHelper4" type="Node3D" parent="." unique_id=1853175461]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.731896, 1.0801427, 0)
 
@@ -200,3 +145,18 @@ mesh = SubResource("ArrayMesh_vn37j")
 
 [node name="SingleDoor" parent="." unique_id=1136261755 instance=ExtResource("7_c8opq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1452384, 0.21985137, -1.3544856)
+
+[node name="GlassDoor" parent="." unique_id=339560846 node_paths=PackedStringArray("plr") instance=ExtResource("8_d3o0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.322907, 0.25278065, 6.952686)
+plr = NodePath("../Player")
+DetectionRadius = 10
+ignoreRadiusTaxiCab = 21
+
+[node name="Monitor" parent="." unique_id=1418324723 instance=ExtResource("6_d3o0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.926406, 0.6084651, -1.3520385)
+
+[node name="Mouse" parent="." unique_id=1026019935 instance=ExtResource("7_vn37j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3324604, 0.072921395, -0.5014131)
+
+[node name="Keyboard" parent="." unique_id=634558791 instance=ExtResource("8_f2gk8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1522102, 0.058188148, -0.38720083)

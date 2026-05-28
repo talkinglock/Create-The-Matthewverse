@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cfxdbsspr4c2"]
+
+[ext_resource type="Texture2D" uid="uid://w7tnatul8ps7" path="res://textures/Receptionist.png" id="1_3atc5"]
+[ext_resource type="Script" uid="uid://ce5yv37ewx32h" path="res://scripts/Person.cs" id="2_k8evu"]
+[ext_resource type="AudioStream" uid="uid://bnxvfumk6num7" path="res://audio/NPC/Receptionist/ReceptionistGreeting.wav" id="3_agv6c"]
+[ext_resource type="AudioStream" uid="uid://ce2l1y0jc1baf" path="res://audio/NPC/Receptionist/Annoyed3.wav" id="4_agv6c"]
+[ext_resource type="AudioStream" uid="uid://dxrwv32xdt6qa" path="res://audio/NPC/Receptionist/Annoyed.wav" id="5_bu2eu"]
+[ext_resource type="AudioStream" uid="uid://c8o8kyxv0r7cf" path="res://audio/NPC/Receptionist/Annoyed2.wav" id="6_y41nh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k8evu"]
+radius = 0.4
+height = 1.9733906
+
+[node name="Receptionist" type="Node3D" unique_id=1323210576 node_paths=PackedStringArray("sprite", "rigidbody", "OnApproach", "HitSoundsFolder")]
+script = ExtResource("2_k8evu")
+sprite = NodePath("Rigid/Sprite3D")
+rigidbody = NodePath("Rigid")
+OnApproach = NodePath("Rigid/Sprite3D/OnApproach")
+HitSoundsFolder = NodePath("Rigid/HitSounds")
+OnApproachDistance = 20.0
+hitSoundCooldown = 3
+hitSoundMinimumVelocity = 2.0
+
+[node name="Rigid" type="RigidBody3D" parent="." unique_id=200367759]
+collision_layer = 40
+collision_mask = 40
+can_sleep = false
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigid" unique_id=1501133297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17109394, 0.27271366, -0.08853769)
+shape = SubResource("CapsuleShape3D_k8evu")
+
+[node name="Sprite3D" type="Sprite3D" parent="Rigid" unique_id=742344566]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+billboard = 1
+texture = ExtResource("1_3atc5")
+
+[node name="OnApproach" type="AudioStreamPlayer3D" parent="Rigid/Sprite3D" unique_id=1821445983]
+stream = ExtResource("3_agv6c")
+
+[node name="HitSounds" type="Node3D" parent="Rigid" unique_id=1524132745]
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=865413822]
+stream = ExtResource("4_agv6c")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=1046403227]
+stream = ExtResource("5_bu2eu")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=299529237]
+stream = ExtResource("6_y41nh")

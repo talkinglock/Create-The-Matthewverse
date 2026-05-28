@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dp44niaqp4f0t"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_2pwv5"]
+[ext_resource type="PackedScene" uid="uid://ck8mepkbn8ylj" path="res://models/monitor.glb" id="2_fin0v"]
+[ext_resource type="AudioStream" uid="uid://cqfticy4tumxf" path="res://audio/SoundEffects/Other/Impact.wav" id="3_fin0v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rluqd"]
+size = Vector3(1.5616455, 2.2022095, 3.3781128)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4ifd"]
+size = Vector3(0.5234375, 0.8577423, 1.627243)
+
+[node name="Monitor" type="Node3D" unique_id=1418324723 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_2pwv5")
+rigid = NodePath("Monitor")
+
+[node name="Monitor" type="RigidBody3D" parent="." unique_id=1559728233]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+disable_mode = 2
+collision_layer = 44
+collision_mask = 44
+can_sleep = false
+continuous_cd = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Monitor" unique_id=468438004]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.024353981, -0.034870148, 0.0016784668)
+shape = SubResource("BoxShape3D_rluqd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Monitor" unique_id=101902449]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.055780888, -0.4939934, -0.0034389496)
+shape = SubResource("BoxShape3D_y4ifd")
+
+[node name="monitor" parent="Monitor" unique_id=959868445 instance=ExtResource("2_fin0v")]
+transform = Transform3D(0.3, 0, 0, 0, 0.29999998, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="Monitor" unique_id=1921226187]
+stream = ExtResource("3_fin0v")

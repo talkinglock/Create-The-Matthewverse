@@ -13,7 +13,7 @@ public partial class InteractableClass : Node
 	[ExportGroup("Objects")]
 	[Export] public PlayerController plrController;
 	[Export] public RayCast3D caster; 
-
+	
 	private void Interact(GodotObject collider)
 	{
 		if (collider is IInteractable Iinteractable)

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d1p2t3a4lkec1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gpv0"]
+albedo_color = Color(0.34781694, 0.34781697, 0.3478169, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n6dyy"]
+material = SubResource("StandardMaterial3D_7gpv0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6dyy"]
+transparency = 1
+albedo_color = Color(0.39308554, 0.39308554, 0.39308533, 0.54200006)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7gpv0"]
+size = Vector3(0.027959961, 2.0214233, 1.9667969)
+
+[node name="Node3D" type="Node3D" unique_id=1308181886]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=867404014]
+transform = Transform3D(0.06352663, 0, 0, 0, -0.042000007, 0, 0, 0, 2, 0, -1, 0)
+mesh = SubResource("BoxMesh_n6dyy")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1607796903]
+transform = Transform3D(0.008385515, 0, 0, 0, -1.9896033, 0, 0, 0, 1.9271154, 0, 0, 0)
+mesh = SubResource("BoxMesh_n6dyy")
+surface_material_override/0 = SubResource("StandardMaterial3D_n6dyy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=894255890]
+transform = Transform3D(0.06352663, 0, 0, 0, -0.042000007, 0, 0, 0, 2, 0, 1, 0)
+mesh = SubResource("BoxMesh_n6dyy")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=961257258]
+transform = Transform3D(0.06352663, 0, 0, 0, 1.8358786e-09, -2, 0, -0.042000007, -8.742278e-08, 0, 0, -0.9803985)
+mesh = SubResource("BoxMesh_n6dyy")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1089918060]
+transform = Transform3D(0.06352663, 0, 0, 0, 1.8358786e-09, -2, 0, -0.042000007, -8.742278e-08, 0, -5.9604645e-08, 0.97918785)
+mesh = SubResource("BoxMesh_n6dyy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1642838828]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1641049330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001633307, -0.009857178, -0.005859375)
+shape = SubResource("BoxShape3D_7gpv0")

@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://voyew2vdpnid"]
+
+[ext_resource type="Texture2D" uid="uid://buwo6lyw5vgsj" path="res://textures/DoNotLookDuoB.png" id="1_kudji"]
+[ext_resource type="Script" uid="uid://ce5yv37ewx32h" path="res://scripts/Person.cs" id="1_rg18q"]
+[ext_resource type="AudioStream" uid="uid://dxcbbx6ygrao5" path="res://audio/NPC/DontLookDuo/DoNotLookAtThisGuy.wav" id="2_rg18q"]
+[ext_resource type="AudioStream" uid="uid://ce2l1y0jc1baf" path="res://audio/NPC/Receptionist/Annoyed3.wav" id="3_6fqpr"]
+[ext_resource type="AudioStream" uid="uid://dxrwv32xdt6qa" path="res://audio/NPC/Receptionist/Annoyed.wav" id="4_8urkg"]
+[ext_resource type="AudioStream" uid="uid://c8o8kyxv0r7cf" path="res://audio/NPC/Receptionist/Annoyed2.wav" id="5_k83tb"]
+[ext_resource type="AudioStream" uid="uid://c2mvqh07pmtod" path="res://audio/NPC/DontLookDuo/IsHeStillThere.wav" id="7_8urkg"]
+[ext_resource type="AudioStream" uid="uid://dinryqhvcfra0" path="res://audio/NPC/DontLookDuo/MaybeHeIsJustInsecure.wav" id="8_k83tb"]
+[ext_resource type="AudioStream" uid="uid://dwlde0bb2amt2" path="res://audio/NPC/DontLookDuo/WonderWhatHeLooksLike.wav" id="9_k83tb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n5igl"]
+radius = 0.4
+height = 1.9733906
+
+[node name="DontLookB" type="Node3D" unique_id=1388009877 node_paths=PackedStringArray("sprite", "rigidbody", "OnApproach", "HitSoundsFolder", "DialogueSoundsFolder")]
+script = ExtResource("1_rg18q")
+sprite = NodePath("Rigid/Sprite3D")
+rigidbody = NodePath("Rigid")
+OnApproach = NodePath("Rigid/Sprite3D/OnApproach")
+HitSoundsFolder = NodePath("Rigid/HitSounds")
+DialogueSoundsFolder = NodePath("Rigid/RandomSounds")
+OnApproachDistance = 5.0
+hitSoundCooldown = 3
+hitSoundMinimumVelocity = 2.0
+lowerRandomTimeForDialogue = 7.0
+higherRandomTimeForDialogue = 19.0
+
+[node name="Rigid" type="RigidBody3D" parent="." unique_id=322165086]
+collision_layer = 40
+collision_mask = 40
+can_sleep = false
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigid" unique_id=403224555]
+shape = SubResource("CapsuleShape3D_n5igl")
+
+[node name="Sprite3D" type="Sprite3D" parent="Rigid" unique_id=1527691918]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+billboard = 1
+texture = ExtResource("1_kudji")
+
+[node name="OnApproach" type="AudioStreamPlayer3D" parent="Rigid/Sprite3D" unique_id=567922853]
+stream = ExtResource("2_rg18q")
+
+[node name="HitSounds" type="Node3D" parent="Rigid" unique_id=888260233]
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=1083962719]
+stream = ExtResource("3_6fqpr")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=802966139]
+stream = ExtResource("4_8urkg")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=1895496652]
+stream = ExtResource("5_k83tb")
+
+[node name="RandomSounds" type="Node3D" parent="Rigid" unique_id=399910034]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rigid/RandomSounds" unique_id=28145766]
+stream = ExtResource("7_8urkg")
+max_distance = 30.0
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rigid/RandomSounds" unique_id=1896074931]
+stream = ExtResource("8_k83tb")
+max_distance = 30.0
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rigid/RandomSounds" unique_id=1915012505]
+stream = ExtResource("9_k83tb")
+max_distance = 30.0

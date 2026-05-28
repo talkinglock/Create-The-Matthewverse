@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://c663e465jix0d"]
+
+[ext_resource type="ArrayMesh" uid="uid://ubv3a2xqb0jm" path="res://DevStuff/StandardDesk.obj" id="1_ay27s"]
+[ext_resource type="Texture2D" uid="uid://ca365uwcv7wf7" path="res://textures/wood2.jpg" id="2_r08ad"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r08ad"]
+albedo_color = Color(0.78352344, 0.7835234, 0.7835234, 1)
+albedo_texture = ExtResource("2_r08ad")
+uv1_scale = Vector3(3, 3, 3)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1.1487066
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r08ad"]
+size = Vector3(2.7949219, 0.20043945, 1.4012451)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rawcj"]
+size = Vector3(0.17456055, 1, 1.3964539)
+
+[node name="StandardDesk" type="Node3D" unique_id=291326099]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1548728258]
+collision_layer = 33
+collision_mask = 33
+
+[node name="StandardDesk" type="MeshInstance3D" parent="StaticBody3D" unique_id=1060339949]
+transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, -0.4, 0)
+mesh = ExtResource("1_ay27s")
+surface_material_override/0 = SubResource("StandardMaterial3D_r08ad")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1366845925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009765625, 0.60046387, 0.0033569336)
+shape = SubResource("BoxShape3D_r08ad")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1487635430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3144001, 0, -0.004928589)
+shape = SubResource("BoxShape3D_rawcj")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1263938837]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3122784, 0, -0.004928589)
+shape = SubResource("BoxShape3D_rawcj")

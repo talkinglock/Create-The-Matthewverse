@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b6yob6famoypg"]
+
+[ext_resource type="Texture2D" uid="uid://w7tnatul8ps7" path="res://textures/Receptionist.png" id="1_o0kgr"]
+
+[node name="Receptionist" type="Node3D" unique_id=1323210576]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=742344566]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+billboard = 1
+texture = ExtResource("1_o0kgr")

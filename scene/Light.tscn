@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://csujauxt15vrw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vq6gn"]
+shading_mode = 0
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(2.137626, 2.137626, 2.137626, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l5xjp"]
+material = SubResource("StandardMaterial3D_vq6gn")
+
+[node name="Node3D" type="Node3D" unique_id=1264737386]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=103843864]
+transform = Transform3D(0.51081795, 0, 0, 0, 0.059999987, 0, 0, 0, 0.5050585, 0, 0, 0)
+mesh = SubResource("BoxMesh_l5xjp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D" unique_id=392986094]
+light_energy = 2.514
+light_size = 0.49
+shadow_enabled = true
+omni_range = 15.4595995

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dwo4uk32l6cqd"]
+
+[ext_resource type="ArrayMesh" uid="uid://15vw1lihdxql" path="res://DevStuff/TableWarehouse2.obj" id="1_5gbfi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40jxn"]
+albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
+
+[node name="Node3D" type="Node3D" unique_id=2029750887]
+
+[node name="TableWarehouse2" type="MeshInstance3D" parent="." unique_id=1652688952]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_40jxn")
+mesh = ExtResource("1_5gbfi")
+
+[node name="TableWarehouse3" type="MeshInstance3D" parent="." unique_id=1271499256]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.5, 0)
+material_override = SubResource("StandardMaterial3D_40jxn")
+mesh = ExtResource("1_5gbfi")
+
+[node name="TableWarehouse4" type="MeshInstance3D" parent="." unique_id=219209719]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 7.5, 0)
+material_override = SubResource("StandardMaterial3D_40jxn")
+mesh = ExtResource("1_5gbfi")
+
+[node name="TableWarehouse5" type="MeshInstance3D" parent="." unique_id=51009493]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 10.5, 0)
+material_override = SubResource("StandardMaterial3D_40jxn")
+mesh = ExtResource("1_5gbfi")
+
+[node name="TableWarehouse6" type="MeshInstance3D" parent="." unique_id=528593247]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 13.5, 0)
+material_override = SubResource("StandardMaterial3D_40jxn")
+mesh = ExtResource("1_5gbfi")
+
+[node name="TableWarehouse7" type="MeshInstance3D" parent="." unique_id=210275335]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 16.5, 0)
+material_override = SubResource("StandardMaterial3D_40jxn")
+mesh = ExtResource("1_5gbfi")

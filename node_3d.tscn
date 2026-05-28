@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c2uowym3vmb8o"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_a0tk4"]
+[ext_resource type="ArrayMesh" uid="uid://bq2e17i2xv8xl" path="res://DevStuff/Trashcan.obj" id="1_noarx"]
+[ext_resource type="Texture2D" uid="uid://csgjjsdvbohtj" path="res://DevStuff/TrashCan.png" id="2_a0tk4"]
+[ext_resource type="AudioStream" uid="uid://cqfticy4tumxf" path="res://audio/SoundEffects/Other/Impact.wav" id="4_r3fl7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_texture = ExtResource("2_a0tk4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
+size = Vector3(2.8797607, 3.3439636, 3.133545)
+
+[node name="Node3D" type="Node3D" unique_id=2113886640]
+script = ExtResource("1_a0tk4")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=2110539065]
+collision_layer = 44
+collision_mask = 44
+
+[node name="Trashcan" type="MeshInstance3D" parent="RigidBody3D" unique_id=1594906619]
+mesh = ExtResource("1_noarx")
+surface_material_override/0 = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=672568888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015258789, 0.022232056, 0.0076904297)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=2089106419]
+stream = ExtResource("4_r3fl7")

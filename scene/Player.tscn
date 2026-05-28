@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dyc5jclq5383a" path="res://scripts/PlayerController.cs" id="1_si3wx"]
 [ext_resource type="Script" uid="uid://5yx23d4bnd21" path="res://scripts/InteractableClass.cs" id="2_62i1b"]
+[ext_resource type="PackedScene" uid="uid://cj1ji7ofuedsr" path="res://scene/ChapterTitle.tscn" id="3_y30ri"]
+[ext_resource type="AudioStream" uid="uid://ck0bfw0lrpmgx" path="res://audio/Music/Welcome.wav" id="4_waelg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_si3wx"]
 friction = 0.1
@@ -16,15 +18,17 @@ albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_si3wx"]
 
-[node name="Player" type="Node3D" unique_id=1794909711 node_paths=PackedStringArray("interactableClass", "rigidbody", "cameraMount", "camera", "floorCaster", "holdCaster", "cameraHoldObj", "unholdCooldownTimer")]
+[node name="Player" type="Node3D" unique_id=1794909711 node_paths=PackedStringArray("music", "title", "interactableClass", "rigidbody", "cameraMount", "camera", "floorCaster", "holdCaster", "cameraHoldObj", "unholdCooldownTimer")]
 script = ExtResource("1_si3wx")
+music = NodePath("PlrRigid/Music")
+title = NodePath("Control")
 interactableClass = NodePath("InteractableClass")
-rigidbody = NodePath("RigidBody3D")
-cameraMount = NodePath("RigidBody3D/CameraMount")
-camera = NodePath("RigidBody3D/CameraMount/PlayerCamera")
-floorCaster = NodePath("RigidBody3D/FloorCast")
-holdCaster = NodePath("RigidBody3D/CameraMount/PlayerCamera/ShapeCast3D")
-movementSpeed = 10.0
+rigidbody = NodePath("PlrRigid")
+cameraMount = NodePath("PlrRigid/CameraMount")
+camera = NodePath("PlrRigid/CameraMount/PlayerCamera")
+floorCaster = NodePath("PlrRigid/FloorCast")
+holdCaster = NodePath("PlrRigid/CameraMount/PlayerCamera/ShapeCast3D")
+movementSpeed = 7.0
 movementAccel = 100.0
 gravMultiplier = 3.0
 jumpVelocity = 150.0
@@ -32,12 +36,12 @@ frictionMultiplier = 3.0
 objectAcceleration = 800.0
 maximumDistance = 30.0
 objectFrictionMultiplier = 5.0
-throwAcceleration = 10.0
-cameraHoldObj = NodePath("RigidBody3D/CameraMount/PlayerCamera/CameraHoldObj")
+throwAcceleration = 20.0
+cameraHoldObj = NodePath("PlrRigid/CameraMount/PlayerCamera/CameraHoldObj")
 unholdCooldownTimer = NodePath("Timer")
 turnSens = 0.002
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1112512398]
+[node name="PlrRigid" type="RigidBody3D" parent="." unique_id=1112512398]
 collision_layer = 5
 collision_mask = 5
 axis_lock_angular_x = true
@@ -48,44 +52,54 @@ gravity_scale = 0.0
 can_sleep = false
 continuous_cd = true
 
-[node name="CameraMount" type="Node3D" parent="RigidBody3D" unique_id=621386934]
+[node name="CameraMount" type="Node3D" parent="PlrRigid" unique_id=621386934]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51269805, 0)
 
-[node name="PlayerCamera" type="Camera3D" parent="RigidBody3D/CameraMount" unique_id=873350284]
+[node name="PlayerCamera" type="Camera3D" parent="PlrRigid/CameraMount" unique_id=873350284]
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="RigidBody3D/CameraMount/PlayerCamera" unique_id=1017961479]
+[node name="ShapeCast3D" type="ShapeCast3D" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=1017961479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041485965, -2.2347746)
 shape = SubResource("BoxShape3D_si3wx")
 target_position = Vector3(0, 0, -1)
 collision_mask = 4
 
-[node name="CameraHoldObj" type="Node3D" parent="RigidBody3D/CameraMount/PlayerCamera" unique_id=135337377]
+[node name="CameraHoldObj" type="Node3D" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=135337377]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5447998)
 
-[node name="InteractableRaycast" type="RayCast3D" parent="RigidBody3D/CameraMount/PlayerCamera" unique_id=1229468415]
+[node name="InteractableRaycast" type="RayCast3D" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=1229468415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6636249)
 target_position = Vector3(0, 0, -20)
 collision_mask = 64
 collide_with_areas = true
 
-[node name="PhysicalBody" type="MeshInstance3D" parent="RigidBody3D" unique_id=866019454]
+[node name="PhysicalBody" type="MeshInstance3D" parent="PlrRigid" unique_id=866019454]
 material_override = SubResource("StandardMaterial3D_vviyk")
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_si3wx")
 
-[node name="FloorCast" type="RayCast3D" parent="RigidBody3D" unique_id=1083794848]
+[node name="FloorCast" type="RayCast3D" parent="PlrRigid" unique_id=1083794848]
 target_position = Vector3(0, -1.2, 0)
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1757042287]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlrRigid" unique_id=1757042287]
 shape = SubResource("CapsuleShape3D_si3wx")
 
+[node name="Music" type="Node3D" parent="PlrRigid" unique_id=1996975377]
+
+[node name="Welcome" type="AudioStreamPlayer3D" parent="PlrRigid/Music" unique_id=358661924]
+stream = ExtResource("4_waelg")
+attenuation_model = 3
+volume_db = -4.0
+
 [node name="Timer" type="Timer" parent="." unique_id=1315276468]
+wait_time = 0.312
 one_shot = true
 autostart = true
 
 [node name="InteractableClass" type="Node" parent="." unique_id=1065133666 node_paths=PackedStringArray("plrController", "caster")]
 script = ExtResource("2_62i1b")
 plrController = NodePath("..")
-caster = NodePath("../RigidBody3D/CameraMount/PlayerCamera/InteractableRaycast")
+caster = NodePath("../PlrRigid/CameraMount/PlayerCamera/InteractableRaycast")
+
+[node name="Control" parent="." unique_id=536347271 instance=ExtResource("3_y30ri")]

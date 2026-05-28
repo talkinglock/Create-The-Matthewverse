@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bk1k7jmnrh4p1"]
+
+[ext_resource type="Script" uid="uid://ce5yv37ewx32h" path="res://scripts/Person.cs" id="1_1yx3h"]
+[ext_resource type="Texture2D" uid="uid://cbi0dfwhtqy2l" path="res://textures/OfficeManager.png" id="1_wuxok"]
+[ext_resource type="AudioStream" uid="uid://cyd3crfcc86qk" path="res://audio/NPC/RedditManager/HelloMlady.wav" id="2_1yx3h"]
+[ext_resource type="AudioStream" uid="uid://brbpd8eekjudt" path="res://audio/NPC/RedditManager/DoNotHurtTheAlpha.wav" id="3_ghx03"]
+[ext_resource type="AudioStream" uid="uid://chlglqlswx8v0" path="res://audio/NPC/RedditManager/DoNotDamageMe.wav" id="4_xvct1"]
+[ext_resource type="AudioStream" uid="uid://digvlq2k1pgc4" path="res://audio/NPC/RedditManager/NoMemesInGeneral.wav" id="5_nncko"]
+[ext_resource type="AudioStream" uid="uid://dea8tbl5vccat" path="res://audio/NPC/RedditManager/AndSent.wav" id="6_8v6oj"]
+[ext_resource type="AudioStream" uid="uid://4bw3lol7dghg" path="res://audio/NPC/RedditManager/Smell.wav" id="7_isgxb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ilw1g"]
+radius = 0.4
+height = 1.9733906
+
+[node name="Redditor" type="Node3D" unique_id=1919217542 node_paths=PackedStringArray("sprite", "rigidbody", "OnApproach", "HitSoundsFolder", "DialogueSoundsFolder")]
+script = ExtResource("1_1yx3h")
+sprite = NodePath("Rigid/Sprite3D")
+rigidbody = NodePath("Rigid")
+OnApproach = NodePath("Rigid/Sprite3D/OnApproach")
+HitSoundsFolder = NodePath("Rigid/HitSounds")
+DialogueSoundsFolder = NodePath("Rigid/RandomSounds")
+OnApproachDistance = 5.0
+hitSoundCooldown = 3
+hitSoundMinimumVelocity = 2.0
+lowerRandomTimeForDialogue = 5.0
+higherRandomTimeForDialogue = 15.0
+
+[node name="Rigid" type="RigidBody3D" parent="." unique_id=1950595053]
+collision_layer = 40
+collision_mask = 40
+can_sleep = false
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigid" unique_id=1491875722]
+shape = SubResource("CapsuleShape3D_ilw1g")
+
+[node name="Sprite3D" type="Sprite3D" parent="Rigid" unique_id=620863678]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+billboard = 1
+texture = ExtResource("1_wuxok")
+
+[node name="OnApproach" type="AudioStreamPlayer3D" parent="Rigid/Sprite3D" unique_id=72990540]
+stream = ExtResource("2_1yx3h")
+
+[node name="HitSounds" type="Node3D" parent="Rigid" unique_id=1320581820]
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=1033437584]
+stream = ExtResource("3_ghx03")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=520372852]
+stream = ExtResource("4_xvct1")
+
+[node name="RandomSounds" type="Node3D" parent="Rigid" unique_id=193158151]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rigid/RandomSounds" unique_id=1620065132]
+stream = ExtResource("5_nncko")
+max_distance = 50.88
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rigid/RandomSounds" unique_id=1318444183]
+stream = ExtResource("6_8v6oj")
+max_distance = 50.88
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rigid/RandomSounds" unique_id=913497289]
+stream = ExtResource("7_isgxb")
+max_distance = 50.88

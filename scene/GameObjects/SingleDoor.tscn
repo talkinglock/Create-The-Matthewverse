@@ -4,7 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://ds5qjrabipv83" path="res://models/door.glb" id="1_tpt6y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gjpqs"]
-size = Vector3(1, 2.2035522, 1)
+size = Vector3(1.4662476, 2.2951355, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cp757"]
+size = Vector3(1.4211578, 2.2572327, 0.10961914)
 
 [node name="SingleDoor" type="Node3D" unique_id=1136261755]
 
@@ -12,16 +15,25 @@ size = Vector3(1, 2.2035522, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
 [node name="DoorModel" parent="DoorHinge" unique_id=1575649129 instance=ExtResource("1_tpt6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1, 0)
+transform = Transform3D(1.4367018, 0, 0, 0, 1.1289744, 0, 0, 0, 1, 0, -1.1, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2132255136 node_paths=PackedStringArray("DoorHinge", "DoorPhysical")]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2132255136 node_paths=PackedStringArray("colliderStatic", "DoorHinge", "DoorPhysical")]
 collision_layer = 64
 collision_mask = 64
 script = ExtResource("1_gjpqs")
+colliderStatic = NodePath("../Collider")
 DoorHinge = NodePath("../DoorHinge")
 DoorPhysical = NodePath("../DoorHinge/DoorModel")
 DefaultTime = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=534812664]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48879707, 1.0056579, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72192085, 1.0514495, 0)
 shape = SubResource("BoxShape3D_gjpqs")
+
+[node name="Collider" type="StaticBody3D" parent="." unique_id=626764485]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collider" unique_id=1887541721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7218704, 1.1252594, 0.029907227)
+shape = SubResource("BoxShape3D_cp757")
