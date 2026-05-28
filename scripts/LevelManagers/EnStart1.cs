@@ -5,7 +5,7 @@ public partial class EnStart1 : Node3D
 {
 	[Export] public Triggers triggerManager;
 	[Export] public PlayerController plr;
-	[Export] public Node music;
+	[Export] public hrCutscene hrCut;
 	private ChapterTitle title;
 	public override void _Ready()
 	{
@@ -31,6 +31,16 @@ public partial class EnStart1 : Node3D
 				plr.FadeMusic("Welcome", 2.0f);
 				break;
 			}
+			case "StartCutscene":
+				{
+					hrCut.Start();
+					break;
+				}
+			case "InRoomCutscene":
+				{
+					hrCut.InRoom();
+					break;
+				}
 			default:
 				break;
 		}

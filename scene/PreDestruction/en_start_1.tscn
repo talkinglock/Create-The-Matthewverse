@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bp3x0q3worpdi"]
 
 [ext_resource type="Material" uid="uid://cmctdk80sx03y" path="res://materials/Carpet.tres" id="1_868a5"]
-[ext_resource type="Script" uid="uid://dvbymrmyxjnsg" path="res://scene/PreDestruction/Test32.cs" id="1_a6kb2"]
+[ext_resource type="Script" uid="uid://ddk1tt0sm5d68" path="res://scripts/LevelManagers/EnStart1.cs" id="1_a6kb2"]
 [ext_resource type="Texture2D" uid="uid://cwyct8f8mhw2w" path="res://textures/concrete.jpg" id="3_8q3x4"]
 [ext_resource type="PackedScene" uid="uid://8f1xie1ib44e" path="res://scene/Player.tscn" id="3_agaj5"]
 [ext_resource type="Texture2D" uid="uid://40juxb48dclk" path="res://textures/ceilingpanels.jpg" id="6_vgvt4"]
@@ -38,6 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://6l367cnessbe" path="res://audio/Ambience/Office.mp3" id="36_v855a"]
 [ext_resource type="Script" uid="uid://ccqxg0w4otmak" path="res://scene/PreDestruction/AutoReplayer.cs" id="37_ami37"]
 [ext_resource type="AudioStream" uid="uid://b44hf06flh15p" path="res://audio/Ambience/Warehouse.mp3" id="38_ami37"]
+[ext_resource type="AudioStream" uid="uid://cv04imijhwca3" path="res://audio/Ambience/Uncomfort.wav" id="39_aihpx"]
 [ext_resource type="Texture2D" uid="uid://607jnnbumwdc" path="res://textures/HR.png" id="39_okl7t"]
 [ext_resource type="Script" uid="uid://dmtw634c64d7k" path="res://scripts/hrCutscene.cs" id="39_skf5h"]
 [ext_resource type="Texture2D" uid="uid://dtsyrxya3ihy8" path="res://textures/HRGuard.png" id="40_skf5h"]
@@ -45,6 +46,8 @@
 [ext_resource type="AudioStream" uid="uid://8jyxuxniam1t" path="res://audio/NPC/IntroCutscene/0SalesOnRecord.wav" id="42_aihpx"]
 [ext_resource type="AudioStream" uid="uid://bwux45use7iq5" path="res://audio/NPC/IntroCutscene/RestrainHer.wav" id="43_0efu2"]
 [ext_resource type="AudioStream" uid="uid://cgocevqynmrij" path="res://audio/NPC/IntroCutscene/Goodbye.wav" id="44_o03l5"]
+[ext_resource type="AudioStream" uid="uid://cqwcha4l20y40" path="res://audio/SoundEffects/Other/Punch.mp3" id="47_o03l5"]
+[ext_resource type="AudioStream" uid="uid://bs5dy0h06ybfw" path="res://audio/SoundEffects/Other/Sting.mp3" id="48_2ocsg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_agaj5"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -115,8 +118,14 @@ uv1_offset = Vector3(0.015, -0.08, 0)
 [sub_resource type="BoxMesh" id="BoxMesh_vj4i2"]
 material = SubResource("StandardMaterial3D_pc34u")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6kb2"]
+size = Vector3(1.5069046, 3.8685913, 2.3656616)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_moq3d"]
 size = Vector3(17.859894, 3.8685913, 2.3656616)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aihpx"]
+size = Vector3(1.984993, 3.8685913, 6.8917084)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vq6gn"]
 shading_mode = 0
@@ -146,8 +155,11 @@ size = Vector3(2.3031616, 4.7958984, 5.6650696)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xlr4"]
 size = Vector3(1.2288132, 2.9736328, 0.34601212)
 
-[node name="EnStart1" type="Node3D" unique_id=387762242]
+[node name="EnStart1" type="Node3D" unique_id=387762242 node_paths=PackedStringArray("triggerManager", "plr", "hrCut")]
 script = ExtResource("1_a6kb2")
+triggerManager = NodePath("Triggers")
+plr = NodePath("Player")
+hrCut = NodePath("HRCutscene")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1322375927]
 environment = SubResource("Environment_xbgkn")
@@ -215,8 +227,8 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.0
 
 [node name="GlassDoor" parent="Physical" unique_id=339560846 node_paths=PackedStringArray("plr") instance=ExtResource("8_6ykwn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1213527, 0.70000005, -1.7881396e-07)
-DetectionRadius = 2
 plr = NodePath("../../Player")
+DetectionRadius = 2
 
 [node name="GlassDoor3" parent="Physical" unique_id=2001561440 node_paths=PackedStringArray("plr") instance=ExtResource("8_6ykwn")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9782076, 0.70000005, -12.9975815)
@@ -232,8 +244,8 @@ plr = NodePath("../../Player")
 
 [node name="GlassDoor6" parent="Physical" unique_id=1928712686 node_paths=PackedStringArray("plr") instance=ExtResource("8_6ykwn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -36.512627, 0.70000005, -45.779354)
-Enabled = false
 plr = NodePath("../../Player")
+Enabled = false
 
 [node name="GlassDoor4" parent="Physical" unique_id=511997975 node_paths=PackedStringArray("plr") instance=ExtResource("8_6ykwn")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 2.9810658, 0.70000005, 12.900439)
@@ -241,8 +253,8 @@ plr = NodePath("../../Player")
 
 [node name="GlassDoor2" parent="Physical" unique_id=1382494378 node_paths=PackedStringArray("plr") instance=ExtResource("8_6ykwn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.989894, 0.70000005, -1.7881396e-07)
-Enabled = false
 plr = NodePath("../../Player")
+Enabled = false
 
 [node name="LightDoor" type="MeshInstance3D" parent="Physical" unique_id=1203700051]
 transform = Transform3D(0.1680758, 0, 0, 0, 3.6450298, 0, 0, 0, 2.9901164, -10.190636, 1, 0)
@@ -254,8 +266,8 @@ mesh = SubResource("BoxMesh_moq3d")
 
 [node name="Receptionist" parent="Physical" unique_id=1323210576 node_paths=PackedStringArray("player") instance=ExtResource("13_moq3d")]
 transform = Transform3D(0.7138007, 0, 0.70034885, 0, 1, 0, -0.70034885, 0, 0.7138007, 9.494791, 1.4060626, -5.253805)
-OnApproachDistance = 10.0
 player = NodePath("../../Player")
+OnApproachDistance = 10.0
 
 [node name="Wall6" parent="Physical" unique_id=1572943782 instance=ExtResource("11_6xaj0")]
 transform = Transform3D(-4.3711385e-08, 0, -0.27539054, 0, 1, 0, 0.99999994, 0, -1.20377015e-08, -6.185398, 0.29818106, -3.3997629)
@@ -343,8 +355,8 @@ plr = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8393244, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/StartTrigger" unique_id=694549472]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3276794, 0.6281434, -0.014526367)
-shape = SubResource("BoxShape3D_moq3d")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4814005, 0.6281434, -0.014526367)
+shape = SubResource("BoxShape3D_a6kb2")
 
 [node name="Oneshot" type="Node" parent="Triggers/StartTrigger" unique_id=1091351542]
 
@@ -361,8 +373,8 @@ shape = SubResource("BoxShape3D_moq3d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.03398, 1.8393244, 24.591507)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/StartCutscene" unique_id=1611921571]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3276787, 0.6281434, 0.22735596)
-shape = SubResource("BoxShape3D_moq3d")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9797058, 0.6281434, -0.09925079)
+shape = SubResource("BoxShape3D_aihpx")
 
 [node name="Oneshot" type="Node" parent="Triggers/StartCutscene" unique_id=397672299]
 
@@ -515,8 +527,8 @@ player = NodePath("../Player")
 
 [node name="DontLookB" parent="." unique_id=1388009877 node_paths=PackedStringArray("player") instance=ExtResource("24_pc34u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 1.6, -30)
-OnApproachDistance = 15.0
 player = NodePath("../Player")
+OnApproachDistance = 15.0
 
 [node name="Monitor2" parent="." unique_id=1855181314 instance=ExtResource("12_moq3d")]
 transform = Transform3D(-0.9396926, 0, -0.3420202, 0, 1, 0, 0.3420202, 0, -0.9396926, -4.3165746, 2.0979748, -13.761258)
@@ -773,13 +785,54 @@ script = ExtResource("37_ami37")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.49789, 1.5699669, -1.7007809)
 stream = ExtResource("38_ami37")
 attenuation_model = 3
+volume_db = -5.0
 pitch_scale = 0.5
 autoplay = true
 max_distance = 100.0
 script = ExtResource("37_ami37")
 
-[node name="HRCutscene" type="Node" parent="." unique_id=2123089157]
+[node name="Uncomfort" type="AudioStreamPlayer3D" parent="." unique_id=2027496089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.89789, 1.5699669, 36.299217)
+stream = ExtResource("39_aihpx")
+attenuation_model = 3
+volume_db = -80.0
+unit_size = 100.0
+max_distance = 100.0
+
+[node name="Uncomfort2" type="AudioStreamPlayer3D" parent="." unique_id=1703466018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.89789, 1.5699669, 29.299217)
+stream = ExtResource("39_aihpx")
+attenuation_model = 3
+volume_db = -80.0
+unit_size = 100.0
+pitch_scale = 0.5
+max_distance = 100.0
+
+[node name="HRCutscene" type="Node" parent="." unique_id=2123089157 node_paths=PackedStringArray("hrGuy", "guardA", "guardB", "firstBlock", "secondBlock", "door", "guardA1Pos", "guardA2Pos", "guardB1Pos", "guardB2Pos", "hrGuy1Pos", "hrGuy2Pos", "hallwayMiddle", "greeting", "noSales", "restrain", "goodbye", "plr", "ambience", "uncomfort", "uncomfort2", "punch", "sting")]
 script = ExtResource("39_skf5h")
+hrGuy = NodePath("HRGuy")
+guardA = NodePath("HRGuardA")
+guardB = NodePath("HRGuardB")
+firstBlock = NodePath("FirstBarrier")
+secondBlock = NodePath("DoorBarrier")
+door = NodePath("SingleDoor2")
+guardA1Pos = NodePath("GuardAStart")
+guardA2Pos = NodePath("GuardAEnd")
+guardB1Pos = NodePath("GuardBStart")
+guardB2Pos = NodePath("GuardBEnd")
+hrGuy1Pos = NodePath("HRGuyStart")
+hrGuy2Pos = NodePath("HRGuyEnd")
+hallwayMiddle = NodePath("DoorMedium")
+greeting = NodePath("HRGuy/FollowMe")
+noSales = NodePath("HRGuy/NoSales")
+restrain = NodePath("HRGuy/Restrain")
+goodbye = NodePath("HRGuy/Goodbye")
+plr = NodePath("../Player")
+ambience = NodePath("../Ambience3")
+uncomfort = NodePath("../Uncomfort")
+uncomfort2 = NodePath("../Uncomfort2")
+punch = NodePath("Punch")
+sting = NodePath("Sting")
 
 [node name="GuardAStart" type="Node3D" parent="HRCutscene" unique_id=872344492]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0516, 1.9165934, 23.238403)
@@ -851,6 +904,21 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HRCutscene/DoorBarrier" unique_id=2017255180]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.39748, 1.2446289, 28.069174)
 shape = SubResource("BoxShape3D_0xlr4")
+
+[node name="Punch" type="AudioStreamPlayer3D" parent="HRCutscene" unique_id=2131710674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.49789, 1.5699669, -1.7007809)
+stream = ExtResource("47_o03l5")
+attenuation_model = 3
+volume_db = 10.0
+max_distance = 100.0
+
+[node name="Sting" type="AudioStreamPlayer3D" parent="HRCutscene" unique_id=1248342334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.49789, 1.5699669, -1.7007809)
+stream = ExtResource("48_2ocsg")
+attenuation_model = 3
+volume_db = 10.0
+max_distance = 100.0
+parameters/looping = false
 
 [node name="Node3D44" parent="." unique_id=1044363472 instance=ExtResource("24_lsfqb")]
 transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 68.8, 1, 34.8)

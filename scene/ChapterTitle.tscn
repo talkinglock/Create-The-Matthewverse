@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://mvgr0r8tktct" path="res://scripts/ChapterTitle.cs" id="1_po1ls"]
 
-[node name="Control" type="Control" unique_id=536347271 node_paths=PackedStringArray("label")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po1ls"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" unique_id=536347271 node_paths=PackedStringArray("label", "panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_po1ls")
 label = NodePath("CenterContainer/Label")
+panel = NodePath("Panel")
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=1883932990]
 one_shot = true
@@ -32,3 +36,13 @@ theme_override_font_sizes/font_size = 28
 text = "Chapter 1 - The chip place"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=1322825280]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_po1ls")

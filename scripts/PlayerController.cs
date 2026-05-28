@@ -35,6 +35,7 @@ public partial class PlayerController : Node3D
 	[Export] public float jumpResponseTime;
 	[Export] public float turnSens;
 	
+	public bool CanMove = true;
  	Vector2 lastCoords = Vector2.Inf;
 	private float cameraAngle;
 
@@ -136,13 +137,17 @@ public partial class PlayerController : Node3D
 			horzMovement.X -= 1.0f;
 		}
 
+		if (CanMove == false)
+		{
+			horzMovement = Vector3.Zero;
+		}
 		Vector3 finalMovement = (horzMovement * Transform.Basis).Normalized();
 		finalMovement = finalMovement.Rotated(new Vector3(0,1,0), cameraAngle);		
 		ApplyForceToSpeed(finalMovement * movementAccel, movementSpeed);
 		if (IsOnFloor())
 		{
 
-			if (Input.IsKeyPressed(Key.Space))
+			if (Input.IsKeyPressed(Key.Space) && CanMove)
 			{
 				rigidbody.ApplyForce(new Vector3(0, jumpVelocity, 0));
 			}
