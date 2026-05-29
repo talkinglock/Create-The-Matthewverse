@@ -1,4 +1,5 @@
 using Godot;
+using Godot.NativeInterop;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -6,6 +7,8 @@ using System.Diagnostics;
 public interface IInteractable
 {
 	void OnInteract(PlayerController plrController);
+	void OnHover(PlayerController plrController);
+	void OnHoverStop(PlayerController plrController);
 }
 
 public partial class InteractableClass : Node
@@ -14,11 +17,38 @@ public partial class InteractableClass : Node
 	[Export] public PlayerController plrController;
 	[Export] public RayCast3D caster; 
 	
-	private void Interact(GodotObject collider)
+
+	private GodotObject lastCollider;
+	private string lastType;
+	private void Interact(GodotObject collider, string type)
 	{
 		if (collider is IInteractable Iinteractable)
 		{
-			Iinteractable.OnInteract(plrController);
+			switch(type)
+			{
+				case "interact":
+					{
+						Iinteractable.OnInteract(plrController);
+						break;
+					}
+				case "hover":
+					{
+						if (collider == lastCollider && lastType == type) {return;}
+						Iinteractable.OnHover(plrController);
+						break;
+					}
+				case "hoverstop":
+					{
+						if (collider == lastCollider && lastType == type) {return;}
+						Iinteractable.OnHoverStop(plrController);
+						break;
+					}
+				default:
+					{
+						break;
+					}
+			}
+			lastType = type;
 		}
 		else
 		{
@@ -27,13 +57,24 @@ public partial class InteractableClass : Node
 	}
 	private void TryInteraction()
 	{
+		if (!caster.IsColliding()) {
+			if (lastCollider != null)
+			{
+				Interact(lastCollider, "hoverstop");
+			}
+			return;
+		}
+
+		if (plrController.IsHoldingObject()) {return;}
+		lastCollider = caster.GetCollider();
 		if (Input.IsKeyPressed(Key.E))
 		{
-			if (plrController.IsHoldingObject()) {return;}
-			//Debug.WriteLine("Not Holding Object");
-			if (!caster.IsColliding()) {return;}
-			//Debug.WriteLine("Caster Colliding");
-			Interact(caster.GetCollider());
+			Interact(lastCollider, "interact");
+		}
+		else
+		{	
+			
+			Interact(lastCollider, "hover");
 		}
 	}
 	public void Update()

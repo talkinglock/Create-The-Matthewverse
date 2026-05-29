@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://cj1ji7ofuedsr"]
 
 [ext_resource type="Script" uid="uid://mvgr0r8tktct" path="res://scripts/ChapterTitle.cs" id="1_po1ls"]
+[ext_resource type="AudioStream" uid="uid://cl0w28qxshq8p" path="res://audio/SoundEffects/Other/Interact.mp3" id="2_v6j1i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po1ls"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Control" unique_id=536347271 node_paths=PackedStringArray("label", "panel")]
+[node name="Control" type="Control" unique_id=536347271 node_paths=PackedStringArray("label", "panel", "InteractPanel", "InteractText", "InteractSound")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +16,9 @@ grow_vertical = 2
 script = ExtResource("1_po1ls")
 label = NodePath("CenterContainer/Label")
 panel = NodePath("Panel")
+InteractPanel = NodePath("InteractDialogue")
+InteractText = NodePath("InteractDialogue/Label")
+InteractSound = NodePath("InteractSound")
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=1883932990]
 one_shot = true
@@ -46,3 +50,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_po1ls")
+
+[node name="InteractDialogue" type="Panel" parent="." unique_id=1020083739]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -233.0
+offset_top = -88.0
+offset_right = 233.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="InteractDialogue" unique_id=154824201]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 44
+text = "E - Grab Flashlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractSound" type="AudioStreamPlayer3D" parent="." unique_id=322290865]
+stream = ExtResource("2_v6j1i")

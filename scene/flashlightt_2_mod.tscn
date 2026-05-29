@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b4qmsxdbps7aa"]
+
+[ext_resource type="PackedScene" uid="uid://bivvfsm63n7gh" path="res://DevStuff/Flashlightt2.glb" id="1_516ky"]
+
+[node name="Flashlightt2" unique_id=73285898 instance=ExtResource("1_516ky")]
+
+[node name="Cylinder" parent="." index="0" unique_id=565317063]
+cast_shadow = 0
+
+[node name="UvMapBake" parent="." index="1" unique_id=2073663294]
+cast_shadow = 0

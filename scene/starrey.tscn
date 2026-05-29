@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://da0rv3ts07khg"]
 
 [ext_resource type="Script" uid="uid://ce5yv37ewx32h" path="res://scripts/Person.cs" id="1_7hshc"]
-[ext_resource type="Texture2D" uid="uid://dbnn31goipvya" path="res://textures/Starrey.png" id="1_efphl"]
 [ext_resource type="AudioStream" uid="uid://dnc6c05eqrq03" path="res://audio/NPC/Receptionist/Intro.wav" id="2_7hshc"]
 [ext_resource type="Script" uid="uid://cf5x152os2e2v" path="res://scripts/Starrey.cs" id="2_p2320"]
-[ext_resource type="AudioStream" uid="uid://pri6c7dackv5" path="res://audio/SoundEffects/Other/FuckYou.wav" id="5_7hshc"]
-[ext_resource type="AudioStream" uid="uid://y56gf1v7ts8q" path="res://audio/SoundEffects/Other/StopLookingAtMe.wav" id="8_7sxdx"]
+[ext_resource type="Texture2D" uid="uid://ce2brxfcq2a0i" path="res://textures/DoNotLookAtMe.png" id="3_7hshc"]
+[ext_resource type="AudioStream" uid="uid://dnbxda263y1sx" path="res://audio/NPC/DontLookDuo/FuckYou.wav" id="5_p2320"]
+[ext_resource type="AudioStream" uid="uid://ck2fob27cyr3t" path="res://audio/NPC/DontLookDuo/Matthew.wav" id="6_7sxdx"]
+[ext_resource type="AudioStream" uid="uid://lgfu3xnu8hyh" path="res://audio/NPC/DontLookDuo/StopLookingAtMe.wav" id="7_l2qmy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_880xe"]
 radius = 0.4
@@ -40,7 +41,7 @@ shape = SubResource("CapsuleShape3D_880xe")
 [node name="Sprite3D" type="Sprite3D" parent="Rigid" unique_id=1207582754]
 modulate = Color(18.892157, 18.892157, 18.892157, 1)
 billboard = 1
-texture = ExtResource("1_efphl")
+texture = ExtResource("3_7hshc")
 
 [node name="OnApproach" type="AudioStreamPlayer3D" parent="Rigid/Sprite3D" unique_id=1853588800]
 stream = ExtResource("2_7hshc")
@@ -48,13 +49,16 @@ stream = ExtResource("2_7hshc")
 [node name="HitSounds" type="Node3D" parent="Rigid" unique_id=1682909121]
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=1483000428]
-stream = ExtResource("5_7hshc")
+stream = ExtResource("5_p2320")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rigid/HitSounds" unique_id=868293836]
+stream = ExtResource("6_7sxdx")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Rigid" unique_id=1708450796]
-aabb = AABB(-0.72664744, -1.208997, -0.686814, 1.4532949, 2.417994, 1.373628)
+aabb = AABB(-0.5713053, -1.208997, -0.49239883, 1.1426105, 2.417994, 0.98479766)
 
 [node name="VisibleRaycast" type="RayCast3D" parent="Rigid" unique_id=918834679]
 hit_from_inside = true
 
 [node name="Seen" type="AudioStreamPlayer3D" parent="Rigid" unique_id=379489207]
-stream = ExtResource("8_7sxdx")
+stream = ExtResource("7_l2qmy")

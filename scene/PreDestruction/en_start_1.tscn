@@ -46,7 +46,6 @@
 [ext_resource type="AudioStream" uid="uid://8jyxuxniam1t" path="res://audio/NPC/IntroCutscene/0SalesOnRecord.wav" id="42_aihpx"]
 [ext_resource type="AudioStream" uid="uid://bwux45use7iq5" path="res://audio/NPC/IntroCutscene/RestrainHer.wav" id="43_0efu2"]
 [ext_resource type="AudioStream" uid="uid://cgocevqynmrij" path="res://audio/NPC/IntroCutscene/Goodbye.wav" id="44_o03l5"]
-[ext_resource type="AudioStream" uid="uid://cqwcha4l20y40" path="res://audio/SoundEffects/Other/Punch.mp3" id="47_o03l5"]
 [ext_resource type="AudioStream" uid="uid://bs5dy0h06ybfw" path="res://audio/SoundEffects/Other/Sting.mp3" id="48_2ocsg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_agaj5"]
@@ -120,6 +119,9 @@ material = SubResource("StandardMaterial3D_pc34u")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6kb2"]
 size = Vector3(1.5069046, 3.8685913, 2.3656616)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o03l5"]
+size = Vector3(6.768955, 3.8685913, 8.454147)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_moq3d"]
 size = Vector3(17.859894, 3.8685913, 2.3656616)
@@ -220,10 +222,10 @@ collision_mask = 33
 shape = SubResource("BoxShape3D_wiqup")
 
 [node name="Window" parent="Physical" unique_id=1668315723 instance=ExtResource("8_cmrsy")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.0949788, 2.6891963, 10.188873)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1378365, 2.6891963, 10.188873)
 
 [node name="Window2" parent="Physical" unique_id=2092519994 instance=ExtResource("8_cmrsy")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.0949788, 2.6891963, -9.911127)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1378365, 2.6891963, -9.911127)
 
 [node name="GlassDoor" parent="Physical" unique_id=339560846 node_paths=PackedStringArray("plr") instance=ExtResource("8_6ykwn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1213527, 0.70000005, -1.7881396e-07)
@@ -268,6 +270,7 @@ mesh = SubResource("BoxMesh_moq3d")
 transform = Transform3D(0.7138007, 0, 0.70034885, 0, 1, 0, -0.70034885, 0, 0.7138007, 9.494791, 1.4060626, -5.253805)
 player = NodePath("../../Player")
 OnApproachDistance = 10.0
+hitSoundMinimumVelocity = 1.0
 
 [node name="Wall6" parent="Physical" unique_id=1572943782 instance=ExtResource("11_6xaj0")]
 transform = Transform3D(-4.3711385e-08, 0, -0.27539054, 0, 1, 0, 0.99999994, 0, -1.20377015e-08, -6.185398, 0.29818106, -3.3997629)
@@ -299,6 +302,9 @@ transform = Transform3D(-4.3711367e-08, 0, 0.2789685, 0, 1, 0, -0.99999976, 0, -
 [node name="Node3D" parent="Physical" unique_id=2113886640 instance=ExtResource("10_excx3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.07601, 0.8928838, -6.8438168)
 
+[node name="Node3D2" parent="Physical" unique_id=460371532 instance=ExtResource("10_excx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.423988, 0.8928838, -53.04382)
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Physical" unique_id=1132027924]
 transform = Transform3D(0.19234091, 0, 0, 0, 1.9000001, 0, 0, 0, 5.9595566, 13.326127, 2.9, 0)
 mesh = SubResource("BoxMesh_vj4i2")
@@ -318,6 +324,8 @@ player = NodePath("../../Player")
 
 [node name="Player" parent="." unique_id=1794909711 instance=ExtResource("3_agaj5")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.9073534, 1.4867678, -0.17062378)
+DoFirstObjectInteractCheck = true
+CanUseFlashlight = false
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1421834101]
 transform = Transform3D(-4.371139e-08, -4.371139e-08, -1, -1, 1.9106855e-15, 4.371139e-08, 0, 1, -4.371139e-08, -10.404793, 1.6204932, 0)
@@ -359,6 +367,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4814005, 0.6281434, -0.014
 shape = SubResource("BoxShape3D_a6kb2")
 
 [node name="Oneshot" type="Node" parent="Triggers/StartTrigger" unique_id=1091351542]
+
+[node name="FirstObjectInteract" type="Area3D" parent="Triggers" unique_id=241283533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.8393244, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/FirstObjectInteract" unique_id=252829392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1496248, 0.6281434, -0.54738617)
+shape = SubResource("BoxShape3D_o03l5")
 
 [node name="FadeMusic" type="Area3D" parent="Triggers" unique_id=1512612552]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.831606, 1.8393244, 24.591507)
@@ -831,7 +846,7 @@ plr = NodePath("../Player")
 ambience = NodePath("../Ambience3")
 uncomfort = NodePath("../Uncomfort")
 uncomfort2 = NodePath("../Uncomfort2")
-punch = NodePath("Punch")
+punch = NodePath("")
 sting = NodePath("Sting")
 
 [node name="GuardAStart" type="Node3D" parent="HRCutscene" unique_id=872344492]
@@ -848,6 +863,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.759686, 1.9165934, 24.8384
 
 [node name="SingleDoor2" parent="HRCutscene" unique_id=1973398410 instance=ExtResource("28_v4hx8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.82063, 0.5, 27.6)
+InitialCanOpen = false
 
 [node name="HRGuy" type="Sprite3D" parent="HRCutscene" unique_id=1813758659]
 transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 68.95969, 1.6165934, 31.138403)
@@ -905,20 +921,9 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.39748, 1.2446289, 28.069174)
 shape = SubResource("BoxShape3D_0xlr4")
 
-[node name="Punch" type="AudioStreamPlayer3D" parent="HRCutscene" unique_id=2131710674]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.49789, 1.5699669, -1.7007809)
-stream = ExtResource("47_o03l5")
-attenuation_model = 3
-volume_db = 10.0
-max_distance = 100.0
-
-[node name="Sting" type="AudioStreamPlayer3D" parent="HRCutscene" unique_id=1248342334]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.49789, 1.5699669, -1.7007809)
+[node name="Sting" type="AudioStreamPlayer" parent="HRCutscene" unique_id=590636907]
 stream = ExtResource("48_2ocsg")
-attenuation_model = 3
-volume_db = 10.0
-max_distance = 100.0
-parameters/looping = false
+parameters/looping = true
 
 [node name="Node3D44" parent="." unique_id=1044363472 instance=ExtResource("24_lsfqb")]
 transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 68.8, 1, 34.8)

@@ -27,7 +27,7 @@ public partial class hrCutscene : Node
 	[Export] public AudioStreamPlayer3D uncomfort;
 	[Export] public AudioStreamPlayer3D uncomfort2;
 	[Export] public AudioStreamPlayer3D punch;
-	[Export] public AudioStreamPlayer3D sting;
+	[Export] public AudioStreamPlayer sting;
 	private ChapterTitle chapterTitle;
 	private float minRegisterTime = 0;
 	private bool uncomfortPlaying = false;
@@ -81,11 +81,8 @@ public partial class hrCutscene : Node
 		uncomfort2Playing = false;
 		uncomfort2.Playing = false;
 		uncomfort.Playing = false;
-		punch.GlobalPosition = plr.rigidbody.GlobalPosition;
-		sting.GlobalPosition = plr.rigidbody.GlobalPosition;
-		punch.Play();
-		sting.Play();
-		await chapterTitle.SetBlackoutOpacity(1.0f, 0.01f);
+		chapterTitle.SetBlackoutOpacity(1.0f, -1);
+		GetTree().ChangeSceneToFile("res://scene/PostDestruction/warehouse_1.tscn");
 
 	}
 	private void MoveTo(Node3D node, Vector3 place, float time)

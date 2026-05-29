@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dyc5jclq5383a" path="res://scripts/PlayerController.cs" id="1_si3wx"]
 [ext_resource type="Script" uid="uid://5yx23d4bnd21" path="res://scripts/InteractableClass.cs" id="2_62i1b"]
+[ext_resource type="PackedScene" uid="uid://co46xgigv0o7m" path="res://scene/Tools/Flashlight.tscn" id="2_82gks"]
 [ext_resource type="PackedScene" uid="uid://cj1ji7ofuedsr" path="res://scene/ChapterTitle.tscn" id="3_y30ri"]
+[ext_resource type="AudioStream" uid="uid://byw44e51r5pgu" path="res://audio/SoundEffects/Other/footsteps.mp3" id="4_dc1pm"]
 [ext_resource type="AudioStream" uid="uid://ck0bfw0lrpmgx" path="res://audio/Music/Welcome.wav" id="4_waelg"]
+[ext_resource type="AudioStream" uid="uid://d0mkq02b1h7kl" path="res://audio/Music/Unemployment.mp3" id="5_kqvfm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_si3wx"]
 friction = 0.1
@@ -18,7 +21,7 @@ albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_si3wx"]
 
-[node name="Player" type="Node3D" unique_id=1794909711 node_paths=PackedStringArray("music", "title", "interactableClass", "rigidbody", "cameraMount", "camera", "floorCaster", "holdCaster", "cameraHoldObj", "unholdCooldownTimer")]
+[node name="Player" type="Node3D" unique_id=1794909711 node_paths=PackedStringArray("music", "title", "interactableClass", "rigidbody", "cameraMount", "camera", "floorCaster", "holdCaster", "footsteps", "cameraHoldObj", "unholdCooldownTimer", "flashlight", "flashlightSpot")]
 script = ExtResource("1_si3wx")
 music = NodePath("PlrRigid/Music")
 title = NodePath("Control")
@@ -28,9 +31,10 @@ cameraMount = NodePath("PlrRigid/CameraMount")
 camera = NodePath("PlrRigid/CameraMount/PlayerCamera")
 floorCaster = NodePath("PlrRigid/FloorCast")
 holdCaster = NodePath("PlrRigid/CameraMount/PlayerCamera/ShapeCast3D")
-movementSpeed = 7.0
+footsteps = NodePath("PlrRigid/Footsteps")
+movementSpeed = 5.0
 movementAccel = 100.0
-gravMultiplier = 3.0
+gravMultiplier = 6.0
 jumpVelocity = 150.0
 frictionMultiplier = 3.0
 objectAcceleration = 800.0
@@ -40,6 +44,16 @@ throwAcceleration = 20.0
 cameraHoldObj = NodePath("PlrRigid/CameraMount/PlayerCamera/CameraHoldObj")
 unholdCooldownTimer = NodePath("Timer")
 turnSens = 0.002
+flashlight = NodePath("PlrRigid/CameraMount/PlayerCamera/Flashlight")
+flashlightSpot = NodePath("PlrRigid/CameraMount/PlayerCamera/FlashlightLight")
+flashlightTweenTime = 0.25
+flashlightStartYOffset = -1.0
+maxViewBobOffsetMultiplier = 0.02
+viewBobTimeDenominator = 400.0
+viewBobNoiseDenominator = 150.0
+maxViewBobOffsetMultiplierIdle = 0.02
+viewBobTimeDenominatorIdle = 1200.0
+viewBobNoiseDenominatorIdle = 200.0
 
 [node name="PlrRigid" type="RigidBody3D" parent="." unique_id=1112512398]
 collision_layer = 5
@@ -72,6 +86,16 @@ target_position = Vector3(0, 0, -20)
 collision_mask = 64
 collide_with_areas = true
 
+[node name="FlashlightLight" type="SpotLight3D" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=818509467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.57700956)
+light_color = Color(0.58456355, 0.58456355, 0.42528185, 1)
+light_energy = 0.0
+shadow_enabled = true
+spot_range = 7.052511
+spot_angle = 31.872314
+
+[node name="Flashlight" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=1032744412 instance=ExtResource("2_82gks")]
+
 [node name="PhysicalBody" type="MeshInstance3D" parent="PlrRigid" unique_id=866019454]
 material_override = SubResource("StandardMaterial3D_vviyk")
 cast_shadow = 0
@@ -91,6 +115,17 @@ shape = SubResource("CapsuleShape3D_si3wx")
 stream = ExtResource("4_waelg")
 attenuation_model = 3
 volume_db = -4.0
+
+[node name="Unemployment" type="AudioStreamPlayer3D" parent="PlrRigid/Music" unique_id=1914467889]
+stream = ExtResource("5_kqvfm")
+attenuation_model = 3
+volume_db = 1.0
+parameters/looping = true
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="PlrRigid" unique_id=818785541]
+stream = ExtResource("4_dc1pm")
+pitch_scale = 1.2
+parameters/looping = true
 
 [node name="Timer" type="Timer" parent="." unique_id=1315276468]
 wait_time = 0.312

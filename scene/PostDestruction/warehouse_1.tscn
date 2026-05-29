@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://rb2hu4ljos8n"]
+
+[ext_resource type="Script" uid="uid://bqgq68pframv3" path="res://scripts/LevelManagers/Warehouse1.cs" id="1_350rl"]
+[ext_resource type="Material" uid="uid://cmctdk80sx03y" path="res://materials/Carpet.tres" id="1_kvwl8"]
+[ext_resource type="PackedScene" uid="uid://8f1xie1ib44e" path="res://scene/Player.tscn" id="2_xb0dh"]
+[ext_resource type="PackedScene" uid="uid://160d6syvmiks" path="res://scene/GameObjects/SingleDoor.tscn" id="3_7msgc"]
+[ext_resource type="PackedScene" uid="uid://b8vslxr5io55e" path="res://scene/Drywall.tscn" id="4_xtlvc"]
+[ext_resource type="PackedScene" uid="uid://dxa0eycj7rt4k" path="res://scene/DrywallNoHelper.tscn" id="5_hgtlq"]
+[ext_resource type="AudioStream" uid="uid://dq0qsgsbod8gm" path="res://audio/SoundEffects/Other/Pickup.mp3" id="6_vk1pp"]
+[ext_resource type="Script" uid="uid://deusonlo6dt3x" path="res://scripts/Triggers.cs" id="7_h80n1"]
+[ext_resource type="PackedScene" uid="uid://b4qmsxdbps7aa" path="res://scene/flashlightt_2_mod.tscn" id="8_6psyx"]
+[ext_resource type="Script" uid="uid://d3rggcehbs5tt" path="res://scripts/Lightblinker.cs" id="9_vk1pp"]
+[ext_resource type="AudioStream" uid="uid://bs5dy0h06ybfw" path="res://audio/SoundEffects/Other/Sting.mp3" id="11_bepxv"]
+[ext_resource type="AudioStream" uid="uid://cqwcha4l20y40" path="res://audio/SoundEffects/Other/Punch.mp3" id="12_i71fg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xb0dh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7msgc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xtlvc"]
+size = Vector3(1.7469482, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hgtlq"]
+size = Vector3(1.7426758, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgtlq"]
+albedo_color = Color(0.27022192, 0.27022192, 0.2702219, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_350rl"]
+material = SubResource("StandardMaterial3D_hgtlq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_350rl"]
+size = Vector3(1, 1.4, 1.6)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hgtlq"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_wiqup"]
+sky_material = SubResource("ProceduralSkyMaterial_hgtlq")
+
+[sub_resource type="Environment" id="Environment_350rl"]
+background_mode = 1
+background_color = Color(0.14734209, 0.14995658, 0.13161704, 1)
+background_energy_multiplier = 0.45
+sky = SubResource("Sky_wiqup")
+tonemap_mode = 2
+ssao_enabled = true
+ssao_power = 2.611654
+glow_enabled = true
+glow_intensity = 0.19
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_height = -56.5
+fog_depth_curve = 1.7410952
+fog_depth_begin = 0.0
+fog_depth_end = 20.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_05gkk"]
+size = Vector3(1.2451172, 2.6547852, 1.5874023)
+
+[node name="warehouse_1" type="Node3D" unique_id=566203639 node_paths=PackedStringArray("triggerManager", "plr", "entranceDoor", "pickupSound", "sting", "flashlight")]
+script = ExtResource("1_350rl")
+triggerManager = NodePath("Triggers")
+plr = NodePath("Player")
+entranceDoor = NodePath("Closet/SingleDoor")
+pickupSound = NodePath("Closet/StaticBody3D/Equip")
+sting = NodePath("Sting")
+flashlight = NodePath("Flashlightt2")
+StingStopTime = 4.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=64175363]
+transform = Transform3D(165.4341, 0, 0, 0, 1, 0, 0, 0, 124.74026, -56.963074, 9.536743e-07, 0.50293666)
+material_override = ExtResource("1_kvwl8")
+mesh = SubResource("BoxMesh_xb0dh")
+surface_material_override/0 = SubResource("StandardMaterial3D_7msgc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=632852548]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1031950876]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000643, 0.37347418, 0, 0)
+shape = SubResource("BoxShape3D_xtlvc")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D" unique_id=763999296]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D" unique_id=1695931872]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000325, 0.37133795, 0, 0)
+shape = SubResource("BoxShape3D_hgtlq")
+
+[node name="Player" parent="." unique_id=1794909711 instance=ExtResource("2_xb0dh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -79.623795, 1.5, 11.189528)
+CanUseFlashlight = false
+
+[node name="Closet" type="Node" parent="." unique_id=481452465]
+
+[node name="SingleDoor" parent="Closet" unique_id=1136261755 instance=ExtResource("3_7msgc")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -80.3839, 0.5, 11.89356)
+InitialCanOpen = false
+
+[node name="Drywall" parent="Closet" unique_id=1511267501 instance=ExtResource("4_xtlvc")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -79.178665, 1.7, 10.421814)
+
+[node name="Drywall2" parent="Closet" unique_id=471255835 instance=ExtResource("4_xtlvc")]
+transform = Transform3D(-1, 0, -2.6226832e-07, 0, 1, 0, 2.6226832e-07, 0, -1, -79.178665, 1.7, 12.004742)
+
+[node name="Drywall3" parent="Closet" unique_id=57200529 instance=ExtResource("4_xtlvc")]
+transform = Transform3D(3.059797e-07, 0, -1, 0, 1, 0, 1, 0, 3.059797e-07, -77.97867, 1.7, 11.104742)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Closet" unique_id=1615406234]
+transform = Transform3D(1, 0, 0, 0, 0.07874513, 0, 0, 0, 1.2830937, -78.5, 1.3000001, 11.2)
+mesh = SubResource("BoxMesh_350rl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Closet" unique_id=1902192092]
+transform = Transform3D(1, 0, 0, 0, 0.07874513, 0, 0, 0, 1.2830937, -78.5, 2.3000002, 11.2)
+mesh = SubResource("BoxMesh_350rl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Closet" unique_id=480043547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.5, 1.5, 11.2)
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Closet/StaticBody3D" unique_id=424549539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20000005, 0)
+shape = SubResource("BoxShape3D_350rl")
+
+[node name="Equip" type="AudioStreamPlayer3D" parent="Closet/StaticBody3D" unique_id=2079650878]
+transform = Transform3D(0.8855433, 0.3365632, -0.32021615, 0.34569502, -0.016944924, 0.9381939, 0.31033555, -0.9415084, -0.13135368, -0.0017929077, -0.07229996, 0.14415836)
+stream = ExtResource("6_vk1pp")
+
+[node name="DrywallNoHelper" parent="." unique_id=603457810 instance=ExtResource("5_hgtlq")]
+transform = Transform3D(-3.185015e-08, 0, 1, 0, 0.6, 0, -0.7286465, 0, -4.371139e-08, -80.35618, 3.4441922, 11.2)
+
+[node name="DrywallNoHelper2" parent="." unique_id=1659812057 instance=ExtResource("5_hgtlq")]
+transform = Transform3D(-1.1964582e-15, 0.64171684, -4.371139e-08, 3.1850146e-08, -2.8050334e-08, -1, -0.7286465, 0, -4.3711385e-08, -79.556175, 4.444192, 11.2)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1067407259]
+environment = SubResource("Environment_350rl")
+
+[node name="Triggers" type="Node" parent="." unique_id=550243812 node_paths=PackedStringArray("plr")]
+script = ExtResource("7_h80n1")
+plr = NodePath("../Player")
+
+[node name="StartTrigger" type="Area3D" parent="Triggers" unique_id=808455469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.548676, 1.8393244, 11.327721)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/StartTrigger" unique_id=382233476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7086868, -0.23063195, -0.30822754)
+shape = SubResource("BoxShape3D_05gkk")
+
+[node name="Oneshot" type="Node" parent="Triggers/StartTrigger" unique_id=2117852070]
+
+[node name="Flashlightt2" parent="." unique_id=73285898 instance=ExtResource("8_6psyx")]
+transform = Transform3D(0.088554315, 0.033656318, -0.032021612, 0.0345695, -0.0016944911, 0.09381938, 0.03103355, -0.09415083, -0.013135365, -78.50179, 1.4277, 11.344158)
+
+[node name="FlashlightLight" type="SpotLight3D" parent="Flashlightt2" unique_id=903073720]
+transform = Transform3D(0.7570498, 0.652929, -0.023646759, -0.022129865, -0.010546689, -0.9996995, -0.65298223, 0.7573456, 0.0064648627, -0.31378174, 3.8979492, 0.23207092)
+light_color = Color(0.58456355, 0.58456355, 0.42528185, 1)
+light_indirect_energy = 16.0
+light_specular = 0.183
+shadow_enabled = true
+spot_range = 7.052511
+spot_angle = 31.872314
+script = ExtResource("9_vk1pp")
+HigherEnergy = 0.8
+LowerEnergy = 0.1
+TimeDenom = 10.0
+
+[node name="Sting" type="AudioStreamPlayer" parent="." unique_id=1688365609]
+stream = ExtResource("11_bepxv")
+autoplay = true
+parameters/looping = false
+
+[node name="Punch" type="AudioStreamPlayer" parent="." unique_id=294600191]
+stream = ExtResource("12_i71fg")
+autoplay = true

@@ -20,6 +20,14 @@ public partial class EnStart1 : Node3D
 	{
 		switch(trigger)
 		{
+			case "FirstObjectInteract":
+			{
+				if (plr.DoFirstObjectInteractCheck)
+				{
+					title.InteractTimed("E - Hold object", 2);		
+				}
+				break;
+			}
 			case "StartTrigger":
 			{
 				plr.PlayMusic("Welcome");

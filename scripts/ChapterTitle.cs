@@ -8,6 +8,11 @@ public partial class ChapterTitle : Control
 	// Called when the node enters the scene tree for the first time.
 	[Export] public Label label;
 	[Export] public Panel panel;
+	[Export] public Panel InteractPanel;
+	[Export] public Label InteractText;
+	[Export] public AudioStreamPlayer3D InteractSound;
+	private bool strictApplied = false;
+	private string lastText = "";
 	public async Task ShowTitle(string title, float timeToShow)
 	{
 		label.Text = title;
@@ -19,8 +24,59 @@ public partial class ChapterTitle : Control
 	}
 	public async Task SetBlackoutOpacity(float opacity, float time)
 	{
-		Tween opacityTween = GetTree().CreateTween();
-		opacityTween.TweenProperty(panel, "modulate", new Color(1.0f, 1.0f, 1.0f, opacity), time);
+		if (time == -1)
+		{
+			panel.Modulate = new Color(1.0f, 1.0f, 1.0f, opacity);
+		}
+		else
+		{
+			Tween opacityTween = GetTree().CreateTween();
+			opacityTween.TweenProperty(panel, "modulate", new Color(1.0f, 1.0f, 1.0f, opacity), time);
+		}
+		
 	}
+	public void Interact(string text, bool strict=false)
+	{
+		if (strictApplied == true && strict == false) {return;}
+		lastText = text;
+		if (strict)
+		{
+			strictApplied = true;
+		}
+		InteractText.Text = text;
+		if (InteractSound.Playing == true)
+		{
+			InteractSound.Stop();
+		}
+		InteractSound.Play();
+		InteractPanel.Visible = true;
+	}
+
+	public async Task InteractTimed(string text, float time, bool strict=false, bool textCheck=true)
+	{
+		if (strictApplied == true && strict == false) {return;}
+		lastText = text;
+		if (strict)
+		{
+			strictApplied = true;
+		}
+		Interact(text);
+		await Task.Delay((int)(time * 1000));
+		if (text == lastText && textCheck)
+		{
+			StopInteract();
+		}
+		else if (!textCheck)
+		{
+			StopInteract();
+		}
+	}
+	public void StopInteract(bool strict=false)
+	{
+		if (strictApplied == true && strict == false) {return;}
+		strictApplied = false;
+		InteractPanel.Visible = false;
+	}
+
 
 }
