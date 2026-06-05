@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bk22074jm4mc6"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_6icsh"]
+[ext_resource type="AudioStream" uid="uid://cnpf1uct077mo" path="res://audio/SoundEffects/Other/ImpactGlass.mp3" id="1_6qn20"]
+[ext_resource type="PackedScene" uid="uid://dj8oaokdxxwop" path="res://DevStuff/Cup.glb" id="2_6qn20"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6icsh"]
+height = 0.16549683
+radius = 0.07324219
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6icsh"]
+size = Vector3(0.016845703, 0.12249756, 0.0715332)
+
+[node name="Cup" type="Node3D" unique_id=1286831468 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_6icsh")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1421176775]
+collision_layer = 44
+collision_mask = 44
+continuous_cd = true
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=1083610104]
+stream = ExtResource("1_6qn20")
+volume_db = 1.882
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1571502470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07539368, 0)
+shape = SubResource("CylinderShape3D_6icsh")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D" unique_id=1866497867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010620117, 0.075790405, 0.099731445)
+shape = SubResource("BoxShape3D_6icsh")
+
+[node name="Cup" parent="RigidBody3D" unique_id=1106543726 instance=ExtResource("2_6qn20")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)

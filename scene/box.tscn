@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b45j5xhu00s3t"]
+
+[ext_resource type="PackedScene" uid="uid://dcljwejiq77tv" path="res://DevStuff/box1mod.tscn" id="2_5jxcw"]
+[ext_resource type="PackedScene" uid="uid://bni6n1o4dv7vh" path="res://DevStuff/box3mod.tscn" id="3_5jxcw"]
+[ext_resource type="PackedScene" uid="uid://b2d6nt6e6kv4d" path="res://DevStuff/box2mod.tscn" id="3_05o4f"]
+
+[node name="Box" type="Node3D" unique_id=612404470]
+
+[node name="1" parent="." unique_id=291472555 instance=ExtResource("2_5jxcw")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+visible = false
+
+[node name="2" parent="." unique_id=496785140 instance=ExtResource("3_05o4f")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+visible = false
+
+[node name="3" parent="." unique_id=199584555 instance=ExtResource("3_5jxcw")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+visible = false

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bom22uxarnyi5"]
+
+[ext_resource type="Script" uid="uid://spe5m6s1ebev" path="res://scripts/StackTemplate.cs" id="1_2vav1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2vav1"]
+
+[node name="StackTemplate" type="Node3D" unique_id=258724861]
+script = ExtResource("1_2vav1")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=737364956]
+transform = Transform3D(13.864342, 0, 0, 0, 20.995016, 0, 0, 0, 40.320004, 0, 11, 0)
+layers = 4
+mesh = SubResource("BoxMesh_2vav1")

@@ -11,8 +11,15 @@ public partial class ChapterTitle : Control
 	[Export] public Panel InteractPanel;
 	[Export] public Label InteractText;
 	[Export] public AudioStreamPlayer3D InteractSound;
+	[Export] public Camera3D viewport;
 	private bool strictApplied = false;
 	private string lastText = "";
+
+	public void SetViewportCamPos(Vector3 pos, Basis rotation)
+	{
+		viewport.GlobalPosition = pos;
+		viewport.Basis = rotation;
+	}
 	public async Task ShowTitle(string title, float timeToShow)
 	{
 		label.Text = title;

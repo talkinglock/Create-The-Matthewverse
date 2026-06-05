@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cqf8vls5rpvv2"
+path="res://.godot/imported/Projector.obj-b97fb5f7f8e4d0a88e518100b246137d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Projector.obj-b97fb5f7f8e4d0a88e518100b246137d.mesh"]
+
+source_file="res://DevStuff/Projector.obj"
+dest_files=["res://.godot/imported/Projector.obj-b97fb5f7f8e4d0a88e518100b246137d.mesh", "res://.godot/imported/Projector.obj-b97fb5f7f8e4d0a88e518100b246137d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

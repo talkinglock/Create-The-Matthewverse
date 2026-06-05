@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b8u5c4eab6lqy"]
+
+[ext_resource type="Texture2D" uid="uid://b74v8tl2bd1ka" path="res://textures/drywall.jpg" id="1_yxyrm"]
+
+[resource]
+albedo_color = Color(0.5609549, 0.5609549, 0.5609549, 1)
+albedo_texture = ExtResource("1_yxyrm")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1.515715
+uv1_world_triplanar = true

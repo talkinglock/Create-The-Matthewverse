@@ -1,9 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 using GNodeArray = Godot.Collections.Array<Godot.Node>;
 public partial class Standard
 {
+    public async Task Wait(float timeSec)
+    {
+        await Task.Delay((int)(timeSec * 1000));
+    }
     public Node GetRandomChildFromParent(Node parent)
     {
         GNodeArray children = parent.GetChildren();

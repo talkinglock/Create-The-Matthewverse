@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://lq1k7ky4k5jf"]
+
+[ext_resource type="PackedScene" uid="uid://dj8oaokdxxwop" path="res://DevStuff/Cup.glb" id="1_fjdlj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d6ph0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kfy5"]
+
+[node name="Cup" unique_id=1106543726 instance=ExtResource("1_fjdlj")]
+
+[node name="ChipfoodCo" parent="." index="0" unique_id=1652021061]
+surface_material_override/0 = SubResource("StandardMaterial3D_d6ph0")
+surface_material_override/1 = SubResource("StandardMaterial3D_3kfy5")

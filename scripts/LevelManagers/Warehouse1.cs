@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 
 public partial class Warehouse1 : Node3D
 {
+	[Export] public Hallucinator hallcuinator;
 	[Export] public Triggers triggerManager;
 	[Export] public PlayerController plr;
 	[Export] public SingleDoorConnector entranceDoor;
 	[Export] public AudioStreamPlayer3D pickupSound;
 	[Export] public AudioStreamPlayer sting;
+	[Export] public InterimScarer interimScarer;
 	[Export] public Node3D flashlight;
 	[Export] public float StingStopTime;
 
@@ -19,6 +21,7 @@ public partial class Warehouse1 : Node3D
 
 	private async Task HandleStartAsync()
 	{
+		plr.CanRotate = false;
 		plr.CanMove = false;
 		title = plr.GetChapterTitle();
 		title.SetBlackoutOpacity(1.0f, -1);
@@ -27,6 +30,7 @@ public partial class Warehouse1 : Node3D
 		stingTween.TweenProperty(sting, "volume_linear", 0.0f, StingStopTime);
 		title.SetBlackoutOpacity(0.0f, StingStopTime);
 		await Task.Delay((int)(StingStopTime/2 * 1000.0));
+		plr.CanRotate = true;
 		plr.CanMove = true;
 		WaitingOnFlashlightEPress = true;
 		title.Interact("E - Pick up Flashlight", true);
@@ -34,6 +38,7 @@ public partial class Warehouse1 : Node3D
 
 	public override async void _Ready()
 	{
+		plr.hallucinator = hallcuinator;
 		HandleStartAsync();
 		triggerManager.Connect(
 			"TriggerActivated",
@@ -71,7 +76,43 @@ public partial class Warehouse1 : Node3D
 				await title.ShowTitle("Chapter 2 - Unemployed", 3);
 				break;
 			}
-			
+			case "InterimEntered":
+			{
+				//plr.PlayMusic("TheUpperhand");
+				hallcuinator.hallucinate = false;
+				break;
+			}
+			case "StartHallucinations":
+			{
+				plr.FadeMusic("Unemployment", 2);
+				hallcuinator.hallucinate = true;
+				break;
+			}
+			case "StopHallucinations":
+			{
+				hallcuinator.hallucinate = false;
+				break;
+			}
+			case "InterimToMatthew":
+				{
+					interimScarer.InterimToMatthewFired();
+					break;
+				}
+			case "InterimToProjector":
+				{
+					interimScarer.InterimToProjectorFired();
+					break;
+				}
+			case "InterimToTransducer":
+				{
+					interimScarer.InterimToTransducerFired();
+					break;
+				}
+			case "MatthewEscaped":
+				{
+					interimScarer.MatthewEscapedFired();
+					break;
+				}
 			default:
 				break;
 		}

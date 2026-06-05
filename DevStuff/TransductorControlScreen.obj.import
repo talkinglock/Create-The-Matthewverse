@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bblt4v411ba8w"
+path="res://.godot/imported/TransductorControlScreen.obj-a5c1a5403c6c8d6eba32a18e33220007.mesh"
+
+[deps]
+
+files=["res://.godot/imported/TransductorControlScreen.obj-a5c1a5403c6c8d6eba32a18e33220007.mesh"]
+
+source_file="res://DevStuff/TransductorControlScreen.obj"
+dest_files=["res://.godot/imported/TransductorControlScreen.obj-a5c1a5403c6c8d6eba32a18e33220007.mesh", "res://.godot/imported/TransductorControlScreen.obj-a5c1a5403c6c8d6eba32a18e33220007.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

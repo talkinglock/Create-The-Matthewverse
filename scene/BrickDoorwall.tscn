@@ -1,0 +1,253 @@
+[gd_scene format=4 uid="uid://ceng3iyla1lf0"]
+
+[ext_resource type="Texture2D" uid="uid://b74v8tl2bd1ka" path="res://textures/drywall.jpg" id="1_hwnkt"]
+[ext_resource type="Material" uid="uid://bjjgabue8erp6" path="res://materials/Brick.tres" id="2_2ot4q"]
+[ext_resource type="Material" uid="uid://br3ox4b6hy2g" path="res://materials/BrickWallHelper.tres" id="2_s5up7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8opq"]
+albedo_color = Color(0.5089541, 0.62233424, 1, 1)
+albedo_texture = ExtResource("1_hwnkt")
+uv1_triplanar = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_j0bvf"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 0.35340858, 2, 2),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAEAAUABgAFAAcA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//8AAP//AAAAAP////8AAMBD/////wAAAAAAAP//AAD//wAAAAAAAMBD//8AAAAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jidgf"]
+resource_name = "wallHelper4_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 0.35340858, 2, 2),
+"attribute_data": PackedByteArray("lSRHkqYolSQmSSZJFQS3bRZF2LYmSSZJp2m3bZUkR5KXZWnbp2m3bSeKR5IWRdi2"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkA"),
+"material": SubResource("StandardMaterial3D_c8opq"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("//8AAP//obIAAP/////Nv8BD/////3rBAAAAAP//KLL//wAAAACEw8BD/////4TDwEP//wAAhMP//wAA//+EwwAAAAAAAP//wEP//wAA//8AAP//AAD/////AAAAAP///////////////////////ypX3A4qV9wOKlfcDipX3A6xsU3O17smxAK9+8JXsafO")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_j0bvf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5e304"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(0.061705854, 0.061705854, 0.061705854, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w1ev6"]
+_surfaces = [{
+"aabb": AABB(-0.0468235, -0.033778667, -1, 0.093646765, 0.067557454, 2),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAQAEAAIAAwAFAAEAAQAFAAQAAwAGAAUABgAEAAUABgAHAAQA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAAAA//8AAAAA//8AAAAAAAAAAP////8AAP///////wAA//8AAP//AAAAAAAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pt28h"]
+resource_name = "wallHelper4_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.0468235, -0.033778667, -1, 0.093646765, 0.067557454, 2),
+"attribute_data": PackedByteArray("/1//v/+f/3//n/+//1//f/9f/3//n/8//5//f/9f/z//X/8//58AAP+f/z//XwAA/5//f//f/z//3/9//5//Pw=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"material": SubResource("StandardMaterial3D_5e304"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAAAA////////AAD//wAA//8AAP////8AAAAA/////wAAAABU1f///////1TV/////wAAVNX//wAA//9U1f//AAD///+/AAD//////7//////////vwAAAAD///+//////wAA//8AAP///////wAA//8AAP//////////////v/+//7//v/+//7//v/+/qiqqKqoqqiqqKqoqqiqqKv//////////////////////f/+//3//v/9//7//f/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_w1ev6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hrhuv"]
+size = Vector3(0.071777344, 4.3174515, 28.722107)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4r67"]
+albedo_texture = ExtResource("1_hwnkt")
+uv1_scale = Vector3(0.65, 0.65, 0.65)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.28717422
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_c5wqy"]
+material = SubResource("StandardMaterial3D_f4r67")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vsk58"]
+size = Vector3(0.071777344, 5.0703297, 28.722107)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5up7"]
+albedo_texture = ExtResource("1_hwnkt")
+uv1_scale = Vector3(0.65, 0.65, 0.65)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.28717422
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3vxdd"]
+material = SubResource("StandardMaterial3D_s5up7")
+
+[node name="BrickDoorwall" type="Node3D" unique_id=469921769]
+
+[node name="Doorwall" type="Node3D" parent="." unique_id=1603797480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Wall" type="Node3D" parent="Doorwall" unique_id=1572943782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.07999999, 0.092891045, -0.3, 2.7021682)
+
+[node name="Wall5" type="Node3D" parent="Doorwall/Wall" unique_id=30419403]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.020000458, 0, 0.14125824)
+
+[node name="wallHelper4" type="Node3D" parent="Doorwall/Wall/Wall5" unique_id=1628728965]
+transform = Transform3D(-0.9999988, 0, -2.1824956e-06, 0, 1, 0, 1.5099562e-07, 0, -14.454015, -0.778, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="Doorwall/Wall/Wall5/wallHelper4" unique_id=385116117]
+mesh = SubResource("ArrayMesh_jidgf")
+surface_material_override/0 = ExtResource("2_s5up7")
+
+[node name="Cube_001" type="MeshInstance3D" parent="Doorwall/Wall/Wall5/wallHelper4" unique_id=2002614340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9531765, 1.0332566, 0)
+mesh = SubResource("ArrayMesh_pt28h")
+
+[node name="Wall" type="StaticBody3D" parent="Doorwall/Wall/Wall5" unique_id=2013891950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0003414154, 2.1559849, 0)
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Doorwall/Wall/Wall5/Wall" unique_id=715547349]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18530273, -0.011203766, 0.004623413)
+shape = SubResource("BoxShape3D_hrhuv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Doorwall/Wall/Wall5/Wall" unique_id=1700881466]
+transform = Transform3D(0.043264605, 0, 0, 0, 5.101377, 0, 0, 0, 28.840052, 0.17691803, -0.34868312, 0)
+layers = 5
+mesh = SubResource("BoxMesh_c5wqy")
+surface_material_override/0 = ExtResource("2_2ot4q")
+
+[node name="Wall2" type="Node3D" parent="Doorwall" unique_id=1168492144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.07999999, 0.09147871, -0.3, -2.727)
+
+[node name="Wall5" type="Node3D" parent="Doorwall/Wall2" unique_id=729984777]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.020000458, 0, 0.14125824)
+
+[node name="wallHelper4" type="Node3D" parent="Doorwall/Wall2/Wall5" unique_id=396394109]
+transform = Transform3D(-0.9999988, 0, -2.1824956e-06, 0, 1, 0, 1.5099562e-07, 0, -14.454015, -0.778, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="Doorwall/Wall2/Wall5/wallHelper4" unique_id=655883218]
+mesh = SubResource("ArrayMesh_jidgf")
+surface_material_override/0 = ExtResource("2_s5up7")
+
+[node name="Cube_001" type="MeshInstance3D" parent="Doorwall/Wall2/Wall5/wallHelper4" unique_id=2003295082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9531765, 1.0332566, 0)
+mesh = SubResource("ArrayMesh_pt28h")
+
+[node name="Wall" type="StaticBody3D" parent="Doorwall/Wall2/Wall5" unique_id=2145661430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0003414154, 2.1559849, 0)
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Doorwall/Wall2/Wall5/Wall" unique_id=1334585657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18530273, -0.011203766, 0.004623413)
+shape = SubResource("BoxShape3D_hrhuv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Doorwall/Wall2/Wall5/Wall" unique_id=1526854100]
+transform = Transform3D(0.043264605, 0, 0, 0, 5.101377, 0, 0, 0, 28.840052, 0.17691803, -0.34868312, 0)
+layers = 5
+mesh = SubResource("BoxMesh_c5wqy")
+surface_material_override/0 = ExtResource("2_2ot4q")
+
+[node name="Wall3" type="Node3D" parent="Doorwall" unique_id=644870960]
+transform = Transform3D(-1, 0, 1.2079663e-08, 0, 1, 0, -1.509958e-07, 0, -0.07999999, -0.373, -0.3, -2.727)
+
+[node name="Wall5" type="Node3D" parent="Doorwall/Wall3" unique_id=2016946454]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.020000458, 0, 0.14125824)
+
+[node name="wallHelper4" type="Node3D" parent="Doorwall/Wall3/Wall5" unique_id=87761591]
+transform = Transform3D(-0.9999988, 0, -2.1824956e-06, 0, 1, 0, 1.5099562e-07, 0, -14.454015, -0.778, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="Doorwall/Wall3/Wall5/wallHelper4" unique_id=633668234]
+mesh = SubResource("ArrayMesh_jidgf")
+surface_material_override/0 = ExtResource("2_s5up7")
+
+[node name="Cube_001" type="MeshInstance3D" parent="Doorwall/Wall3/Wall5/wallHelper4" unique_id=1197539749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9531765, 1.0332566, 0)
+mesh = SubResource("ArrayMesh_pt28h")
+
+[node name="Wall" type="StaticBody3D" parent="Doorwall/Wall3/Wall5" unique_id=1955090634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0003414154, 2.1559849, 0)
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Doorwall/Wall3/Wall5/Wall" unique_id=2123118072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18530273, -0.011203766, 0.004623413)
+shape = SubResource("BoxShape3D_hrhuv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Doorwall/Wall3/Wall5/Wall" unique_id=972293635]
+transform = Transform3D(0.043264605, 0, 0, 0, 5.101377, 0, 0, 0, 28.840052, 0.17691803, -0.34868312, 0)
+mesh = SubResource("BoxMesh_c5wqy")
+surface_material_override/0 = ExtResource("2_2ot4q")
+
+[node name="Wall4" type="Node3D" parent="Doorwall" unique_id=656165162]
+transform = Transform3D(-1, 0, 1.2079663e-08, 0, 1, 0, -1.509958e-07, 0, -0.07999999, -0.373, -0.3, 2.702)
+
+[node name="Wall5" type="Node3D" parent="Doorwall/Wall4" unique_id=61121201]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.020000458, 0, 0.14125824)
+
+[node name="wallHelper4" type="Node3D" parent="Doorwall/Wall4/Wall5" unique_id=1325871885]
+transform = Transform3D(-0.9999988, 0, -2.1824956e-06, 0, 1, 0, 1.5099562e-07, 0, -14.454015, -0.778, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="Doorwall/Wall4/Wall5/wallHelper4" unique_id=127391953]
+mesh = SubResource("ArrayMesh_jidgf")
+surface_material_override/0 = ExtResource("2_s5up7")
+
+[node name="Cube_001" type="MeshInstance3D" parent="Doorwall/Wall4/Wall5/wallHelper4" unique_id=671538869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9531765, 1.0332566, 0)
+mesh = SubResource("ArrayMesh_pt28h")
+
+[node name="Wall" type="StaticBody3D" parent="Doorwall/Wall4/Wall5" unique_id=794993526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0003414154, 2.1559849, 0)
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Doorwall/Wall4/Wall5/Wall" unique_id=899974273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18530273, -0.011203766, 0.004623413)
+shape = SubResource("BoxShape3D_hrhuv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Doorwall/Wall4/Wall5/Wall" unique_id=1576840210]
+transform = Transform3D(0.043264605, 0, 0, 0, 5.101377, 0, 0, 0, 28.840052, 0.17691803, -0.34868312, 0)
+mesh = SubResource("BoxMesh_c5wqy")
+surface_material_override/0 = ExtResource("2_2ot4q")
+
+[node name="Node3D" type="Node3D" parent="Doorwall" unique_id=386178843]
+transform = Transform3D(4.373, 0, 0, 0, 0.37, 0, 0, 0, 0.11, -0.14313379, 3.1135793, 0)
+
+[node name="Wall" type="StaticBody3D" parent="Doorwall/Node3D" unique_id=629511947]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Doorwall/Node3D/Wall" unique_id=824830487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02880001, 0.004623413)
+shape = SubResource("BoxShape3D_vsk58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Doorwall/Node3D/Wall" unique_id=1481400155]
+transform = Transform3D(0.043264605, 0, 0, 0, 5.101377, 0, 0, 0, 28.840052, 0, 0, 0)
+layers = 5
+mesh = SubResource("BoxMesh_3vxdd")
+surface_material_override/0 = ExtResource("2_2ot4q")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b2d6nt6e6kv4d"]
+
+[ext_resource type="PackedScene" uid="uid://c26kqkg4s51js" path="res://DevStuff/Box2.glb" id="1_ik56c"]
+[ext_resource type="Material" uid="uid://d2rg0j3nhe7dr" path="res://materials/Cardboard.tres" id="2_grqk1"]
+
+[node name="Box2" unique_id=496785140 instance=ExtResource("1_ik56c")]
+
+[node name="ChipfoodCoDamaged_002" parent="." index="0" unique_id=1857703476]
+surface_material_override/0 = ExtResource("2_grqk1")

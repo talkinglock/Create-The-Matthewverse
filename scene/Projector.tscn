@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://jsl0jotieuei"]
+
+[ext_resource type="PackedScene" uid="uid://bhbsve84lhcj3" path="res://DevStuff/Projector.glb" id="1_fm8x8"]
+[ext_resource type="Script" uid="uid://d3rggcehbs5tt" path="res://scripts/Lightblinker.cs" id="2_wvhwm"]
+[ext_resource type="AudioStream" uid="uid://d17lrft2tg72o" path="res://audio/SoundEffects/Other/Projector.mp3" id="3_dmnur"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wvhwm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmnur"]
+shading_mode = 0
+
+[node name="Node3D" type="Node3D" unique_id=1493332696]
+
+[node name="Projector2" parent="." unique_id=510699217 instance=ExtResource("1_fm8x8")]
+transform = Transform3D(0.09989531, 0.004574656, 0, -0.004574656, 0.09989531, 0, 0, 0, 0.1, 0, 0.10613701, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Projector2" unique_id=1111556779]
+transform = Transform3D(-0.01206113, 0.023700224, 0, -1.1893771, -0.00024033722, 0, 0, 0, 1.140945, -2.2743063, -0.017145038, -1)
+mesh = SubResource("CylinderMesh_wvhwm")
+surface_material_override/0 = SubResource("StandardMaterial3D_dmnur")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Projector2/MeshInstance3D" unique_id=1918821726]
+transform = Transform3D(20.167587, 0.8834794, 236.59657, -34.283607, -1.984334, -226.54639, 0.17583992, -8.762899, 1.4112976e-07, 0.013048887, -11.70182, 0)
+light_volumetric_fog_energy = 300.0
+shadow_enabled = true
+spot_range = 3.511634
+spot_angle = 51.76008
+script = ExtResource("2_wvhwm")
+HigherEnergy = 1.5
+LowerEnergy = 1.0
+TimeDenom = 30.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Projector2/MeshInstance3D" unique_id=876497427]
+stream = ExtResource("3_dmnur")
+volume_db = 15.885
+autoplay = true
+max_distance = 30.0
+parameters/looping = true

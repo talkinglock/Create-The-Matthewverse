@@ -1,0 +1,98 @@
+[gd_scene format=4 uid="uid://b3qa33qq0g3qc"]
+
+[ext_resource type="PackedScene" uid="uid://cfo7wrw72rfrx" path="res://scene/Concrete.tscn" id="1_jc4pp"]
+[ext_resource type="Material" uid="uid://br3ox4b6hy2g" path="res://materials/BrickWallHelper.tres" id="3_o5kvg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jc4pp"]
+load_path = "res://.godot/imported/drywall.jpg-68ff83b7f6543eee264f8d896db687ce.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5kvg"]
+albedo_color = Color(0.32941177, 0.32156864, 0.34117648, 1)
+albedo_texture = SubResource("CompressedTexture2D_jc4pp")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_j0bvf"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 0.35340858, 2, 2),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAEAAUABgAFAAcA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//8AAP//AAAAAP////8AAMBD/////wAAAAAAAP//AAD//wAAAAAAAMBD//8AAAAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y4qoe"]
+resource_name = "wallHelper4_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 0.35340858, 2, 2),
+"attribute_data": PackedByteArray("lSRHkqYolSQmSSZJFQS3bRZF2LYmSSZJp2m3bZUkR5KXZWnbp2m3bSeKR5IWRdi2"),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkA"),
+"material": SubResource("StandardMaterial3D_o5kvg"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("//8AAP//obIAAP/////Nv8BD/////3rBAAAAAP//KLL//wAAAACEw8BD/////4TDwEP//wAAhMP//wAA//+EwwAAAAAAAP//wEP//wAA//8AAP//AAD/////AAAAAP///////////////////////ypX3A4qV9wOKlfcDipX3A6xsU3O17smxAK9+8JXsafO")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_j0bvf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5e304"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(0.061705854, 0.061705854, 0.061705854, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w1ev6"]
+_surfaces = [{
+"aabb": AABB(-0.0468235, -0.033778667, -1, 0.093646765, 0.067557454, 2),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAQAEAAIAAwAFAAEAAQAFAAQAAwAGAAUABgAEAAUABgAHAAQA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAAAA//8AAAAA//8AAAAAAAAAAP////8AAP///////wAA//8AAP//AAAAAAAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_g0i70"]
+resource_name = "wallHelper4_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.0468235, -0.033778667, -1, 0.093646765, 0.067557454, 2),
+"attribute_data": PackedByteArray("/1//v/+f/3//n/+//1//f/9f/3//n/8//5//f/9f/z//X/8//58AAP+f/z//XwAA/5//f//f/z//3/9//5//Pw=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"material": SubResource("StandardMaterial3D_5e304"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAAAA////////AAD//wAA//8AAP////8AAAAA/////wAAAABU1f///////1TV/////wAAVNX//wAA//9U1f//AAD///+/AAD//////7//////////vwAAAAD///+//////wAA//8AAP///////wAA//8AAP//////////////v/+//7//v/+//7//v/+/qiqqKqoqqiqqKqoqqiqqKv//////////////////////f/+//3//v/9//7//f/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_w1ev6")
+
+[node name="Node3D" type="Node3D" unique_id=1554188001]
+
+[node name="Node3D" parent="." unique_id=1448038929 instance=ExtResource("1_jc4pp")]
+transform = Transform3D(5.8, 0, 0, 0, 4.7, 0, 0, 0, 1, 0, 1.4, 0)
+
+[node name="wallHelper4" type="Node3D" parent="." unique_id=1845258232]
+transform = Transform3D(1.94707e-07, 0, -2.8908029, 0, 1, 0, 0.9999989, 0, 5.6286007e-07, 0.0020539016, -0.6, 1)
+
+[node name="Cube" type="MeshInstance3D" parent="wallHelper4" unique_id=1873889816]
+mesh = SubResource("ArrayMesh_y4qoe")
+surface_material_override/0 = ExtResource("3_o5kvg")
+
+[node name="Cube_001" type="MeshInstance3D" parent="wallHelper4" unique_id=1487345081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9531765, 1.0332566, 0)
+mesh = SubResource("ArrayMesh_g0i70")

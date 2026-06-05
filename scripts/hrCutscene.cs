@@ -37,6 +37,7 @@ public partial class hrCutscene : Node
 	private bool IsRestrain = false;
 	private bool secondTriggerHit = false;
 	private bool IsGoodbye = false;
+	private PackedScene nextScene;
 	public override void _Ready()
 	{
 		chapterTitle = plr.GetChapterTitle();
@@ -82,7 +83,7 @@ public partial class hrCutscene : Node
 		uncomfort2.Playing = false;
 		uncomfort.Playing = false;
 		chapterTitle.SetBlackoutOpacity(1.0f, -1);
-		GetTree().ChangeSceneToFile("res://scene/PostDestruction/warehouse_1.tscn");
+		GetTree().ChangeSceneToPacked(nextScene);
 
 	}
 	private void MoveTo(Node3D node, Vector3 place, float time)
@@ -125,6 +126,8 @@ public partial class hrCutscene : Node
 	private void AfterRoomEntrance()
 	{
 		secondTriggerHit = false;
+		GD.Print("Preloading warehouse_1");
+		nextScene = GD.Load<PackedScene>("res://scene/PostDestruction/warehouse_1.tscn");
 		secondBlock.SetCollisionLayerValue(1, true);
 		secondBlock.SetCollisionMaskValue(1, true);
 		MoveTo(hrGuy, hrGuy2Pos.GlobalPosition, 0.5f);

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 public partial class PlayerController : Node3D
 {
 	[ExportGroup("Object References")]
+	[Export] public Shaker shaker;
 	[Export] public Node music;
 	[Export] public ChapterTitle title;
 	[Export] public InteractableClass interactableClass;
@@ -37,6 +38,11 @@ public partial class PlayerController : Node3D
 	[ExportGroup("Numbers")]
 	[Export] public float jumpResponseTime;
 	[Export] public float turnSens;
+	[ExportGroup("Shake")]
+	[Export] public float shakeMultiplier = 0;
+	[Export] public float shakeTimeDevision = 3045.42f;
+	[Export] public float maxRandShake = 0.585f;
+	[Export] public float maxShakeDistance = 0.5f;
 	[ExportGroup("Toggles")]
 	[Export] public bool DoFirstObjectInteractCheck;
 	[ExportGroup("Flashlight")]
@@ -54,27 +60,32 @@ public partial class PlayerController : Node3D
 	[Export] public float viewBobTimeDenominatorIdle;
 	[Export] public float viewBobNoiseDenominatorIdle;
 
-	private bool isFlashlightEquipped = false;
+	public Hallucinator hallucinator;
+	public bool isFlashlightEquipped = false;
 	private bool flashlightBusy = false;
 	private bool viewBobBusy = false;
 	private bool lastPickupPass = false;
 	private bool lastThrowPass = false;
+	public bool IsHiding = false;
 	private bool isMoving;
-	private bool FirstObjectThrowCheck ;
+	private bool FirstObjectThrowCheck;
 	private FastNoiseLite fnl;
 	public bool CanMove = true;	
+	public bool CanRotate = true;
+	public bool CanHold = true;
  	Vector2 lastCoords = Vector2.Inf;
 	private float cameraAngle;
 
-	const float PI = 3.1415926f;
+	const float PI = 3.14f;
 	
-
+	private bool wasHoldingFlashlightBeforePickup = false;
 	// pickup
 	private float ePressedCount = 0;
 	private bool holdingObject = false;
 	private RigidBody3D objToHold = null;
 	private void UpdateRotation(InputEventMouseMotion motion)
 	{
+		if (!CanRotate) {return;}
 		Vector2 currentMouseCoords = motion.Relative;
 
 		if (lastCoords == Vector2.Inf)
@@ -94,6 +105,17 @@ public partial class PlayerController : Node3D
 		);
 		cameraMount.RotateY(coordsMovement.X);
 		cameraAngle = cameraMount.Rotation.Y;
+	}
+	private void UpdateShake()
+	{
+		if (!(shakeMultiplier > 0)) {return;}
+		float time = Time.GetTicksMsec()/shakeTimeDevision;
+		float sinComp = (Mathf.Sin(time) % maxShakeDistance) + ((float)GD.RandRange(-maxRandShake, maxRandShake));
+		float cosComp = (Mathf.Cos(time) % maxShakeDistance) + ((float)GD.RandRange(-maxRandShake, maxRandShake));
+		Vector3 offset = new Vector3(sinComp, cosComp, 0) * shakeMultiplier;
+
+		camera.Position = offset; // relative so camera holder so we dont need to reference a center position
+
 	}
 
 	private float TweenWithTime(
@@ -193,7 +215,7 @@ public partial class PlayerController : Node3D
 			}
 			else
 			{
-				rigidbody.ApplyForce(new Vector3(0, -0.1f, 0));
+				rigidbody.ApplyForce(new Vector3(0, -0.5f, 0));
 			}
 		}
 		else
@@ -238,9 +260,15 @@ public partial class PlayerController : Node3D
 	private void hold()
 	{
 		// is there an object to hold 
+		if (CanHold == false) {return;}
 		if (!holdCaster.IsColliding()) { return; }
 		if (holdCaster.GetCollider(0) is StaticBody3D && holdCaster.GetCollisionCount() == 1) {return;}
 		if (holdCaster.GetCollider(0) == rigidbody && holdCaster.GetCollisionCount() == 1) {return;}
+		if (isFlashlightEquipped)
+		{
+			wasHoldingFlashlightBeforePickup = true;
+			UnequipFlashlight();
+		}
 		ePressedCount++;
 		holdingObject = true;
 
@@ -283,12 +311,21 @@ public partial class PlayerController : Node3D
 		closestCollider.SetCollisionMaskValue(3, false);
 		closestCollider.SetCollisionLayerValue(1, false);
 		closestCollider.SetCollisionMaskValue(1, false);
+		if (closestCollider.Freeze == true)
+		{
+			closestCollider.Freeze = false;
+		}
 		objToHold = closestCollider;
 		objectRotation = objToHold.Rotation;
 		objToHold.GravityScale = 0.0f;
 	}
 	private void unhold()
 	{
+		if (wasHoldingFlashlightBeforePickup)
+		{
+			wasHoldingFlashlightBeforePickup = false;
+			EquipFlashlight();
+		}
 		lastThrowPass = false;
 		title.StopInteract();
 		objToHold.AngularVelocity = Vector3.Zero;
@@ -374,8 +411,9 @@ public partial class PlayerController : Node3D
 		tween.TweenProperty(flashlight.flashlightBody, "position", flashlight.startPos.Position + offset, 0.05f);
 		//flashlight.flashlightBody.Position = flashlight.startPos.Position + offset;
 	}
-	private async Task EquipFlashlight()
+	public async Task EquipFlashlight()
 	{
+		if (flashlightBusy) {return;}
 		flashlightBusy = true;
 		isFlashlightEquipped = true;
 		flashlight.flashlightBody.Position = flashlight.startPos.Position + new Vector3(0,flashlightStartYOffset,0);
@@ -388,8 +426,9 @@ public partial class PlayerController : Node3D
 		await ToSignal(tween, Tween.SignalName.Finished);
 		flashlightBusy = false;
 	}
-	private async Task UnequipFlashlight()
+	public async Task UnequipFlashlight()
 	{
+		if (flashlightBusy) {return;}
 		flashlightBusy = true;
 		isFlashlightEquipped = false;
 		Tween tween = GetTree().CreateTween();
@@ -422,7 +461,7 @@ public partial class PlayerController : Node3D
 	}
 	public async Task HandleOtherKeys()
 	{
-		if (Input.IsKeyPressed(Key.F) && flashlightBusy == false)
+		if (Input.IsKeyPressed(Key.F) && flashlightBusy == false && holdingObject == false)
 		{
 			if (CanUseFlashlight)
 			{
@@ -437,6 +476,14 @@ public partial class PlayerController : Node3D
 			}
 		}
 	}
+	public SpotLight3D GetFlashLightLight()
+	{
+		return flashlightSpot;
+	}
+	private void HandleViewportCamera()
+	{
+		title.SetViewportCamPos(camera.GlobalPosition, camera.GlobalBasis);
+	}
 	public ChapterTitle GetChapterTitle()
 	{
 		return title;
@@ -446,9 +493,14 @@ public partial class PlayerController : Node3D
 	{
 		return holdingObject;
 	}
+	public override void _Process(double delta)
+	{
+		HandleViewportCamera();
+	}
 	public override void _PhysicsProcess(double delta)
 	{
 		UpdateMovement(delta);
+		UpdateShake();
 		interactableClass.Update();
 		HandlePickup();
 		HandleOtherKeys();

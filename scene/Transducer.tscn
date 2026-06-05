@@ -1,0 +1,326 @@
+[gd_scene format=3 uid="uid://dvmh2yp73ptmk"]
+
+[ext_resource type="Script" uid="uid://3tgk2uui4ysp" path="res://scripts/TransducerMain.cs" id="1_b6pic"]
+[ext_resource type="ArrayMesh" uid="uid://byw5jpwfxgvju" path="res://DevStuff/TransductorChassis.obj" id="1_cdy64"]
+[ext_resource type="Material" uid="uid://b8u5c4eab6lqy" path="res://materials/Concrete.tres" id="2_alni6"]
+[ext_resource type="Shader" uid="uid://ckjilsg81s7xp" path="res://scene/Brightinator.gdshader" id="2_eyetr"]
+[ext_resource type="ArrayMesh" uid="uid://cngoed52wrxfj" path="res://DevStuff/TransductorGlows.obj" id="3_b6pic"]
+[ext_resource type="Shader" uid="uid://dfd3dntitk6tv" path="res://scripts/Disintergrate.gdshader" id="4_f33oo"]
+[ext_resource type="Material" uid="uid://eu6pxgnxx072" path="res://materials/TransductorGlows.tres" id="4_lo0pc"]
+[ext_resource type="ArrayMesh" uid="uid://cowum5rv2mwsd" path="res://DevStuff/TransductorSpinnerGlow.obj" id="5_n7vlr"]
+[ext_resource type="ArrayMesh" uid="uid://b0mncaseqr5el" path="res://DevStuff/TransductorControl.Towerobj.obj" id="6_2s4kv"]
+[ext_resource type="Material" uid="uid://m3f1ddnpsbty" path="res://materials/Metal.tres" id="7_0tylr"]
+[ext_resource type="ArrayMesh" uid="uid://bblt4v411ba8w" path="res://DevStuff/TransductorControlScreen.obj" id="8_ekpew"]
+[ext_resource type="Texture2D" uid="uid://c2k47vcjshebp" path="res://textures/TransductorScreenOffline.png" id="9_1a8vx"]
+[ext_resource type="Texture2D" uid="uid://c2r1oep7yhfo3" path="res://textures/TransductorScreenTransducting.png" id="10_67pn4"]
+[ext_resource type="Texture2D" uid="uid://ckef7hqpbdrsu" path="res://textures/TransductorScreenPowerFailure.png" id="11_8g4km"]
+[ext_resource type="Texture2D" uid="uid://behb1wng28j17" path="res://textures/TransductorScreenTooManyObjects.png" id="12_eyetr"]
+[ext_resource type="Texture2D" uid="uid://dunbc2k0b5cnd" path="res://textures/TransductorScreenActivating.png" id="13_gal64"]
+[ext_resource type="Script" uid="uid://vps5me0bg0jw" path="res://scripts/Transductor.cs" id="14_alni6"]
+[ext_resource type="Texture2D" uid="uid://dsvkgwab6axbq" path="res://textures/TransductorScreenNoObjects.png" id="16_1a8vx"]
+[ext_resource type="ArrayMesh" uid="uid://cbjs1wwkka6tu" path="res://DevStuff/TransductorSpinnerBase.obj" id="16_lo0pc"]
+[ext_resource type="AudioStream" uid="uid://baxjjxhvpj0mw" path="res://audio/SoundEffects/Other/TransducerIdle.mp3" id="17_n7vlr"]
+[ext_resource type="AudioStream" uid="uid://csoamvjb4xmns" path="res://audio/SoundEffects/Other/InteractTransducer.mp3" id="18_ekpew"]
+[ext_resource type="AudioStream" uid="uid://dh8c6asqs6wl5" path="res://audio/SoundEffects/Other/TransducerDenied.mp3" id="19_1a8vx"]
+[ext_resource type="AudioStream" uid="uid://blgc5wi75esjr" path="res://audio/SoundEffects/Other/TransducerAlarm.mp3" id="20_67pn4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bndke"]
+render_priority = 0
+shader = ExtResource("2_eyetr")
+shader_parameter/alphaVal = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw5j"]
+render_priority = 0
+shader = ExtResource("4_f33oo")
+shader_parameter/fadeB = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cdy64"]
+size = Vector3(0.31689453, 1.8086548, 0.24267578)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f33oo"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lo0pc"]
+size = Vector3(0.903595, 0.9074707, 0.2565918)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8g4km"]
+height = 0.30737305
+radius = 0.84814453
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eyetr"]
+height = 0.30737305
+radius = 0.84814453
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cdy64"]
+height = 0.16351318
+radius = 0.984375
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_alni6"]
+size = Vector3(0.09954834, 2.0537262, 0.2607422)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b6pic"]
+size = Vector3(0.09954834, 0.3932495, 0.2607422)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n7vlr"]
+size = Vector3(1, 2.5446777, 0.12109375)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_alni6"]
+height = 2.3538818
+radius = 0.7753906
+
+[node name="Transducer" type="Node3D" unique_id=1242612586 node_paths=PackedStringArray("connector", "objectArea", "playerArea", "barrier", "gotoPosition", "spinnerTop", "spinnerBottom", "spinner", "light", "offline", "activating", "online", "tooManyObjects", "noObjects", "failure", "Alarm", "Idle", "InteractGood", "InteractBad")]
+script = ExtResource("1_b6pic")
+connector = NodePath("Control/Screen/StaticBody3D")
+objectArea = NodePath("ObjectChecker")
+playerArea = NodePath("PlayerChecker")
+barrier = NodePath("Blocker")
+gotoPosition = NodePath("ObjectGoto")
+spinnerTop = NodePath("SpinnerTop")
+spinnerBottom = NodePath("SpinnerBottom")
+spinner = NodePath("Spinner")
+light = NodePath("OmniLight3D")
+offline = NodePath("Control/Screen/Offline")
+activating = NodePath("Control/Screen/Activating")
+online = NodePath("Control/Screen/Transducting")
+tooManyObjects = NodePath("Control/Screen/TooManyObjects")
+noObjects = NodePath("Control/Screen/NoObjects")
+failure = NodePath("Control/Screen/Fail")
+Alarm = NodePath("Alarm")
+Idle = NodePath("Idle")
+InteractGood = NodePath("InteractSucuess")
+InteractBad = NodePath("InteractFailure")
+brightifier = SubResource("ShaderMaterial_bndke")
+glower = ExtResource("4_lo0pc")
+disintegrator = SubResource("ShaderMaterial_5vw5j")
+EndLightValue = 3.836
+forceMultiplier = 2.0
+PostDestruction = Color(1, 0, 0, 0)
+
+[node name="TransductorChassis" type="MeshInstance3D" parent="." unique_id=736854090]
+transform = Transform3D(0.5, 0, 0, 0, 0.64168906, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("1_cdy64")
+surface_material_override/0 = ExtResource("2_alni6")
+surface_material_override/1 = ExtResource("2_alni6")
+surface_material_override/2 = ExtResource("2_alni6")
+surface_material_override/3 = ExtResource("2_alni6")
+
+[node name="TransductorGlows" type="MeshInstance3D" parent="." unique_id=746671862]
+transform = Transform3D(0.5, 0, 0, 0, 0.64168906, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("3_b6pic")
+surface_material_override/0 = ExtResource("4_lo0pc")
+surface_material_override/1 = ExtResource("4_lo0pc")
+
+[node name="Spinner" type="Node3D" parent="." unique_id=584418701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24349236, 0)
+
+[node name="TransductorSpinnerGlow" type="MeshInstance3D" parent="Spinner" unique_id=1286464753]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.24705315, 0)
+mesh = ExtResource("5_n7vlr")
+surface_material_override/0 = ExtResource("4_lo0pc")
+
+[node name="TransductorSpinnerBase" type="MeshInstance3D" parent="Spinner" unique_id=1900178232]
+transform = Transform3D(0.505, 0, 0, 0, 0.505, 0, 0, 0, 0.505, 0, 0.24705315, 0)
+mesh = ExtResource("16_lo0pc")
+surface_material_override/0 = ExtResource("7_0tylr")
+
+[node name="Control" type="Node3D" parent="." unique_id=2006118611]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.3, 0, 0.5)
+
+[node name="Tower" type="MeshInstance3D" parent="Control" unique_id=83710900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = ExtResource("6_2s4kv")
+surface_material_override/0 = ExtResource("7_0tylr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Control/Tower" unique_id=721462527]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Control/Tower/StaticBody3D" unique_id=562131964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0239747, 0.8057556, 1.6072754)
+shape = SubResource("BoxShape3D_cdy64")
+
+[node name="Screen" type="MeshInstance3D" parent="Control" unique_id=919561958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+layers = 4
+mesh = ExtResource("8_ekpew")
+surface_material_override/0 = SubResource("StandardMaterial3D_f33oo")
+
+[node name="Offline" type="Decal" parent="Control/Screen" unique_id=1720160007]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0.99682605, 1.8620765, 1.7578235)
+layers = 7
+size = Vector3(0.88427734, 0.46783447, 0.98880005)
+texture_albedo = ExtResource("9_1a8vx")
+cull_mask = 1047556
+
+[node name="Transducting" type="Decal" parent="Control/Screen" unique_id=1068490054]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0.9993285, 1.8512815, 1.7686185)
+visible = false
+layers = 7
+size = Vector3(0.8892822, 0.46783447, 0.9582672)
+texture_albedo = ExtResource("10_67pn4")
+cull_mask = 1047556
+
+[node name="Fail" type="Decal" parent="Control/Screen" unique_id=253630695]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0.9993285, 1.8512815, 1.7686185)
+visible = false
+layers = 7
+size = Vector3(0.8892822, 0.46783447, 0.9582672)
+texture_albedo = ExtResource("11_8g4km")
+cull_mask = 1047556
+
+[node name="TooManyObjects" type="Decal" parent="Control/Screen" unique_id=589639967]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0.9993285, 1.8512815, 1.7686185)
+visible = false
+layers = 7
+size = Vector3(0.8892822, 0.46783447, 0.9582672)
+texture_albedo = ExtResource("12_eyetr")
+cull_mask = 1047556
+
+[node name="Activating" type="Decal" parent="Control/Screen" unique_id=327564567]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0.99682605, 1.8620765, 1.7578235)
+visible = false
+layers = 7
+size = Vector3(0.88427734, 0.46783447, 0.98880005)
+texture_albedo = ExtResource("13_gal64")
+cull_mask = 1047556
+
+[node name="NoObjects" type="Decal" parent="Control/Screen" unique_id=829989443]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0.99682605, 1.8620765, 1.7578235)
+visible = false
+layers = 7
+size = Vector3(0.88427734, 0.46783447, 0.98880005)
+texture_albedo = ExtResource("16_1a8vx")
+cull_mask = 1047556
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Control/Screen" unique_id=1371361593 node_paths=PackedStringArray("main")]
+collision_layer = 97
+collision_mask = 97
+script = ExtResource("14_alni6")
+main = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Control/Screen/StaticBody3D" unique_id=831113130]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 1.003128, 1.8624029, 1.755317)
+shape = SubResource("BoxShape3D_lo0pc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=59038259]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=156930269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08215332, 0)
+shape = SubResource("CylinderShape3D_8g4km")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" unique_id=1291827485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08215332, 0)
+shape = SubResource("CylinderShape3D_eyetr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=268245217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.499936, 0)
+shape = SubResource("CylinderShape3D_cdy64")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1284981815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2001774, 1.235058, 0.00048828125)
+shape = SubResource("BoxShape3D_alni6")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=319498070]
+transform = Transform3D(0.57357645, 0.819152, 0, -0.819152, 0.57357645, 0, 0, 0, 1, -1.0983068, 2.3285336, 0.00048828125)
+shape = SubResource("BoxShape3D_b6pic")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=2014827505]
+transform = Transform3D(-0.4226183, 0.90630776, 0, -0.90630776, -0.4226183, 0, 0, 0, 1, -1.0574912, 0.16602129, 0.00048828125)
+shape = SubResource("BoxShape3D_b6pic")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" unique_id=1426743300]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.1892107, 1.2736588, 0.00048828893)
+shape = SubResource("BoxShape3D_alni6")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" unique_id=990028107]
+transform = Transform3D(-0.57357645, -0.819152, 8.742278e-08, -0.819152, 0.57357645, 0, -5.0143647e-08, -7.161254e-08, -1, 1.0778922, 2.3408523, 0.00048827918)
+shape = SubResource("BoxShape3D_b6pic")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" unique_id=57709611]
+transform = Transform3D(0.42261836, -0.9063079, 8.7422784e-08, -0.9063079, -0.42261836, 0, 3.6946464e-08, -7.923194e-08, -1, 1.0370766, 0.16602129, 0.00048827563)
+shape = SubResource("BoxShape3D_b6pic")
+
+[node name="Blocker" type="StaticBody3D" parent="." unique_id=708527019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19675565, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blocker" unique_id=626043039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2604097, 0.74198437)
+shape = SubResource("BoxShape3D_n7vlr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Blocker" unique_id=16663554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.988315, -0.75801563)
+shape = SubResource("BoxShape3D_n7vlr")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Blocker" unique_id=1059103536]
+transform = Transform3D(0.49999988, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999988, 0.649519, 0.988315, 0.3669843)
+shape = SubResource("BoxShape3D_n7vlr")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Blocker" unique_id=88193095]
+transform = Transform3D(0.49999988, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999988, -0.649519, 0.988315, -0.38301557)
+shape = SubResource("BoxShape3D_n7vlr")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Blocker" unique_id=138796149]
+transform = Transform3D(-0.50000024, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.50000024, 0.64951897, 0.988315, -0.3830157)
+shape = SubResource("BoxShape3D_n7vlr")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Blocker" unique_id=156466855]
+transform = Transform3D(-0.50000024, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.50000024, -0.64951897, 0.988315, 0.36698443)
+shape = SubResource("BoxShape3D_n7vlr")
+
+[node name="PlayerChecker" type="Area3D" parent="." unique_id=1147790716]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerChecker" unique_id=1687406548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2284546, 0)
+shape = SubResource("CylinderShape3D_alni6")
+
+[node name="ObjectChecker" type="Area3D" parent="." unique_id=1090426134]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectChecker" unique_id=2049605395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0133057, 0)
+shape = SubResource("CylinderShape3D_alni6")
+
+[node name="Idle" type="AudioStreamPlayer3D" parent="." unique_id=976815810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2758822, 0)
+stream = ExtResource("17_n7vlr")
+max_db = 4.0
+max_distance = 50.0
+parameters/looping = false
+
+[node name="InteractSucuess" type="AudioStreamPlayer3D" parent="." unique_id=1135515260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2758822, 0)
+stream = ExtResource("18_ekpew")
+max_distance = 50.0
+parameters/looping = false
+
+[node name="InteractFailure" type="AudioStreamPlayer3D" parent="." unique_id=1552838398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2758822, 0)
+stream = ExtResource("19_1a8vx")
+max_distance = 50.0
+parameters/looping = false
+
+[node name="Alarm" type="AudioStreamPlayer3D" parent="." unique_id=330432745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70000005, 1.0758822, 1)
+stream = ExtResource("20_67pn4")
+volume_db = -18.657
+max_db = 1.945
+max_distance = 20.0
+parameters/looping = false
+
+[node name="ObjectGoto" type="Node3D" parent="." unique_id=909143526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.416421, 0)
+
+[node name="SpinnerTop" type="Node3D" parent="." unique_id=1335482323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203, 0)
+
+[node name="SpinnerBottom" type="Node3D" parent="." unique_id=728414786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.974, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1654721545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3000001, 0)

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://br3ox4b6hy2g"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hnr0g"]
+load_path = "res://.godot/imported/drywall.jpg-68ff83b7f6543eee264f8d896db687ce.s3tc.ctex"
+
+[resource]
+albedo_color = Color(0.32808965, 0.322215, 0.34014788, 1)
+albedo_texture = SubResource("CompressedTexture2D_hnr0g")
+uv1_triplanar = true
+uv1_world_triplanar = true

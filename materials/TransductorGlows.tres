@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://eu6pxgnxx072"]
+
+[ext_resource type="Shader" uid="uid://43vuru3vrg3l" path="res://scripts/TransductorGlow.gdshader" id="1_7rn4j"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7rn4j")
+shader_parameter/color = Vector3(0, 0.5, 0.5)
+shader_parameter/alphaVal = 0.0

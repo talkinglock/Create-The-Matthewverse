@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://btsif7bl1qswc"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_s6gt3"]
+[ext_resource type="Texture2D" uid="uid://3rno7kyrsahl" path="res://textures/AtomizationRisk.png" id="2_gj2is"]
+[ext_resource type="AudioStream" uid="uid://cqfticy4tumxf" path="res://audio/SoundEffects/Other/Impact.wav" id="3_s6gt3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f2p2k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8alox"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.4
+metallic_specular = 0.55
+
+[sub_resource type="BoxMesh" id="BoxMesh_r5vy4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nsttg"]
+size = Vector3(0.0793457, 0.74658203, 1.2097168)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dq8mf"]
+size = Vector3(0.07672119, 0.7602539, 0.10043335)
+
+[node name="AtomizeSign" type="Node3D" unique_id=1809130296 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_s6gt3")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=994467167]
+collision_layer = 44
+collision_mask = 44
+freeze = true
+continuous_cd = true
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="RigidBody3D" unique_id=1904168472]
+transform = Transform3D(-0.06663643, 0, 0, 0, 0.7612324, 0, 0, 0, 0.097774185, 0, -0.35364392, 0)
+mesh = SubResource("BoxMesh_f2p2k")
+surface_material_override/0 = SubResource("StandardMaterial3D_8alox")
+
+[node name="Decal6" type="Decal" parent="RigidBody3D/MeshInstance3D10" unique_id=131575695]
+transform = Transform3D(-5.389492e-05, -1.0054561, -4.946001e-07, 0, 3.847265e-09, -0.990499, -12.508413, 2.012258e-06, 9.898623e-13, -9.4680445e-07, 0.93859196, 9.105112e-07)
+layers = 7
+sorting_offset = 2.0
+size = Vector3(1.8723104, 3.7545624, 3.0271313)
+texture_albedo = ExtResource("2_gj2is")
+modulate = Color(1.353256, 1.353256, 1.353256, 1)
+normal_fade = 0.5
+cull_mask = 1048572
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="RigidBody3D" unique_id=333045644]
+transform = Transform3D(-0.06663643, 0, 0, 0, 0.7540877, 0, 0, 0, 1.2231551, 0, 0.38735935, 0)
+layers = 5
+mesh = SubResource("BoxMesh_r5vy4")
+surface_material_override/0 = SubResource("StandardMaterial3D_8alox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2035571558]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.004760742, 0.38565037, 0.0059814453)
+shape = SubResource("BoxShape3D_nsttg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D" unique_id=1523514840]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.0008239746, -0.35720685, 0.0023889756)
+shape = SubResource("BoxShape3D_dq8mf")
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=1027726194]
+stream = ExtResource("3_s6gt3")
+volume_db = 1.882

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bmfa88blgywuq"]
+
+[ext_resource type="Texture2D" uid="uid://by115g38mvnt3" path="res://textures/polishedconcrete.jpg" id="1_twiom"]
+
+[resource]
+albedo_color = Color(0.37036446, 0.3703645, 0.37036446, 1)
+albedo_texture = ExtResource("1_twiom")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.9330328
+uv1_world_triplanar = true

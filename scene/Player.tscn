@@ -6,7 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://cj1ji7ofuedsr" path="res://scene/ChapterTitle.tscn" id="3_y30ri"]
 [ext_resource type="AudioStream" uid="uid://byw44e51r5pgu" path="res://audio/SoundEffects/Other/footsteps.mp3" id="4_dc1pm"]
 [ext_resource type="AudioStream" uid="uid://ck0bfw0lrpmgx" path="res://audio/Music/Welcome.wav" id="4_waelg"]
+[ext_resource type="AudioStream" uid="uid://bcrs4t2rhhgdc" path="res://audio/Music/In the middle.mp3" id="5_63jwq"]
 [ext_resource type="AudioStream" uid="uid://d0mkq02b1h7kl" path="res://audio/Music/Unemployment.mp3" id="5_kqvfm"]
+[ext_resource type="AudioStream" uid="uid://cq2tq37731osm" path="res://audio/Music/Upperhand.wav" id="6_63jwq"]
+[ext_resource type="AudioStream" uid="uid://bwnfph5pxkx4" path="res://audio/Music/SomewhereInBetween.mp3" id="7_r6ll3"]
+[ext_resource type="Script" uid="uid://s3e30h2pw834" path="res://scripts/Shaker.cs" id="11_oqto2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_si3wx"]
 friction = 0.1
@@ -21,10 +25,11 @@ albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_si3wx"]
 
-[node name="Player" type="Node3D" unique_id=1794909711 node_paths=PackedStringArray("music", "title", "interactableClass", "rigidbody", "cameraMount", "camera", "floorCaster", "holdCaster", "footsteps", "cameraHoldObj", "unholdCooldownTimer", "flashlight", "flashlightSpot")]
+[node name="Player" type="Node3D" unique_id=1794909711 node_paths=PackedStringArray("shaker", "music", "title", "interactableClass", "rigidbody", "cameraMount", "camera", "floorCaster", "holdCaster", "footsteps", "cameraHoldObj", "unholdCooldownTimer", "flashlight", "flashlightSpot")]
 script = ExtResource("1_si3wx")
+shaker = NodePath("Shaker")
 music = NodePath("PlrRigid/Music")
-title = NodePath("Control")
+title = NodePath("PlrRigid/CameraMount/PlayerCamera/Control")
 interactableClass = NodePath("InteractableClass")
 rigidbody = NodePath("PlrRigid")
 cameraMount = NodePath("PlrRigid/CameraMount")
@@ -32,11 +37,11 @@ camera = NodePath("PlrRigid/CameraMount/PlayerCamera")
 floorCaster = NodePath("PlrRigid/FloorCast")
 holdCaster = NodePath("PlrRigid/CameraMount/PlayerCamera/ShapeCast3D")
 footsteps = NodePath("PlrRigid/Footsteps")
-movementSpeed = 5.0
+movementSpeed = 4.0
 movementAccel = 100.0
 gravMultiplier = 6.0
 jumpVelocity = 150.0
-frictionMultiplier = 3.0
+frictionMultiplier = 6.0
 objectAcceleration = 800.0
 maximumDistance = 30.0
 objectFrictionMultiplier = 5.0
@@ -44,6 +49,8 @@ throwAcceleration = 20.0
 cameraHoldObj = NodePath("PlrRigid/CameraMount/PlayerCamera/CameraHoldObj")
 unholdCooldownTimer = NodePath("Timer")
 turnSens = 0.002
+shakeTimeDevision = 200.42
+maxShakeDistance = 0.3
 flashlight = NodePath("PlrRigid/CameraMount/PlayerCamera/Flashlight")
 flashlightSpot = NodePath("PlrRigid/CameraMount/PlayerCamera/FlashlightLight")
 flashlightTweenTime = 0.25
@@ -56,8 +63,8 @@ viewBobTimeDenominatorIdle = 1200.0
 viewBobNoiseDenominatorIdle = 200.0
 
 [node name="PlrRigid" type="RigidBody3D" parent="." unique_id=1112512398]
-collision_layer = 5
-collision_mask = 5
+collision_layer = 32773
+collision_mask = 32773
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -70,6 +77,8 @@ continuous_cd = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51269805, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="PlrRigid/CameraMount" unique_id=873350284]
+cull_mask = 5
+near = 0.001
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=1017961479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041485965, -2.2347746)
@@ -91,10 +100,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.57700956)
 light_color = Color(0.58456355, 0.58456355, 0.42528185, 1)
 light_energy = 0.0
 shadow_enabled = true
-spot_range = 7.052511
+spot_range = 12.437969
 spot_angle = 31.872314
 
 [node name="Flashlight" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=1032744412 instance=ExtResource("2_82gks")]
+
+[node name="Control" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=536347271 instance=ExtResource("3_y30ri")]
 
 [node name="PhysicalBody" type="MeshInstance3D" parent="PlrRigid" unique_id=866019454]
 material_override = SubResource("StandardMaterial3D_vviyk")
@@ -104,7 +115,6 @@ mesh = SubResource("CapsuleMesh_si3wx")
 [node name="FloorCast" type="RayCast3D" parent="PlrRigid" unique_id=1083794848]
 target_position = Vector3(0, -1.2, 0)
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlrRigid" unique_id=1757042287]
 shape = SubResource("CapsuleShape3D_si3wx")
@@ -116,14 +126,30 @@ stream = ExtResource("4_waelg")
 attenuation_model = 3
 volume_db = -4.0
 
+[node name="InTheMiddle" type="AudioStreamPlayer3D" parent="PlrRigid/Music" unique_id=1448505668]
+stream = ExtResource("5_63jwq")
+attenuation_model = 3
+
+[node name="TheUpperhand" type="AudioStreamPlayer3D" parent="PlrRigid/Music" unique_id=283252120]
+stream = ExtResource("6_63jwq")
+attenuation_model = 3
+max_db = 6.0
+
+[node name="SomewhereInBetween" type="AudioStreamPlayer3D" parent="PlrRigid/Music" unique_id=2116193835]
+stream = ExtResource("7_r6ll3")
+attenuation_model = 3
+max_db = 6.0
+parameters/looping = true
+
 [node name="Unemployment" type="AudioStreamPlayer3D" parent="PlrRigid/Music" unique_id=1914467889]
 stream = ExtResource("5_kqvfm")
 attenuation_model = 3
-volume_db = 1.0
+volume_db = 2.0
 parameters/looping = true
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="PlrRigid" unique_id=818785541]
 stream = ExtResource("4_dc1pm")
+volume_db = -23.881
 pitch_scale = 1.2
 parameters/looping = true
 
@@ -137,4 +163,6 @@ script = ExtResource("2_62i1b")
 plrController = NodePath("..")
 caster = NodePath("../PlrRigid/CameraMount/PlayerCamera/InteractableRaycast")
 
-[node name="Control" parent="." unique_id=536347271 instance=ExtResource("3_y30ri")]
+[node name="Shaker" type="Node" parent="." unique_id=874747110 node_paths=PackedStringArray("player")]
+script = ExtResource("11_oqto2")
+player = NodePath("..")

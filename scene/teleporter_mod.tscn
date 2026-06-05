@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cfdp5r7aj3ske"]
+
+[ext_resource type="PackedScene" uid="uid://ctoync0t1c5md" path="res://DevStuff/Teleporter.glb" id="1_gmu4a"]
+[ext_resource type="AudioStream" uid="uid://br4rxvhpg7ivd" path="res://audio/SoundEffects/Other/Transducer.mp3" id="2_6i0vd"]
+[ext_resource type="Script" uid="uid://d3rggcehbs5tt" path="res://scripts/Lightblinker.cs" id="3_vns4h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i0vd"]
+albedo_color = Color(0, 0.5162988, 0.4307681, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gmu4a"]
+height = 0.20458984
+radius = 1.8720703
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6i0vd"]
+size = Vector3(1.8638306, 0.42443848, 1.8310852)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vns4h"]
+size = Vector3(0.3629303, 2.364563, 1.8310852)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ayprd"]
+size = Vector3(0.35000992, 1.525711, 1.8310852)
+
+[node name="Teleporter2" unique_id=1385686545 instance=ExtResource("1_gmu4a")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Teleporter" parent="." index="0" unique_id=528018776]
+surface_material_override/1 = SubResource("StandardMaterial3D_6i0vd")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Teleporter" index="0" unique_id=1903463282]
+stream = ExtResource("2_6i0vd")
+volume_db = -21.493
+autoplay = true
+max_distance = 20.0
+parameters/looping = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1805745245]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=328147366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7265229, 0)
+shape = SubResource("CylinderShape3D_gmu4a")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1826451690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07699585, 2.0290623, -0.029708862)
+shape = SubResource("BoxShape3D_6i0vd")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2" unique_id=1217528401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7759141, -0.541, -0.029708862)
+shape = SubResource("BoxShape3D_vns4h")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3" unique_id=201892180]
+transform = Transform3D(0.86611575, 0.49982682, -0.004101404, -0.49984378, 0.8660891, -0.0068210484, 0.00014284177, 0.007957878, 0.99996847, -1.4548917, 1.4069949, -0.02902328)
+shape = SubResource("BoxShape3D_ayprd")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="2" unique_id=1635926202]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 1.6392313, 0)
+light_color = Color(0, 0.13725491, 0.10980392, 1)
+shadow_enabled = true
+spot_range = 2.9170547
+spot_angle = 61.8917
+script = ExtResource("3_vns4h")
+HigherEnergy = 4.0
+LowerEnergy = 2.0
+TimeDenom = 20.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." index="3" unique_id=813088999]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, -1.4, 0)
+light_color = Color(0, 0.13725491, 0.10980392, 1)
+shadow_enabled = true
+spot_range = 2.8075583
+spot_angle = 71.88157
+script = ExtResource("3_vns4h")
+HigherEnergy = 4.0
+LowerEnergy = 2.0
+TimeDenom = 20.0

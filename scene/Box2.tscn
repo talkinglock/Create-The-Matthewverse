@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dqjim8w0jkltl"]
+
+[ext_resource type="PackedScene" uid="uid://c26kqkg4s51js" path="res://DevStuff/Box2.glb" id="2_ut32i"]
+
+[node name="Node3D" type="Node3D" unique_id=1245668299]
+
+[node name="Box2" parent="." unique_id=496785140 instance=ExtResource("2_ut32i")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.099886626, 0)

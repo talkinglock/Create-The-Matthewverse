@@ -10,6 +10,8 @@ public partial class SingleDoor : Node3D, IInteractable
 	[Export] public Node3D DoorHinge;
 	[Export] public Node3D DoorPhysical;
 	[Export] public AudioStreamPlayer3D openSound;
+	[Export] public AudioStreamPlayer3D lockedDoorSound;
+
 	[ExportGroup("Options")]
 	[Export] public bool Interactable = true;
 	[Export] public float DefaultTime;
@@ -38,7 +40,13 @@ public partial class SingleDoor : Node3D, IInteractable
 	}
 	public void OnInteract(PlayerController plrController)
 	{
-		if (!Interactable) {return;}
+		if (!Interactable) {
+			if (lockedDoorSound.Playing == false)
+			{
+				lockedDoorSound.Play();
+			}
+			return;
+		}
 		Interactable = false;
 		Debug.WriteLine("Interacting");
 		OpenDoor(plrController.rigidbody, DefaultTime);

@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po1ls"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Control" unique_id=536347271 node_paths=PackedStringArray("label", "panel", "InteractPanel", "InteractText", "InteractSound")]
+[node name="Control" type="Control" unique_id=536347271 node_paths=PackedStringArray("label", "panel", "InteractPanel", "InteractText", "InteractSound", "viewport")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,30 @@ panel = NodePath("Panel")
 InteractPanel = NodePath("InteractDialogue")
 InteractText = NodePath("InteractDialogue/Label")
 InteractSound = NodePath("InteractSound")
+viewport = NodePath("SubViewportContainer/SubViewport/Camera3D")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2104349777]
+light_mask = 3
+visibility_layer = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1860793424]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918722
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=149741008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.66586, 1.5007789, 11.186043)
+cull_mask = 2
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=1883932990]
 one_shot = true

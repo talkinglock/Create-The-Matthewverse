@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cjuhjw3gt6tga" path="res://scripts/SingleDoor.cs" id="1_gjpqs"]
 [ext_resource type="PackedScene" uid="uid://ds5qjrabipv83" path="res://models/door.glb" id="1_tpt6y"]
 [ext_resource type="AudioStream" uid="uid://de14xb2ilhc08" path="res://audio/SoundEffects/Other/SignelDoorOpen.mp3" id="4_8skvl"]
+[ext_resource type="AudioStream" uid="uid://c48vtiiubdmr8" path="res://audio/SoundEffects/Other/LockedDoor.mp3" id="5_t5bft"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gjpqs"]
 size = Vector3(1.4662476, 2.2951355, 0.2234497)
@@ -21,7 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 [node name="DoorModel" parent="DoorHinge" unique_id=1575649129 instance=ExtResource("1_tpt6y")]
 transform = Transform3D(1.4367018, 0, 0, 0, 1.1289744, 0, 0, 0, 1, 0, -1.1, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2132255136 node_paths=PackedStringArray("colliderStatic", "DoorHinge", "DoorPhysical", "openSound")]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2132255136 node_paths=PackedStringArray("colliderStatic", "DoorHinge", "DoorPhysical", "openSound", "lockedDoorSound")]
 collision_layer = 64
 collision_mask = 64
 script = ExtResource("1_gjpqs")
@@ -29,6 +30,7 @@ colliderStatic = NodePath("../Collider")
 DoorHinge = NodePath("../DoorHinge")
 DoorPhysical = NodePath(".")
 openSound = NodePath("../OpenSound")
+lockedDoorSound = NodePath("../LockedSound")
 DefaultTime = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=534812664]
@@ -46,3 +48,7 @@ shape = SubResource("BoxShape3D_cp757")
 [node name="OpenSound" type="AudioStreamPlayer3D" parent="." unique_id=893611658]
 stream = ExtResource("4_8skvl")
 volume_db = -3.0
+
+[node name="LockedSound" type="AudioStreamPlayer3D" parent="." unique_id=1234350242]
+stream = ExtResource("5_t5bft")
+pitch_scale = 1.19

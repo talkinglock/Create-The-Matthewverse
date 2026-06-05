@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://dwo4uk32l6cqd"]
 
 [ext_resource type="ArrayMesh" uid="uid://15vw1lihdxql" path="res://DevStuff/TableWarehouse2.obj" id="1_5gbfi"]
+[ext_resource type="Script" uid="uid://cjfrwud8fi268" path="res://scripts/WarehouseStack.cs" id="1_40jxn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40jxn"]
 albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
 
-[node name="Node3D" type="Node3D" unique_id=2029750887]
+[sub_resource type="BoxShape3D" id="BoxShape3D_5gbfi"]
+size = Vector3(3.706665, 18.097916, 1.7715454)
+
+[node name="Stack" type="Node3D" unique_id=2029750887 node_paths=PackedStringArray("warehouseBoxNode", "warehouseSpawnLocations")]
+script = ExtResource("1_40jxn")
+warehouseBoxNode = NodePath("Boxes")
+warehouseSpawnLocations = NodePath("SpawnLocations")
 
 [node name="TableWarehouse2" type="MeshInstance3D" parent="." unique_id=1652688952]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.5, 0)
@@ -36,3 +43,87 @@ mesh = ExtResource("1_5gbfi")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 16.5, 0)
 material_override = SubResource("StandardMaterial3D_40jxn")
 mesh = ExtResource("1_5gbfi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1476534416]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=432874016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013318896, 9.051033, 0.017169714)
+shape = SubResource("BoxShape3D_5gbfi")
+
+[node name="SpawnLocations" type="Node3D" parent="." unique_id=2067109914]
+
+[node name="Node3D" type="Node3D" parent="SpawnLocations" unique_id=84551822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 1.5137513, 0)
+
+[node name="Node3D2" type="Node3D" parent="SpawnLocations" unique_id=1033817847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 1.5137513, 0)
+
+[node name="Node3D3" type="Node3D" parent="SpawnLocations" unique_id=1335700296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 3.0763438, 0)
+
+[node name="Node3D4" type="Node3D" parent="SpawnLocations" unique_id=807683814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 3.0763438, 0)
+
+[node name="Node3D5" type="Node3D" parent="SpawnLocations" unique_id=249086296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 4.559059, 0)
+
+[node name="Node3D6" type="Node3D" parent="SpawnLocations" unique_id=2012407027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 4.559059, 0)
+
+[node name="Node3D7" type="Node3D" parent="SpawnLocations" unique_id=130089269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 6.0286126, 0)
+
+[node name="Node3D8" type="Node3D" parent="SpawnLocations" unique_id=2041785664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 6.0286126, 0)
+
+[node name="Node3D9" type="Node3D" parent="SpawnLocations" unique_id=1037096454]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 7.5670147, 0)
+
+[node name="Node3D10" type="Node3D" parent="SpawnLocations" unique_id=460881513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 7.5324955, 0)
+
+[node name="Node3D11" type="Node3D" parent="SpawnLocations" unique_id=1655925279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 9.051541, 0)
+
+[node name="Node3D12" type="Node3D" parent="SpawnLocations" unique_id=49169423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 9.051541, 0)
+
+[node name="Node3D13" type="Node3D" parent="SpawnLocations" unique_id=607825245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 10.548054, 0)
+
+[node name="Node3D14" type="Node3D" parent="SpawnLocations" unique_id=571093728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 10.548054, 0)
+
+[node name="Node3D15" type="Node3D" parent="SpawnLocations" unique_id=328217600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 12.062189, 0)
+
+[node name="Node3D16" type="Node3D" parent="SpawnLocations" unique_id=618620217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 12.062189, 0)
+
+[node name="Node3D17" type="Node3D" parent="SpawnLocations" unique_id=493212976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 13.567345, 0)
+
+[node name="Node3D18" type="Node3D" parent="SpawnLocations" unique_id=979638907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 13.567345, 0)
+
+[node name="Node3D19" type="Node3D" parent="SpawnLocations" unique_id=500344129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 15.023407, 0)
+
+[node name="Node3D20" type="Node3D" parent="SpawnLocations" unique_id=1477051353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 15.023407, 0)
+
+[node name="Node3D21" type="Node3D" parent="SpawnLocations" unique_id=449600302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 16.531406, 0)
+
+[node name="Node3D22" type="Node3D" parent="SpawnLocations" unique_id=1243959719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 16.531406, 0)
+
+[node name="Node3D23" type="Node3D" parent="SpawnLocations" unique_id=1386788027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233176, 18.18034, 0)
+
+[node name="Node3D24" type="Node3D" parent="SpawnLocations" unique_id=899728320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6766825, 18.18034, 0)
+
+[node name="Boxes" type="Node3D" parent="." unique_id=472214027]

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bt5dcq4qd4gk0"]
+
+[ext_resource type="Script" uid="uid://bymn033jx4j5y" path="res://scripts/HideBox.cs" id="1_enosm"]
+[ext_resource type="ArrayMesh" uid="uid://cnpn1kmfme351" path="res://DevStuff/HideBox.obj" id="1_wvbr4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvbr4"]
+albedo_color = Color(0.39001665, 0.2618615, 0.115721025, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvbr4"]
+size = Vector3(1.4708252, 1.479065, 1.4771729)
+
+[node name="HideBox" type="Node3D" unique_id=1916600017]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1755278844 node_paths=PackedStringArray("collider", "hidePos")]
+visible = false
+collision_layer = 105
+collision_mask = 105
+script = ExtResource("1_enosm")
+minHideDistance = 10.0
+tweenTime = 0.2
+collider = NodePath("CollisionShape3D")
+hidePos = NodePath("CameraPos")
+activeOdds = 10
+
+[node name="HideBox" type="MeshInstance3D" parent="StaticBody3D" unique_id=806029554]
+transform = Transform3D(0.25, 0, 0, 0, 0.3339708, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = ExtResource("1_wvbr4")
+surface_material_override/0 = SubResource("StandardMaterial3D_wvbr4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=481434260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014709473, 0.6760559, -0.001159668)
+shape = SubResource("BoxShape3D_wvbr4")
+disabled = true
+
+[node name="CameraPos" type="Node3D" parent="StaticBody3D" unique_id=1344361148]
+transform = Transform3D(-0.96592605, -7.450581e-09, -0.25881916, -0.23445709, 0.4235515, 0.87500525, 0.10962322, 0.9058723, -0.40911922, 0.007840239, 0.82099783, 0.009631949)

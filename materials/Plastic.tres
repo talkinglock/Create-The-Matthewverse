@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dsusnu7sn8b0a"]
+
+[ext_resource type="Texture2D" uid="uid://crysuei52ly0x" path="res://textures/plastic.jpg" id="1_a3tfc"]
+
+[resource]
+albedo_color = Color(0.41598046, 0.41598043, 0.4159804, 1)
+albedo_texture = ExtResource("1_a3tfc")
+subsurf_scatter_strength = 1.0
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.85786533
+uv1_world_triplanar = true

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://beosbokl2pfja"]
+
+[ext_resource type="PackedScene" uid="uid://bufu4q73lv2v5" path="res://DevStuff/EspressoMachine.glb" id="1_hr5g3"]
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_vjbw6"]
+[ext_resource type="AudioStream" uid="uid://cqfticy4tumxf" path="res://audio/SoundEffects/Other/Impact.wav" id="2_o2hf5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o2hf5"]
+size = Vector3(0.36206055, 1.1174316, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjbw6"]
+size = Vector3(0.47564697, 0.45147705, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cfou5"]
+size = Vector3(0.5283203, 0.1184082, 1)
+
+[node name="EspressoMachine" type="Node3D" unique_id=1072312268 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_vjbw6")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1700252929]
+collision_layer = 44
+collision_mask = 44
+mass = 3.0
+continuous_cd = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=904740461]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.03042534, -0.24052513, 0)
+shape = SubResource("BoxShape3D_o2hf5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D" unique_id=1552548074]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.236651, -0.08469617, 0)
+shape = SubResource("BoxShape3D_vjbw6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D" unique_id=404058959]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.26224387, -0.49719238, 0)
+shape = SubResource("BoxShape3D_cfou5")
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=1649019121]
+stream = ExtResource("2_o2hf5")
+
+[node name="EspressoMachine" parent="RigidBody3D" unique_id=125784510 instance=ExtResource("1_hr5g3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.3, -0.5, 0)

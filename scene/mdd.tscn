@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dhq73yvj6o22y"]
+
+[ext_resource type="Script" uid="uid://bfhnb0xqhuhua" path="res://scripts/Mdd.cs" id="1_6wi8d"]
+[ext_resource type="PackedScene" uid="uid://bf3b7euor55pe" path="res://DevStuff/MDDBase.glb" id="2_suahe"]
+[ext_resource type="PackedScene" uid="uid://bdv058f6l58pr" path="res://DevStuff/MDDCamera.glb" id="3_mwoft"]
+[ext_resource type="AudioStream" uid="uid://dd0adv2tadklb" path="res://audio/SoundEffects/MatthewAmbience/MDD3.mp3" id="4_fq86k"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6wi8d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suahe"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.60863566, 1.3123212, 3.1311767, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6wi8d"]
+height = 1.1469727
+radius = 0.4814453
+
+[node name="MDD" type="Node3D" unique_id=1361497353 node_paths=PackedStringArray("rotor")]
+script = ExtResource("1_6wi8d")
+rotor = NodePath("MDDCamera")
+
+[node name="MDDBase" parent="." unique_id=580660518 instance=ExtResource("2_suahe")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="MDDCamera" parent="." unique_id=1404629963 instance=ExtResource("3_mwoft")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.1114167, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MDDCamera" unique_id=2059658382]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 0.90584314, 2.2900462, 0)
+light_color = Color(8.07721, 11.09242, 17.588, 1)
+light_size = 0.148
+light_specular = 1.0
+shadow_enabled = true
+spot_range = 43.73668
+spot_angle = 18.759167
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MDDCamera" unique_id=87272907]
+transform = Transform3D(0.15814573, 0, 0, 0, 0.5136967, 0, 0, 0, 0.7699272, 0.67882466, 2.2809691, 0)
+mesh = SubResource("BoxMesh_6wi8d")
+surface_material_override/0 = SubResource("StandardMaterial3D_suahe")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=526945877]
+stream = ExtResource("4_fq86k")
+volume_db = 4.776
+autoplay = true
+max_distance = 60.0
+parameters/looping = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=317534401]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=937981134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31225586, 0)
+shape = SubResource("CylinderShape3D_6wi8d")

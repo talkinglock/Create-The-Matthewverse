@@ -14,7 +14,7 @@ public partial class Triggers : Node
 		{
 			void entered(Node node)
 			{
-				GD.Print("collision");
+				//GD.Print("collision");
 				if (node.Name == "PlrRigid")
 				{
 					EmitSignal("TriggerActivated", trigger.Name);
