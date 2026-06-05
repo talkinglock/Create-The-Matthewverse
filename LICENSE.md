@@ -6,5 +6,5 @@ You may not release a version or modification of this repository at any price ab
 
 You may release a version of this repository if transformative modifications have been applied to it and proper credit to the original author is present ("Oliver Darby" or "talkinglock").
 
-All rights reserved.
+All other rights reserved.
 
