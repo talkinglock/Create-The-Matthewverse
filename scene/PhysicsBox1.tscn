@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bsgsvhpi7g6o2"]
+
+[ext_resource type="AudioStream" uid="uid://cnpf1uct077mo" path="res://audio/SoundEffects/Other/ImpactGlass.mp3" id="1_k23x3"]
+[ext_resource type="PackedScene" uid="uid://dcljwejiq77tv" path="res://DevStuff/box1mod.tscn" id="2_jk4v1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mvpp"]
+size = Vector3(1, 0.57611084, 1)
+
+[node name="PhysicsBox1" type="Node3D" unique_id=153099855]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1719080592]
+collision_layer = 44
+collision_mask = 44
+continuous_cd = true
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=920150521]
+stream = ExtResource("1_k23x3")
+volume_db = 1.882
+
+[node name="1" parent="RigidBody3D" unique_id=291472555 instance=ExtResource("2_jk4v1")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2093526165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24804688, 0)
+shape = SubResource("BoxShape3D_5mvpp")

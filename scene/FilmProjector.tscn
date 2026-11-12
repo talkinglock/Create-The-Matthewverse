@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dlncvtghkkqg7"]
+
+[ext_resource type="PackedScene" uid="uid://brlgr1vheht1e" path="res://FilmProjectorBaseBase.glb" id="1_r5cwc"]
+[ext_resource type="Script" uid="uid://caqk4aleamjc3" path="res://scripts/FilmProjectorSpinner.cs" id="1_ts8dg"]
+[ext_resource type="PackedScene" uid="uid://bq6ewkc8ia8bk" path="res://DevStuff/FilmProjectorContainer.glb" id="2_ts8dg"]
+[ext_resource type="PackedScene" uid="uid://1pw2a5c20iwt" path="res://DevStuff/FilmProjectorFilm.glb" id="3_ma5uv"]
+[ext_resource type="PackedScene" uid="uid://djh0jyb6ri5qe" path="res://DevStuff/FilmProjectorLowerSpinner.glb" id="4_cdki6"]
+[ext_resource type="PackedScene" uid="uid://186fmew0wap" path="res://DevStuff/FilmProjectorUpperSpinner.glb" id="5_ay6dm"]
+[ext_resource type="PackedScene" uid="uid://b3b075g70w23i" path="res://Lens.tscn" id="6_8qdrj"]
+
+[node name="FilmProjector" type="Node3D" unique_id=2075235555 node_paths=PackedStringArray("UpperSpindle", "LowerSpindle")]
+script = ExtResource("1_ts8dg")
+UpperSpindle = NodePath("FilmProjectorUpperSpinner")
+LowerSpindle = NodePath("FilmProjectorLowerSpinner")
+
+[node name="FilmProjectorBaseBase" parent="." unique_id=1001870793 instance=ExtResource("1_r5cwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, -0.4, 2)
+
+[node name="FilmProjectorContainer" parent="." unique_id=1501027538 instance=ExtResource("2_ts8dg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, -0.4, 2)
+
+[node name="FilmProjectorFilm" parent="." unique_id=437324649 instance=ExtResource("3_ma5uv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0999999, -0.4, 2)
+
+[node name="FilmProjectorLowerSpinner" parent="." unique_id=929974385 instance=ExtResource("4_cdki6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16817576, 0.9181763, 0.6999999)
+
+[node name="FilmProjectorUpperSpinner" parent="." unique_id=1634292764 instance=ExtResource("5_ay6dm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16606364, 2.7000003, 0.6999999)
+
+[node name="FilmProjectorLens2" parent="." unique_id=887664519 instance=ExtResource("6_8qdrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, -0.4, 2)

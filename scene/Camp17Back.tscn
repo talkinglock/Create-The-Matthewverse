@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bx6ythec5lhdr"]
+
+[ext_resource type="PackedScene" uid="uid://1ngkjrh0e2v5" path="res://scene/Cloth.tscn" id="1_mlnir"]
+[ext_resource type="PackedScene" uid="uid://d2xcholbawhn7" path="res://scene/Pillow.tscn" id="2_p1tgs"]
+[ext_resource type="PackedScene" uid="uid://ex7bgjjio7xk" path="res://scene/Trashcan.tscn" id="3_1mk57"]
+[ext_resource type="PackedScene" uid="uid://b7xsqdt30w7p4" path="res://scene/cupnologo.tscn" id="4_737cm"]
+[ext_resource type="PackedScene" uid="uid://ce2cjsb7rlbcw" path="res://scene/Paper.tscn" id="5_737cm"]
+[ext_resource type="Texture2D" uid="uid://bxyv6as082qvb" path="res://textures/SheJustSteppedInThere.png" id="6_jacnm"]
+
+[node name="Camp17Back" type="Node3D" unique_id=193435257]
+
+[node name="ClothPiece" parent="." unique_id=379009172 instance=ExtResource("1_mlnir")]
+transform = Transform3D(2.0938158, 0, 0, 0, 0.08621967, 0, 0, 0, 1.8528701, 0, 0, 0)
+
+[node name="ClothPiece2" parent="." unique_id=323992366 instance=ExtResource("1_mlnir")]
+transform = Transform3D(1.5512064, 0, 1.2445151, 0, 0.08621967, 0, -1.406351, 0, 1.3727015, 0.31342876, 0, -1.2626464)
+
+[node name="Pillow" parent="." unique_id=803078986 instance=ExtResource("2_p1tgs")]
+transform = Transform3D(0.90489393, -0.42563716, 0, 0.42563716, 0.90489393, 0, 0, 0, 1, 0.84956455, 0.2790826, -1.5018487)
+
+[node name="Pillow2" parent="." unique_id=1852664861 instance=ExtResource("2_p1tgs")]
+transform = Transform3D(0.844525, -0.39724126, -0.35913366, 0.42563716, 0.90489393, 0, 0.32497787, -0.15286063, 0.93328613, 0.592551, 0.2790826, 0.21813655)
+
+[node name="Node3D" parent="." unique_id=2113886640 instance=ExtResource("3_1mk57")]
+transform = Transform3D(0.90294564, 0, 0.4297548, -0.4293565, 0.043043975, 0.9021088, -0.018498354, -0.9990732, 0.03886637, -0.6, 0.62942415, -4)
+
+[node name="Cup" parent="." unique_id=1286831468 instance=ExtResource("4_737cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.62942415, -4.8)
+
+[node name="Cup2" parent="." unique_id=1002284954 instance=ExtResource("4_737cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.62942415, -5)
+
+[node name="Cup3" parent="." unique_id=817264519 instance=ExtResource("4_737cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.62942415, -5.1)
+
+[node name="Node3D23" parent="." unique_id=737806817 instance=ExtResource("5_737cm")]
+transform = Transform3D(0.05324923, 0.28095242, -1.255756, -0.99585176, 0.120465696, -0.04847555, 0.073782615, 1.4231749, 0.2520051, -0.9448213, 0.06781194, -1.5668145)
+
+[node name="Decal4" type="Decal" parent="." unique_id=1693027443]
+transform = Transform3D(-0.97714525, -0.08402881, -0.19525984, -0.07008023, 0.9945426, -0.07728979, 0.20068881, -0.061839473, -0.9777013, -0.9481033, 0.090974465, -1.5654454)
+size = Vector3(0.5402641, 0.073905945, 0.96837616)
+texture_albedo = ExtResource("6_jacnm")
+normal_fade = 0.5
+cull_mask = 4

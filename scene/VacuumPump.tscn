@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bnlau8k4h4prk"]
+
+[ext_resource type="PackedScene" uid="uid://bk2aw3nwjw7yp" path="res://DevStuff/VacuumPumpBase.glb" id="1_on0d1"]
+[ext_resource type="PackedScene" uid="uid://botro84ekqfat" path="res://DevStuff/VacuumPumpMain.glb" id="2_r7clc"]
+[ext_resource type="AudioStream" uid="uid://dwdv8xnlbpwg1" path="res://audio/SoundEffects/Other/VacuumPumpBase.mp3" id="3_lvf5d"]
+[ext_resource type="AudioStream" uid="uid://ccs56mqexk0ft" path="res://audio/SoundEffects/Other/VacuumPumpEngine.mp3" id="4_f8aeb"]
+[ext_resource type="AudioStream" uid="uid://2cuq31o4wyp3" path="res://audio/SoundEffects/Other/VacuumPumpStartup.mp3" id="5_3hboj"]
+
+[node name="VacuumPump" type="Node3D" unique_id=569907650]
+
+[node name="VacuumPumpBase" parent="." unique_id=1114952239 instance=ExtResource("1_on0d1")]
+transform = Transform3D(0.215, 0, 0, 0, 0.215, 0, 0, 0, 0.215, 0.4336719, 0.34382045, 0)
+
+[node name="VacuumPumpMain" parent="." unique_id=769567692 instance=ExtResource("2_r7clc")]
+transform = Transform3D(0.215, 0, 0, 0, 0.215, 0, 0, 0, 0.215, 0.4336719, 0.34382045, 0)
+
+[node name="Ambience" type="AudioStreamPlayer3D" parent="." unique_id=1854158356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4687897, 0)
+stream = ExtResource("3_lvf5d")
+attenuation_model = 2
+volume_db = -9.014
+unit_size = 2.0
+max_distance = 40.0
+parameters/looping = true
+
+[node name="EngineIdle" type="AudioStreamPlayer3D" parent="." unique_id=1559433821]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4687897, 0)
+stream = ExtResource("4_f8aeb")
+volume_db = 0.86
+unit_size = 1.0
+pitch_scale = 1.2
+max_distance = 40.0
+parameters/looping = true
+
+[node name="EngineStart" type="AudioStreamPlayer3D" parent="." unique_id=349066835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4687897, 0)
+stream = ExtResource("5_3hboj")
+volume_db = 0.86
+unit_size = 1.0
+pitch_scale = 1.2
+max_distance = 40.0

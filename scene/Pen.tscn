@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cdio31ob771th"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_jx0fp"]
+[ext_resource type="AudioStream" uid="uid://cvd1q2fodea5e" path="res://audio/SoundEffects/Other/Impact.wav" id="1_x2ajf"]
+[ext_resource type="PackedScene" uid="uid://ckjsf2tupb5m7" path="res://DevStuff/Pen.glb" id="2_x2ajf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_46bpg"]
+size = Vector3(0.024902344, 0.14727783, 0.027404785)
+
+[node name="Pen" type="Node3D" unique_id=1341444242 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_jx0fp")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1327497652]
+collision_layer = 44
+collision_mask = 44
+continuous_cd = true
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=2074402644]
+stream = ExtResource("1_x2ajf")
+volume_db = 1.882
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2094852411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009822845, 0.043060303, 0.0011291504)
+shape = SubResource("BoxShape3D_46bpg")
+
+[node name="Pen" parent="RigidBody3D" unique_id=1727347049 instance=ExtResource("2_x2ajf")]
+transform = Transform3D(0.26, 0, 0, 0, 0.26, 0, 0, 0, 0.26, 0, 0, 0)

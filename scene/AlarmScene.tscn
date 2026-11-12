@@ -1,0 +1,61 @@
+[gd_scene format=4 uid="uid://v8gqre7epcsb"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo33xhw1w0j" path="res://DevStuff/Alarm.glb" id="1_vh1vh"]
+[ext_resource type="Script" uid="uid://byto7upk5yqrs" path="res://scripts/Alarm.cs" id="2_4t3al"]
+[ext_resource type="Material" uid="uid://y00s5rvxndqj" path="res://materials/OffLight.tres" id="3_4t3al"]
+[ext_resource type="Material" uid="uid://dewku5imvgjsp" path="res://materials/RightTransparent.tres" id="3_xpgdl"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_lxo8r"]
+_surfaces = [{
+"aabb": AABB(-0.8671694, 1, -0.8671694, 1.7343388, 8.434022, 1.7343388),
+"format": 34359742465,
+"index_count": 54,
+"index_data": PackedByteArray("AAAIAAIAAgAIAAkAAgAJAAQAAAAKAAgABgAKAAAACAADAAkABAALAAYABgALAAoABAAJAAsACwAFAAoACgABAAgACAABAAMACgAFAAEACQADAAcACQAHAAsAAQAHAAMACwAHAAUAAQAFAAcA"),
+"lods": [0.23150584, PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABgAFAAAAAQAHAAMABAADAAcAAQAFAAcABAAHAAYABgAHAAUA")],
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("0P5dPwAAgD/Q/l0/mEYxP8HxFkGXRjG/0P5dPwAAgD/Q/l2/mEYxv8HxFkGXRjG/0P5dvwAAgD/Q/l2/mEYxP8HxFkGXRjE/0P5dvwAAgD/Q/l0/mEYxv8HxFkGXRjE/0P5dP/FRx0DQ/l2/0P5dv/FRx0DQ/l2/0P5dP/FRx0DQ/l0/0P5dv/FRx0DQ/l0/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xpgdl"]
+resource_name = "Alarm_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.8671694, 1, -0.8671694, 1.7343388, 8.434022, 1.7343388),
+"attribute_data": PackedByteArray("qRQmP1ApjD6oFCY/sNbzPqgUJj+w1vM+qRQmP1ApjD5Y61k/rtbzPljrWT9QKYw+WOtZP1ApjD5Y61k/rtbzPljrWT9QKYw+qRQmP1ApjD6pFCY/UCmMPljrWT9QKYw+qBQmP7DW8z5Y61k/rtbzPljrWT+u1vM+qBQmP7DW8z6oFCY/sNbzPljrWT9QKYw+WOtZP67W8z6pFCY/UCmMPqgUJj+w1vM+qRQmP1ApjD5Y61k/rtbzPljrWT9QKYw+WOtZP1ApjD5Y61k/rtbzPqkUJj9QKYw+WOtZP1ApjD5Y61k/rtbzPqgUJj+w1vM+WOtZP1ApjD6pFCY/UCmMPqgUJj+w1vM+WOtZP67W8z6pFCY/UCmMPqgUJj+w1vM+"),
+"format": 34359742487,
+"index_count": 54,
+"index_data": PackedByteArray("AAAUAAIAAAAVABQAFgAFABcAFgAHAAUABAAYAAYABAAZABgACAAaAAoACAAbABoADAAcAA4ADAAdABwAEAARABIAEAATABEAHgAJAB8AHgALAAkAIAANACEAIAAPAA0AIgABACMAIgADAAEA"),
+"lods": [0.23150584, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA")],
+"material": ExtResource("3_4t3al"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("0P5dPwAAgD/Q/l0/mEYxP8HxFkGXRjG/0P5dPwAAgD/Q/l2/mEYxP8HxFkGXRjE/0P5dvwAAgD/Q/l2/mEYxv8HxFkGXRjE/0P5dvwAAgD/Q/l0/mEYxv8HxFkGXRjG/0P5dvwAAgD/Q/l0/mEYxP8HxFkGXRjE/0P5dPwAAgD/Q/l0/mEYxv8HxFkGXRjE/0P5dPwAAgD/Q/l2/mEYxv8HxFkGXRjG/0P5dvwAAgD/Q/l2/mEYxP8HxFkGXRjG/mEYxP8HxFkGXRjG/mEYxv8HxFkGXRjE/mEYxv8HxFkGXRjG/mEYxP8HxFkGXRjE/0P5dP/FRx0DQ/l2/0P5dP/FRx0DQ/l0/0P5dv/FRx0DQ/l2/0P5dv/FRx0DQ/l0/0P5dv/FRx0DQ/l0/0P5dv/FRx0DQ/l2/0P5dP/FRx0DQ/l0/0P5dv/FRx0DQ/l0/0P5dv/FRx0DQ/l2/0P5dP/FRx0DQ/l2/0P5dv/FRx0DQ/l0/0P5dP/FRx0DQ/l0/0P5dP/FRx0DQ/l2/0P5dv/FRx0DQ/l2/0P5dP/FRx0DQ/l0/0P5dP/FRx0DQ/l2/////f////79i+ZyG////v////3////+/Yvmchv///78AAP9/////v5wGnIb///+/AAD/f////7+cBpyG////v/9//3////8//3+chv///z//f/9/////P/9/nIb///8//////////79i+f//////v/////////+/Yvn//////7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v////3////+/////f////7+cBpyG////v5wGnIb///+/AAD/f////78AAP9/////v/9//3////8//3//f////z//////////v/////////+//3+chv///z//f5yG////P2L5//////+/Yvn//////79i+ZyG////v2L5nIb///+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_lxo8r")
+
+[node name="Alarm" unique_id=1922663502 node_paths=PackedStringArray("LightBase", "Light") instance=ExtResource("1_vh1vh")]
+script = ExtResource("2_4t3al")
+OnMaterial = ExtResource("3_xpgdl")
+OffMaterial = ExtResource("3_4t3al")
+LightBase = NodePath("Cube_001")
+Light = NodePath("OmniLight3D")
+BlinkRateMsec = 1.0
+
+[node name="Cube" parent="." index="0" unique_id=888939539]
+transform = Transform3D(0.037, 0, 0, 0, 0.004, 0, 0, 0, 0.063, 0, 0, 0)
+
+[node name="Cube_001" parent="." index="1" unique_id=452666236]
+transform = Transform3D(0.037, 0, 0, 0, 0.004, 0, 0, 0, 0.063, 0, 0, 0)
+mesh = SubResource("ArrayMesh_xpgdl")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=1713043440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014512196, 0)
+light_energy = 0.0
+omni_range = 2.7634566
+omni_attenuation = 2.618

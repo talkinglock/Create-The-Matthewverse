@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cub6pmd5v5mi6"
+uid="uid://bn32bseuq4ne3"
 path.s3tc="res://.godot/imported/flTest_FlashlightOutput.png-4c9e838981c36fb3665ce208dcb749a0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "e50dd6775f488c81901abc137a45c8db"
 }
 
 [deps]

@@ -1,0 +1,95 @@
+Alumina One: 378/m
+-Basic Alumina: 70/m
+-Nuclear Power Plant: 53.33/n
+-TPR: 30/m
+-Rocket Fuel Plant(42.5/m)
+-Ficsite: 160/m
+
+Dark Matter Crystal:
+-Dark Matter Crystal: 60/m
+-Synthetic One: 3.2/m
+-Rocket Fuel Plant: 10/m
+-Superposition Oscillator: 12.5/m
+
+Synthetic One:
+-Power Shards: 4/m
+
+Crystal One:
+-Time Crystal: 20.38/m
+-Sythetic One: 8/m
+
+Ficsite:
+-Ficsite Triangle Thing: 120/m
+
+Oscillator Station:
+-Crystal Oscillator: 30/m
+-Superposition Oscillator: 5/m
+-Radio Control Unit Factory: 10/m
+-Supercomputer 15/m
+-TPR 1.08/m
+-Nuclear Power Plant: 4/m
+
+Swamp Caterium Bravo:
+-Caterium: 1500/m
+-Nuclear Power Plant:152.78/m
+
+Swamp Station:
+Bauxite: 1050/m
+-Alumina One: 420/m
+-Alumina Prime: 150/m
+Caterium: 480/m
+-Oscillator Station: 150/m
+-High Speed Connector: 75/m
+
+Purple Swamp Sulfer Station:
+Sulfer: 780/m
+-Alumina Prime: 500/m
+-Nuclear Power Plant: 80/m
+
+Cherry Forest Bauxite Station:
+Bauxite: 1350/m
+-Alumina Prime: 1350/m
+
+White Forest Limestone Station:
+Limestone: 3120/m
+-Alumina Prime: 1785/m
+
+White Forest Station:
+Raw Quartz: 1500/m
+-Alumina Prime: 1071/m
+-Oscillator Station: 386/m
+
+Coal: 1020/m
+-Alumina Prime: 1000/m
+
+Supercomputer:
+Using:
+-Crystal Oscillator: 1.25/m
+Out:
+-Supercomputer 10/m
+
+Nitrogen Station:
+-Nitrogen: 2400/m
+
+Radio Control Unit:
+30/m
+-Supercomputer: 10/m
+-Nuclear Power Plant: 5.36/m
+-Nuclear Pasta: 2/m
+
+Fused Modular Frame:
+5/m
+-Nuclear Power Plant: 1.78/m
+-TPR: 1/m 
+-Nuclear Pasta 1/m
+
+Turbomotor:
+5/m
+TPR: 1/m
+
+Alumina Prime:
+-Aluminium Ingot: 2000/m
+-Supercomputer 100/m
+-Radio Control Unit: 800/m
+-Fused Modular Frame: 333.3/m
+-Superposition Oscillator: 45/m

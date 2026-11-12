@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://efhhs68jmq47"]
+
+[ext_resource type="ArrayMesh" uid="uid://dxi8nrtdig15n" path="res://DevStuff/LightbulbBase.obj" id="1_xh1sw"]
+[ext_resource type="Material" uid="uid://m3f1ddnpsbty" path="res://materials/Metal.tres" id="2_cub4c"]
+
+[node name="LightbulbDestroyed" type="Node3D" unique_id=586241652]
+
+[node name="LightbulbBase" type="MeshInstance3D" parent="." unique_id=601654010]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+mesh = ExtResource("1_xh1sw")
+surface_material_override/0 = ExtResource("2_cub4c")

@@ -79,6 +79,9 @@ public partial class PlayerController : Node3D
 	const float PI = 3.14f;
 	
 	private bool wasHoldingFlashlightBeforePickup = false;
+    public void SetShake(float newMultiplier) {
+        shakeMultiplier = newMultiplier;
+    }
 	// pickup
 	private float ePressedCount = 0;
 	private bool holdingObject = false;
@@ -241,6 +244,9 @@ public partial class PlayerController : Node3D
 	}
 
 	
+	public float GetDistanceTo(Vector3 pos) {
+		return rigidbody.GlobalPosition.DistanceTo(pos);
+	}
 	private void objectHoldLoop()
 	{
 		if (FirstObjectThrowCheck && lastThrowPass == false)
@@ -277,17 +283,17 @@ public partial class PlayerController : Node3D
 		if (colliderCount != 1)
 		{
 			
-			Debug.WriteLine("Hold multiple GameObjects. Scanning for distance");
+			Debug.WriteLine("Hold multiple GameObjects. Scanning for dot");
 			
-			float closestColliderDistance = -1;
+			float closestColliderDistance = -121;
 
 			for (int i = 0; i < colliderCount; ++i)
 			{
 				if (!(holdCaster.GetCollider(i) is RigidBody3D)) {continue;}
 				if (holdCaster.GetCollider(i) == rigidbody) {continue;}
 				RigidBody3D testCollider = (RigidBody3D) holdCaster.GetCollider(i);
-				float distance = (testCollider.GlobalPosition - camera.GlobalPosition).Length();
-				if (closestCollider == null || closestColliderDistance == -1)
+				float distance = (testCollider.GlobalPosition - camera.GlobalPosition).Normalized().Dot(camera.GlobalTransform.Basis.Z.Normalized());
+				if (closestCollider == null || closestColliderDistance == -121)
 				{
 					closestCollider = testCollider;
 					closestColliderDistance = distance; 
@@ -475,6 +481,11 @@ public partial class PlayerController : Node3D
 				}
 			}
 		}
+        if (Input.IsKeyPressed(Key.Z)) {
+            camera.Fov = 30;
+        } else {
+            camera.Fov = 75;
+        }
 	}
 	public SpotLight3D GetFlashLightLight()
 	{

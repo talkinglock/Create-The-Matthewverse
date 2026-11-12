@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk7drmkn54gth"
+uid="uid://bso2cfg3wfbgi"
 path.s3tc="res://.godot/imported/keyboard_keyboard.png-cc7b9b12407ed9c7bd1f15e2ef997f2c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "d14ff5d7843a23f85f2bbf0451db5387"
 }
 
 [deps]

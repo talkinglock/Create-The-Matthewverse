@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://vlpg0gnivi14"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_m8iba"]
+[ext_resource type="AudioStream" uid="uid://cnpf1uct077mo" path="res://audio/SoundEffects/Other/ImpactGlass.mp3" id="2_0e86b"]
+[ext_resource type="ArrayMesh" uid="uid://beaapq241qm83" path="res://DevStuff/Desklight.obj" id="4_ydlyr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2ivf"]
+albedo_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m8iba"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0e86b"]
+shading_mode = 0
+albedo_color = Color(0.34839162, 0.34382242, 4.813075e-08, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_e2ivf"]
+height = 0.08532715
+radius = 0.15527344
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m8iba"]
+height = 0.40496826
+radius = 0.033691406
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0e86b"]
+height = 0.23226929
+radius = 0.033691406
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nsdfa"]
+height = 0.061260223
+radius = 0.078125
+
+[node name="DeskLight" type="Node3D" unique_id=1286831468 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_m8iba")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1421176775]
+collision_layer = 44
+collision_mask = 44
+continuous_cd = true
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=1083610104]
+stream = ExtResource("2_0e86b")
+volume_db = 1.882
+
+[node name="Desklight" type="MeshInstance3D" parent="RigidBody3D" unique_id=2056918690]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("4_ydlyr")
+surface_material_override/0 = SubResource("StandardMaterial3D_e2ivf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1290368741]
+transform = Transform3D(0.145, 0, 0, 0, 0.006009837, 0.09570595, 0, -0.005280329, 0.10892828, 0, 0.31877133, 0.38756526)
+mesh = SubResource("CylinderMesh_m8iba")
+surface_material_override/0 = SubResource("StandardMaterial3D_0e86b")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="RigidBody3D/MeshInstance3D" unique_id=553175723]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)
+light_color = Color(0.34209862, 0.34089908, 0, 1)
+shadow_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1346278599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.031202495, 0)
+shape = SubResource("CylinderShape3D_e2ivf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D" unique_id=1484047030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27109158, -0.031277627)
+shape = SubResource("CylinderShape3D_m8iba")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D" unique_id=1927561104]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.44196603, 0.26171342)
+shape = SubResource("CylinderShape3D_0e86b")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="RigidBody3D" unique_id=448910215]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.3297572, 0.37392223)
+shape = SubResource("CylinderShape3D_nsdfa")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="RigidBody3D" unique_id=2113536526]
+transform = Transform3D(1, 0, 0, 0, -0.2588191, 0.9659258, 0, -0.9659258, -0.2588191, 0, 0.50819516, 0.06395007)
+shape = SubResource("CylinderShape3D_0e86b")

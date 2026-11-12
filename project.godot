@@ -10,25 +10,17 @@ config_version=5
 
 [application]
 
-config/name="Create the Matthewverse"
-run/main_scene="uid://diu7t8willwa3"
-config/features=PackedStringArray("4.6", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+run/main_scene="uid://rb2hu4ljos8n"
+config/features=PackedStringArray("4.7", "C#")
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [dotnet]
 
-project/assembly_name="Create the Matthewverse"
-
-[filesystem]
-
-import/blender/enabled=false
+project/assembly_name="UnnamedProject"
 
 [physics]
 

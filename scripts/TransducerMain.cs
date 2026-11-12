@@ -284,17 +284,18 @@ public partial class TransducerMain : Node3D
 		plr.CanHold = true;
 		GArray objectBodies = objectArea.GetOverlappingBodies();
 		GArray playerBodies = playerArea.GetOverlappingBodies();
-		if (objectBodies.Count() > 1){FailCase("tmo", IdleTween);}
-		if (objectBodies.Count() > 0 && playerBodies.Count() > 0) {FailCase("tmo", IdleTween);}
-		if (objectBodies.Count() == 0 && playerBodies.Count() == 0) {FailCase("no", IdleTween);}
+		int objectBodiesCount = objectBodies.Count();
+		int playerBodiesCount = playerBodies.Count();
+		if (objectBodiesCount> 1){FailCase("tmo", IdleTween); return;}
+		if (objectBodiesCount > 0 && playerBodiesCount > 0) {FailCase("tmo", IdleTween); return;}
+		if (objectBodiesCount == 0 && playerBodiesCount == 0) {FailCase("no", IdleTween);return;}
 		// go to activate hello
-		if (playerBodies.Count() == 1 && objectBodies.Count() == 0)
+		if (playerBodiesCount == 1 && objectBodiesCount == 0)
 		{
 			PlayerTeleport();
 		}
 		else if (objectBodies.Count() == 1)
 		{
-			GD.Print(objectBodies.Count());
 			ObjectTeleport(objectBodies[0]);
 		}
 	}

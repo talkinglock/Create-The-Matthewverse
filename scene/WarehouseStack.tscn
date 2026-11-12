@@ -6,8 +6,8 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40jxn"]
 albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5gbfi"]
-size = Vector3(3.706665, 18.097916, 1.7715454)
+[sub_resource type="BoxShape3D" id="BoxShape3D_40jxn"]
+size = Vector3(3.7027588, 18.571442, 1.7172241)
 
 [node name="Stack" type="Node3D" unique_id=2029750887 node_paths=PackedStringArray("warehouseBoxNode", "warehouseSpawnLocations")]
 script = ExtResource("1_40jxn")
@@ -45,12 +45,12 @@ material_override = SubResource("StandardMaterial3D_40jxn")
 mesh = ExtResource("1_5gbfi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1476534416]
-collision_layer = 33
-collision_mask = 33
+collision_layer = 2081
+collision_mask = 2081
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=432874016]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013318896, 9.051033, 0.017169714)
-shape = SubResource("BoxShape3D_5gbfi")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=400729082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012145996, 8.785721, 0.00064086914)
+shape = SubResource("BoxShape3D_40jxn")
 
 [node name="SpawnLocations" type="Node3D" parent="." unique_id=2067109914]
 

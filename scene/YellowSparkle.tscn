@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://c1tktot2fu74f"]
+
+[sub_resource type="Gradient" id="Gradient_t8f0n"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t8f0n"]
+gradient = SubResource("Gradient_t8f0n")
+
+[sub_resource type="Gradient" id="Gradient_1p3c7"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.058139537, 0.19767442, 0.5406977, 1)
+colors = PackedColorArray(18.892157, 18.892157, 0, 1, 16.373404, 16.373404, 0.22719891, 1, 8.145473, 8.145473, 0.96938205, 1, 8.785422, 8.785422, 0.91165674, 1, 1.5631286, 1.5631286, 1.5631286, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_epihf"]
+gradient = SubResource("Gradient_1p3c7")
+
+[sub_resource type="Curve" id="Curve_mglvv"]
+_data = [Vector2(0, 0), 0.0, -2.3781478, 0, 0, Vector2(0.21212122, 1), 0.0, 0.0, 0, 0, Vector2(0.45454547, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_rm671"]
+curve = SubResource("Curve_mglvv")
+
+[sub_resource type="Curve" id="Curve_1p3c7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3181818, 0.59550565), -3.0337062, -3.0337062, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2tu8t"]
+curve = SubResource("Curve_1p3c7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2i7uq"]
+lifetime_randomness = 0.16
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 11.889999
+initial_velocity_max = 11.889999
+gravity = Vector3(0, -32.035, 0)
+scale_curve = SubResource("CurveTexture_2tu8t")
+color_ramp = SubResource("GradientTexture1D_epihf")
+color_initial_ramp = SubResource("GradientTexture1D_t8f0n")
+emission_curve = SubResource("CurveTexture_rm671")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ajfq"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(11.992694, 11.992691, 0.00059141894, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kpxxq"]
+material = SubResource("StandardMaterial3D_6ajfq")
+size = Vector3(0.02, 0.05, 0.02)
+
+[node name="YellowSparkle" type="Node3D" unique_id=456573785]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=2005657228]
+emitting = false
+amount = 395
+lifetime = 0.96
+one_shot = true
+explosiveness = 0.93
+randomness = 0.44
+transform_align = 2
+process_material = SubResource("ParticleProcessMaterial_2i7uq")
+draw_pass_1 = SubResource("BoxMesh_kpxxq")

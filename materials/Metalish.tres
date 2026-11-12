@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cllips6k3aqdr"]
+
+[ext_resource type="Texture2D" uid="uid://bhyqmwnfkxaoq" path="res://textures/fabric.jpg" id="1_1p2e3"]
+
+[resource]
+albedo_color = Color(0.30129197, 0.30129197, 0.30129197, 1)
+albedo_texture = ExtResource("1_1p2e3")
+metallic = 0.24
+metallic_specular = 1.0
+uv1_scale = Vector3(1.03, 1.03, 1.03)
+uv1_offset = Vector3(0.205, 0, 0)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1.0352648
+uv1_world_triplanar = true

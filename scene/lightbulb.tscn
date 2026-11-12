@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://d0utkqe5r7v6k"]
+
+[ext_resource type="ArrayMesh" uid="uid://dxi8nrtdig15n" path="res://DevStuff/LightbulbBase.obj" id="1_g1tdu"]
+[ext_resource type="Script" uid="uid://6x66ea00b4un" path="res://scripts/Lightbulb.cs" id="1_rcigc"]
+[ext_resource type="Material" uid="uid://303k5epde1bm" path="res://materials/Filament.tres" id="2_mu75w"]
+[ext_resource type="Material" uid="uid://m3f1ddnpsbty" path="res://materials/Metal.tres" id="2_rcigc"]
+[ext_resource type="ArrayMesh" uid="uid://bomjdfsgo6csp" path="res://DevStuff/LightbulbFilament.obj" id="3_mu75w"]
+[ext_resource type="ArrayMesh" uid="uid://c1eurgvrmfwal" path="res://DevStuff/LightbulbGlass.obj" id="5_2l73m"]
+[ext_resource type="AudioStream" uid="uid://kmf0drlt7" path="res://audio/SoundEffects/Other/120hz.mp3" id="7_mu75w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vvkm"]
+transparency = 1
+albedo_color = Color(0.5294118, 0.5294118, 0.5294118, 0.45882353)
+
+[node name="Lightbulb" type="Node3D" unique_id=1017915244 node_paths=PackedStringArray("Light", "ambience")]
+script = ExtResource("1_rcigc")
+LightbulbMaterial = ExtResource("2_mu75w")
+Light = NodePath("OmniLight3D")
+ambience = NodePath("Ambience")
+
+[node name="LightbulbBase" type="MeshInstance3D" parent="." unique_id=2122409321]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = ExtResource("1_g1tdu")
+surface_material_override/0 = ExtResource("2_rcigc")
+
+[node name="LightbulbFilament" type="MeshInstance3D" parent="." unique_id=565870678]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = ExtResource("3_mu75w")
+surface_material_override/0 = ExtResource("2_mu75w")
+
+[node name="LightbulbGlass" type="MeshInstance3D" parent="." unique_id=1816557171]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = ExtResource("5_2l73m")
+surface_material_override/0 = SubResource("StandardMaterial3D_2vvkm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1394756236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13396817, 0)
+light_color = Color(0.9516131, 0.9212244, 0, 1)
+light_energy = 0.0
+light_indirect_energy = 3.735
+light_volumetric_fog_energy = 7.063
+shadow_enabled = true
+omni_range = 5.679
+omni_attenuation = 1.162
+
+[node name="Ambience" type="AudioStreamPlayer3D" parent="." unique_id=831208197]
+stream = ExtResource("7_mu75w")
+unit_size = 1.0
+max_distance = 30.0
+parameters/looping = true

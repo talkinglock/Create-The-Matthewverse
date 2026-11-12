@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://ci33p5y6qo4lm"]
+
+[ext_resource type="PackedScene" uid="uid://cwi0r2b412brc" path="res://DevStuff/TentA.glb" id="1_812e7"]
+[ext_resource type="Texture2D" uid="uid://dahagsqp7in2" path="res://textures/ImGoingToDieHere.png" id="2_lkio7"]
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="3_i2xfr"]
+[ext_resource type="AudioStream" uid="uid://cnpf1uct077mo" path="res://audio/SoundEffects/Other/ImpactGlass.mp3" id="4_52swh"]
+[ext_resource type="PackedScene" uid="uid://lq1k7ky4k5jf" path="res://DevStuff/cup_nologo.tscn" id="5_2adrf"]
+[ext_resource type="ArrayMesh" uid="uid://bq2e17i2xv8xl" path="res://DevStuff/Trashcan.obj" id="6_a87i1"]
+[ext_resource type="Texture2D" uid="uid://csgjjsdvbohtj" path="res://DevStuff/TrashCan.png" id="7_31swq"]
+[ext_resource type="AudioStream" uid="uid://cqfticy4tumxf" path="res://audio/SoundEffects/Other/Impact.wav" id="8_43dg1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jis1w"]
+size = Vector3(0.09472656, 2.993225, 3.0821533)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylyc4"]
+albedo_color = Color(0.76240367, 0.76240367, 0.76240367, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i2xfr"]
+material = SubResource("StandardMaterial3D_ylyc4")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6icsh"]
+height = 0.16549683
+radius = 0.07324219
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0eidm"]
+size = Vector3(0.016845703, 0.12249756, 0.0715332)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_texture = ExtResource("7_31swq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
+size = Vector3(0.55999756, 3.3439636, 3.133545)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ba6m1"]
+size = Vector3(2.9797058, 0.57676697, 3.133545)
+
+[node name="TentSpawnable" type="Node3D" unique_id=1325755850]
+
+[node name="TentA" parent="." unique_id=77608130 instance=ExtResource("1_812e7")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=827083602]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=279619154]
+transform = Transform3D(0.8994968, -0.43692738, 0, 0.43692738, 0.8994968, 0, 0, 0, 1, 0.68862486, 1.3518411, -0.06427002)
+shape = SubResource("BoxShape3D_jis1w")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=537878550]
+transform = Transform3D(-0.8994968, 0.43692738, 8.742278e-08, 0.43692738, 0.8994968, 0, -7.863651e-08, 3.8197406e-08, -1, -0.6505375, 1.3518411, -0.06427002)
+shape = SubResource("BoxShape3D_jis1w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1051131432]
+transform = Transform3D(0.013951837, -0.05445068, -3.6717566e-08, -0.0011602885, -0.65473974, 3.6591246e-08, -1.320795e-09, -5.228202e-08, -0.42, 0.52500063, 1.1819861, -1.6)
+layers = 5
+mesh = SubResource("BoxMesh_i2xfr")
+
+[node name="Decal" type="Decal" parent="." unique_id=30298497]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0.5062348, 1.1841854, -1.6002594)
+size = Vector3(0.42318726, 0.10421753, 0.6526718)
+texture_albedo = ExtResource("2_lkio7")
+normal_fade = 0.5
+cull_mask = 4
+
+[node name="PhysicsObjects" type="Node3D" parent="." unique_id=1114768638]
+
+[node name="Cup" type="Node3D" parent="PhysicsObjects" unique_id=1286831468 node_paths=PackedStringArray("rigid")]
+transform = Transform3D(0.92754954, 0, 0.3737002, 0, 1, 0, -0.3737002, 0, 0.92754954, 0.63172174, 0, -0.85024023)
+script = ExtResource("3_i2xfr")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="PhysicsObjects/Cup" unique_id=1421176775]
+collision_layer = 44
+collision_mask = 44
+freeze = true
+continuous_cd = true
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="PhysicsObjects/Cup/RigidBody3D" unique_id=1083610104]
+stream = ExtResource("4_52swh")
+volume_db = 1.882
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsObjects/Cup/RigidBody3D" unique_id=1571502470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07539368, 0)
+shape = SubResource("CylinderShape3D_6icsh")
+
+[node name="Cup2" parent="PhysicsObjects/Cup/RigidBody3D" unique_id=1106543726 instance=ExtResource("5_2adrf")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PhysicsObjects/Cup/RigidBody3D" unique_id=1738078836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010620117, 0.075790405, 0.099731445)
+shape = SubResource("BoxShape3D_0eidm")
+
+[node name="Node3D" type="Node3D" parent="PhysicsObjects" unique_id=2113886640 node_paths=PackedStringArray("rigid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999988, 0.37156683, -0.099999726)
+script = ExtResource("3_i2xfr")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="PhysicsObjects/Node3D" unique_id=2110539065]
+collision_layer = 44
+collision_mask = 44
+freeze = true
+continuous_cd = true
+
+[node name="Trashcan" type="MeshInstance3D" parent="PhysicsObjects/Node3D/RigidBody3D" unique_id=1594906619]
+transform = Transform3D(0.19999813, 0.00031777765, -0.0008026296, -0.00031479524, 0.19999838, 0.0007420757, 0.000803804, -0.00074080337, 0.19999701, 0, 0, 0)
+mesh = ExtResource("6_a87i1")
+surface_material_override/0 = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsObjects/Node3D/RigidBody3D" unique_id=672568888]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.2335022, 0.022232056, 0.0076904297)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PhysicsObjects/Node3D/RigidBody3D" unique_id=314828855]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.24626715, 0.022232056, 0.0076904297)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="PhysicsObjects/Node3D/RigidBody3D" unique_id=248081116]
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0.006382491, 0.022232056, 0.2475751)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="PhysicsObjects/Node3D/RigidBody3D" unique_id=1641047675]
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0.0063824696, 0.022232056, -0.23219424)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="PhysicsObjects/Node3D/RigidBody3D" unique_id=296715354]
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0.0063824803, -0.2544876, 0.009776577)
+shape = SubResource("BoxShape3D_ba6m1")
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="PhysicsObjects/Node3D/RigidBody3D" unique_id=2089106419]
+stream = ExtResource("8_43dg1")

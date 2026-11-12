@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ce2cjsb7rlbcw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylyc4"]
+albedo_color = Color(0.76240367, 0.76240367, 0.76240367, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ogros"]
+material = SubResource("StandardMaterial3D_ylyc4")
+
+[node name="Node3D" type="Node3D" unique_id=737806817]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=904910803]
+transform = Transform3D(0.014, 0, 0, 0, 0.657, 0, 0, 0, 0.42, 0, 0, 0)
+layers = 5
+mesh = SubResource("BoxMesh_ogros")

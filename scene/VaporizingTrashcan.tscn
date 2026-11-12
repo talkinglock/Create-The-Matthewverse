@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://b6r0e0a8ucomm"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_gr2y1"]
+[ext_resource type="ArrayMesh" uid="uid://bq2e17i2xv8xl" path="res://DevStuff/Trashcan.obj" id="2_hm57h"]
+[ext_resource type="Script" uid="uid://b6qt3xvg4nn2v" path="res://scripts/Vaporizer.cs" id="2_sb22w"]
+[ext_resource type="Shader" uid="uid://dfd3dntitk6tv" path="res://scripts/Disintergrate.gdshader" id="3_3ss4f"]
+[ext_resource type="Texture2D" uid="uid://csgjjsdvbohtj" path="res://DevStuff/TrashCan.png" id="3_sb22w"]
+[ext_resource type="AudioStream" uid="uid://cqfticy4tumxf" path="res://audio/SoundEffects/Other/Impact.wav" id="4_3ss4f"]
+[ext_resource type="Texture2D" uid="uid://bpuwo8wkk1lur" path="res://textures/IMCFPosterTrashcan.png" id="5_p1acx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1acx"]
+render_priority = 0
+shader = ExtResource("3_3ss4f")
+shader_parameter/fadeB = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_texture = ExtResource("3_sb22w")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
+size = Vector3(0.55999756, 3.3439636, 3.133545)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ba6m1"]
+size = Vector3(2.9797058, 0.57676697, 3.133545)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vc81f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iee8b"]
+albedo_color = Color(1.8793198, 1.8793198, 1.8793198, 1)
+
+[node name="Node3D" type="Node3D" unique_id=2113886640 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_gr2y1")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=2110539065 node_paths=PackedStringArray("notifier")]
+collision_layer = 44
+collision_mask = 44
+continuous_cd = true
+script = ExtResource("2_sb22w")
+notifier = NodePath("VisibleOnScreenNotifier3D")
+distanceToStart = 15.0
+timeUntilVaporization = 15.0
+timeOfVaporization = 1.0
+disintegrator = SubResource("ShaderMaterial_p1acx")
+
+[node name="Trashcan" type="MeshInstance3D" parent="RigidBody3D" unique_id=1594906619]
+transform = Transform3D(0.19999813, 0.00031777765, -0.0008026296, -0.00031479524, 0.19999838, 0.0007420757, 0.000803804, -0.00074080337, 0.19999701, 0, 0, 0)
+mesh = ExtResource("2_hm57h")
+surface_material_override/0 = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=672568888]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.2335022, 0.022232056, 0.0076904297)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D" unique_id=314828855]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.24626715, 0.022232056, 0.0076904297)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D" unique_id=248081116]
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0.006382491, 0.022232056, 0.2475751)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="RigidBody3D" unique_id=1641047675]
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0.0063824696, 0.022232056, -0.23219424)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="RigidBody3D" unique_id=296715354]
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0.0063824803, -0.2544876, 0.009776577)
+shape = SubResource("BoxShape3D_ba6m1")
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=2089106419]
+stream = ExtResource("4_3ss4f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=628931963]
+transform = Transform3D(0.457866, 0, 0, 0, 0.60828274, 0.0015433837, 0, -0.07519428, 0.012485175, 0, 0.021343105, 0.36541986)
+layers = 5
+mesh = SubResource("BoxMesh_vc81f")
+surface_material_override/0 = SubResource("StandardMaterial3D_iee8b")
+
+[node name="Decal" type="Decal" parent="RigidBody3D" unique_id=787854649]
+transform = Transform3D(0.999911, -0.007360484, -0.011134692, -0.0101472065, 0.12276154, -0.9923845, 0.008671333, 0.99240905, 0.12267592, 0.001182724, 0.02082034, 0.36677644)
+size = Vector3(0.4685974, 0.032161713, 0.61616516)
+texture_albedo = ExtResource("5_p1acx")
+cull_mask = 1048572
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="RigidBody3D" unique_id=12805782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008387864, 0, 0)
+aabb = AABB(-0.2822573, -0.36373335, -0.3680897, 0.5645146, 0.7274667, 0.7361794)

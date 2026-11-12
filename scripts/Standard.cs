@@ -9,6 +9,19 @@ public partial class Standard
     {
         await Task.Delay((int)(timeSec * 1000));
     }
+    
+    public float AddVariance(float initial, float variance) {
+        return initial + ((float)GD.RandRange(-variance, variance));
+    }
+
+    public float GetRandomTimeInFutureSec(float timeInFuture, float variance)
+	{
+		return GetRandomTimeInFuture(timeInFuture, variance * 1000.0f) / 1000.0f;
+    }
+    public float GetRandomTimeInFuture(float timeInFuture, float variance)
+	{
+		return timeInFuture * 1000 + Time.GetTicksMsec() - ((float)GD.RandRange(-variance, variance));
+	}
     public Node GetRandomChildFromParent(Node parent)
     {
         GNodeArray children = parent.GetChildren();
@@ -29,5 +42,9 @@ public partial class Standard
             }
         }
         return null;
+    }
+    public bool RandomChance(float odds)
+    {
+        return (GD.Randi() % odds) == 0;
     }
 }

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://t6xurccrrxis"]
+
+[ext_resource type="Script" uid="uid://bxj2m6ykuhq5b" path="res://scripts/AnalogGauge.cs" id="1_jya30"]
+[ext_resource type="PackedScene" uid="uid://cry5b06tylo0g" path="res://scene/AnalogGaugeBase.tscn" id="1_wnorp"]
+[ext_resource type="PackedScene" uid="uid://b52ffr0nj2ayw" path="res://scene/AnalogGaugeNeedle.tscn" id="2_jya30"]
+
+[node name="AnalogGauge" type="Node3D" unique_id=1424823459 node_paths=PackedStringArray("NeedleObj")]
+script = ExtResource("1_jya30")
+NeedleObj = NodePath("AnalogGaugeNeedle2")
+MaximumDeflectionDegrees = 45.0
+
+[node name="AnalogGaugeBase2" parent="." unique_id=1565281283 instance=ExtResource("1_wnorp")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="AnalogGaugeNeedle2" parent="." unique_id=135439724 instance=ExtResource("2_jya30")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

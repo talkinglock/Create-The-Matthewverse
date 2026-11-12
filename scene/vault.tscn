@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cr2nxkjtjs7j7"]
+
+[ext_resource type="PackedScene" uid="uid://kwuruc343u2e" path="res://scene/Vault.glb" id="1_mg0ee"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf8ni"]
+albedo_color = Color(0.25565878, 0.25565878, 0.25565878, 1)
+metallic = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mam6s"]
+albedo_color = Color(0.34407577, 0.34407574, 0.34407574, 1)
+
+[node name="Vault" unique_id=1773201496 instance=ExtResource("1_mg0ee")]
+
+[node name="Cube_001" parent="." index="0" unique_id=1989198637]
+transform = Transform3D(-0.16335246, 0, 0, 0, 0.49657598, 0, 0, 0, 0.22250538, -3.0544155, 0, 0.52678597)
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_vf8ni")
+
+[node name="Cylinder" parent="." index="1" unique_id=1242885628]
+transform = Transform3D(0.615, 0, 0, 0, 1.733, 0, 0, 0, 0.345, -0.34443757, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_mam6s")
+surface_material_override/1 = SubResource("StandardMaterial3D_mam6s")

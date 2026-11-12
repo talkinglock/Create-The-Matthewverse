@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://nkmcmgujfjgm"]
+
+[ext_resource type="Material" uid="uid://cet67c2xmsujq" path="res://materials/WoodAlt.tres" id="1_0yar4"]
+[ext_resource type="ArrayMesh" uid="uid://b3xjmayvv6j54" path="res://DevStuff/WoodenSetSupportDestroyed.obj" id="2_3y64d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0yar4"]
+size = Vector3(25.529663, 0.5506897, 2.0848389)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3y64d"]
+size = Vector3(0.5301361, 24.487648, 20.149506)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ehlas"]
+size = Vector3(26.941528, 0.5831299, 1)
+
+[node name="WoodenSetSupportDestroyed" type="Node3D" unique_id=960304858]
+
+[node name="WoodenSetSupportDestroyed" type="MeshInstance3D" parent="." unique_id=1212257094]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+material_override = ExtResource("1_0yar4")
+mesh = ExtResource("2_3y64d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WoodenSetSupportDestroyed" unique_id=1589069484]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodenSetSupportDestroyed/StaticBody3D" unique_id=1698800003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0587764, 0.024429318, -7.0240865)
+shape = SubResource("BoxShape3D_0yar4")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="WoodenSetSupportDestroyed/StaticBody3D" unique_id=1372139485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.954095, 11.9929085, 0.06531477)
+shape = SubResource("BoxShape3D_3y64d")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WoodenSetSupportDestroyed/StaticBody3D" unique_id=2094459837]
+transform = Transform3D(0.98700464, 0, -0.16069186, 0, 1, 0, 0.16069186, 0, 0.98700464, 3.0587764, 0.024429318, 9.417814)
+shape = SubResource("BoxShape3D_0yar4")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="WoodenSetSupportDestroyed/StaticBody3D" unique_id=1836642655]
+transform = Transform3D(0.6559026, 0.7548454, 0, -0.7548454, 0.6559026, 0, 0, 0, 1, -1.6822038, 9.805537, -6.969292)
+shape = SubResource("BoxShape3D_ehlas")

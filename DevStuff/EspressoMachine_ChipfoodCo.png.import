@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dudo7gxsi2b6q"
+uid="uid://uhf3rsytwbct"
 path.s3tc="res://.godot/imported/EspressoMachine_ChipfoodCo.png-6aea0362f885b89761d0106615b9570f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "d7a2c8ff15491cfbe8503cb5c6c7cbcd"
 }
 
 [deps]

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://chk8uue7iphi5"]
+
+[ext_resource type="Shader" uid="uid://cwoixrhw282e1" path="res://scene/FogShader.gdshader" id="1_58uyg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fxe4u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxe4u"]
+shader = ExtResource("1_58uyg")
+
+[node name="OutsideShader" type="MeshInstance3D" unique_id=1071501471]
+mesh = SubResource("BoxMesh_fxe4u")
+surface_material_override/0 = SubResource("ShaderMaterial_fxe4u")

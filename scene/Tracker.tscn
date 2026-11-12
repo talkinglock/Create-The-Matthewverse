@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://djn0v6jf1vlog"]
+
+[ext_resource type="PackedScene" uid="uid://w1a8e32t4q8e" path="res://DevStuff/TrackerBase.glb" id="1_e6n8j"]
+[ext_resource type="Script" uid="uid://b4mkxv8l7iscb" path="res://scripts/Tracker.cs" id="1_gemtm"]
+[ext_resource type="PackedScene" uid="uid://b7oa6ny246vkn" path="res://DevStuff/TrackerPointer.glb" id="2_2j7xs"]
+[ext_resource type="AudioStream" uid="uid://76xtxnif3xfp" path="res://audio/SoundEffects/Other/240hz.mp3" id="3_2j7xs"]
+[ext_resource type="PackedScene" uid="uid://drjqj0d86vlth" path="res://DevStuff/TrackerMark.glb" id="5_jtdsw"]
+
+[node name="Tracker" type="Node3D" unique_id=1744242216 node_paths=PackedStringArray("Pointer", "StartReference", "MarkTemplate", "ServoSound")]
+script = ExtResource("1_gemtm")
+Pointer = NodePath("TrackerPointer")
+StartReference = NodePath("Start")
+MarkTemplate = NodePath("TrackerMark")
+ServoSound = NodePath("ServoSound")
+MovementHorizontalRadius = 31.0
+
+[node name="TrackerBase" parent="." unique_id=114638478 instance=ExtResource("1_e6n8j")]
+transform = Transform3D(0.58, 0, 0, 0, 0.58, 0, 0, 0, 0.58, 0, 0, 0)
+
+[node name="TrackerPointer" parent="." unique_id=244770980 instance=ExtResource("2_2j7xs")]
+transform = Transform3D(0.58, 0, 0, 0, 0.58, 0, 0, 0, 0.58, 0, 0, 0)
+
+[node name="ServoSound" type="AudioStreamPlayer3D" parent="." unique_id=699950170]
+transform = Transform3D(0.58, 0, 0, 0, 0.58, 0, 0, 0, 0.58, 0, 0, 0)
+stream = ExtResource("3_2j7xs")
+volume_db = -20.0
+max_distance = 15.0
+parameters/looping = true
+
+[node name="Start" type="Node3D" parent="." unique_id=850279202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.093576, -0.4301741)
+
+[node name="TrackerMark" parent="." unique_id=121646006 instance=ExtResource("5_jtdsw")]
+transform = Transform3D(0.58, 0, 0, 0, 0.58, 0, 0, 0, 0.58, 0, -0.0029242039, 0)

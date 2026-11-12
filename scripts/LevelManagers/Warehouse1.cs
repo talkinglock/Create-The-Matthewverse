@@ -2,6 +2,12 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
+public enum WarehouseExplorationLevel {
+    Minor,
+    Medium,
+    Major
+}
+
 public partial class Warehouse1 : Node3D
 {
 	[Export] public Hallucinator hallcuinator;
@@ -11,9 +17,11 @@ public partial class Warehouse1 : Node3D
 	[Export] public AudioStreamPlayer3D pickupSound;
 	[Export] public AudioStreamPlayer sting;
 	[Export] public InterimScarer interimScarer;
+	[Export] public InvertedAnamoly inverted;
 	[Export] public Node3D flashlight;
 	[Export] public float StingStopTime;
 
+    public WarehouseExplorationLevel level;
 
 	private ChapterTitle title;
 	private bool WaitingOnFlashlightEPress = false;
@@ -70,6 +78,10 @@ public partial class Warehouse1 : Node3D
 	{
 		switch(trigger)
 		{
+			case "CampFound": {
+				inverted.PlayerApproachedCamp();
+				break;
+			}
 			case "StartTrigger":
 			{
 				plr.PlayMusic("Unemployment");
@@ -79,6 +91,10 @@ public partial class Warehouse1 : Node3D
 			case "InterimEntered":
 			{
 				//plr.PlayMusic("TheUpperhand");
+				if (hallcuinator.state < Hallucinator.ScareState.StalkingNearby)
+					{
+						hallcuinator.state = Hallucinator.ScareState.StalkingNearby;
+					}
 				hallcuinator.hallucinate = false;
 				break;
 			}

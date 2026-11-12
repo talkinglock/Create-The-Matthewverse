@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caibyvtnj502h"
+uid="uid://dthnudjw0u4e7"
 path.s3tc="res://.godot/imported/meLab2_meLab_SkinTexture.png-d7e66383e8206b0405dc9fce2975099e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "b612a99f52eecab227084b59645bfd05"
 }
 
 [deps]

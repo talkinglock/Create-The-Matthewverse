@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ddjc4mhugry1q"]
+
+[ext_resource type="Shader" uid="uid://ddw3jyt23tvc7" path="res://scripts/Film.gdshader" id="1_1tlmg"]
+[ext_resource type="Texture2D" uid="uid://omfah7tw57xp" path="res://textures/Car.png" id="2_1tlmg"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_1tlmg")
+shader_parameter/sprite_texture = ExtResource("2_1tlmg")

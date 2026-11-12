@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r6fwvsmclt7h"
+uid="uid://gtextmvm0xky"
 path.s3tc="res://.godot/imported/wallHelper4_drywall.jpg-59d705f9bbd43ad14e74b71ab37c7020.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "3c790699ff95bd7725c1945ca7bc08c5"
 }
 
 [deps]

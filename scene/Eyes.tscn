@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://beff1xq6lpjdd"]
+
+[ext_resource type="Shader" uid="uid://dy3r462t0fxxv" path="res://scripts/EyeShader.gdshader" id="1_jjwlv"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_7ntxl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0eaqx"]
+render_priority = 0
+shader = ExtResource("1_jjwlv")
+
+[sub_resource type="FogMaterial" id="FogMaterial_jjwlv"]
+density = 8.0
+albedo = Color(0, 0, 0, 1)
+height_falloff = 1000000.0
+edge_fade = 0.6964403
+
+[node name="Node3D" type="Node3D" unique_id=1579124709]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1524442037]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -0.15, 1, 0)
+mesh = SubResource("QuadMesh_7ntxl")
+surface_material_override/0 = SubResource("ShaderMaterial_0eaqx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=835449988]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0.15, 1, 0)
+mesh = SubResource("QuadMesh_7ntxl")
+surface_material_override/0 = SubResource("ShaderMaterial_0eaqx")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1942501672]
+transform = Transform3D(-0.03, 0, 4.529874e-09, 0, 0.03, 0, -4.529874e-09, 0, -0.03, 0.15, 1, 1.3113417e-08)
+mesh = SubResource("QuadMesh_7ntxl")
+surface_material_override/0 = SubResource("ShaderMaterial_0eaqx")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=564997588]
+transform = Transform3D(-0.03, 0, 4.529874e-09, 0, 0.03, 0, -4.529874e-09, 0, -0.03, -0.15, 1, -1.3113417e-08)
+mesh = SubResource("QuadMesh_7ntxl")
+surface_material_override/0 = SubResource("ShaderMaterial_0eaqx")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=986468503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, 1)
+collision_mask = 2048
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=937052739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52289987, 0)
+aabb = AABB(-0.27697837, -0.5842321, -0.25671566, 0.55395675, 1.1684642, 0.5134313)
+
+[node name="FogVolume" type="FogVolume" parent="." unique_id=1818539506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031402588, 0.46899414, 0.021728516)
+size = Vector3(0.77593994, 1.0620117, 0.57666016)
+material = SubResource("FogMaterial_jjwlv")

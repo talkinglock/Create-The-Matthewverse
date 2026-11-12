@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://303k5epde1bm"]
+
+[ext_resource type="Shader" uid="uid://dcuhsriwbts60" path="res://scripts/Filament.gdshader" id="1_lw2dv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_lw2dv")
+shader_parameter/alpha = 0.0

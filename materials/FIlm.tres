@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dwvfqpk5v2mxk"]
+
+[ext_resource type="Shader" uid="uid://spf2cadqfrc6" path="res://scripts/Digital.gdshader" id="1_sfbbb"]
+[ext_resource type="Texture2D" uid="uid://b1b2yeuxbomoe" path="res://textures/Mouse.png" id="2_1n45v"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_sfbbb")
+shader_parameter/sprite_texture = ExtResource("2_1n45v")
+shader_parameter/burn_cutoff = 2.0
+shader_parameter/slice_cutoff = 1.0
+shader_parameter/brightness_amplifier = 1.0

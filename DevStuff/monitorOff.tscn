@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ywmu877f4vnc"]
+
+[ext_resource type="PackedScene" uid="uid://ck8mepkbn8ylj" path="res://models/monitor.glb" id="1_blvc3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi3lv"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="monitor" unique_id=2094076822 instance=ExtResource("1_blvc3")]
+
+[node name="Plane" parent="." index="1" unique_id=1730980883]
+surface_material_override/0 = SubResource("StandardMaterial3D_qi3lv")

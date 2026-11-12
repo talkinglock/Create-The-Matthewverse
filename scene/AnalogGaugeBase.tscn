@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cry5b06tylo0g"]
+
+[ext_resource type="PackedScene" uid="uid://bqfl0igec2kqy" path="res://DevStuff/AnalogGaugeBase.glb" id="1_8ltey"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ja3un"]
+albedo_color = Color(0.16924527, 0.1692453, 0.16924527, 1)
+metallic = 0.73
+
+[node name="AnalogGaugeBase" unique_id=1565281283 instance=ExtResource("1_8ltey")]
+
+[node name="Circle" parent="." index="0" unique_id=232114006]
+surface_material_override/0 = SubResource("StandardMaterial3D_ja3un")

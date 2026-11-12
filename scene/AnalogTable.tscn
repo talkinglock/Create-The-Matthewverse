@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bf4dx4ewpbtt7"]
+
+[ext_resource type="PackedScene" uid="uid://knxp6ilpb3e2" path="res://DevStuff/AnalogTable.glb" id="1_h1hob"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgv6b"]
+albedo_color = Color(0.23392546, 0.23392546, 0.23392543, 1)
+metallic = 0.7
+
+[node name="AnalogTable" unique_id=1386884580 instance=ExtResource("1_h1hob")]
+
+[node name="Cube" parent="." index="0" unique_id=988309391]
+transform = Transform3D(0.265, 0, 0, 0, 0.265, 0, 0, 0, 0.265, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_xgv6b")

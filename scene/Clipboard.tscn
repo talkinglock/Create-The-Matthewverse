@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cwlri7eg8e7aw"]
+
+[ext_resource type="AudioStream" uid="uid://cvd1q2fodea5e" path="res://audio/SoundEffects/Other/Impact.wav" id="1_250b4"]
+[ext_resource type="PackedScene" uid="uid://dp762cdmkymxx" path="res://DevStuff/Clipboard.glb" id="1_h1otc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jx5da"]
+size = Vector3(0.8350487, 0.02029419, 0.5831299)
+
+[node name="Clipboard" type="Node3D" unique_id=1639700012]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1059504088]
+collision_layer = 44
+collision_mask = 44
+mass = 30.0
+continuous_cd = true
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=1209083693]
+stream = ExtResource("1_250b4")
+volume_db = 1.882
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1627114785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048294067, 0.00047302246, -0.034851074)
+shape = SubResource("BoxShape3D_jx5da")
+
+[node name="Clipboard" parent="RigidBody3D" unique_id=2050894853 instance=ExtResource("1_h1otc")]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0.24994022, 0, 0.14244807)

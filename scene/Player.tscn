@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://5yx23d4bnd21" path="res://scripts/InteractableClass.cs" id="2_62i1b"]
 [ext_resource type="PackedScene" uid="uid://co46xgigv0o7m" path="res://scene/Tools/Flashlight.tscn" id="2_82gks"]
 [ext_resource type="PackedScene" uid="uid://cj1ji7ofuedsr" path="res://scene/ChapterTitle.tscn" id="3_y30ri"]
-[ext_resource type="AudioStream" uid="uid://byw44e51r5pgu" path="res://audio/SoundEffects/Other/footsteps.mp3" id="4_dc1pm"]
-[ext_resource type="AudioStream" uid="uid://ck0bfw0lrpmgx" path="res://audio/Music/Welcome.wav" id="4_waelg"]
+[ext_resource type="AudioStream" uid="uid://btx564pwwxb83" path="res://audio/Music/Welcome.wav" id="4_waelg"]
 [ext_resource type="AudioStream" uid="uid://bcrs4t2rhhgdc" path="res://audio/Music/In the middle.mp3" id="5_63jwq"]
 [ext_resource type="AudioStream" uid="uid://d0mkq02b1h7kl" path="res://audio/Music/Unemployment.mp3" id="5_kqvfm"]
-[ext_resource type="AudioStream" uid="uid://cq2tq37731osm" path="res://audio/Music/Upperhand.wav" id="6_63jwq"]
+[ext_resource type="AudioStream" uid="uid://dgdfdq1yyvo6n" path="res://audio/Music/Upperhand.wav" id="6_63jwq"]
 [ext_resource type="AudioStream" uid="uid://bwnfph5pxkx4" path="res://audio/Music/SomewhereInBetween.mp3" id="7_r6ll3"]
+[ext_resource type="AudioStream" uid="uid://b73tkd1gu8114" path="res://audio/SoundEffects/Other/footsteps3.mp3" id="9_oqto2"]
 [ext_resource type="Script" uid="uid://s3e30h2pw834" path="res://scripts/Shaker.cs" id="11_oqto2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_si3wx"]
@@ -96,9 +96,10 @@ collision_mask = 64
 collide_with_areas = true
 
 [node name="FlashlightLight" type="SpotLight3D" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=818509467]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.57700956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.022990465)
 light_color = Color(0.58456355, 0.58456355, 0.42528185, 1)
 light_energy = 0.0
+light_volumetric_fog_energy = 3.0
 shadow_enabled = true
 spot_range = 12.437969
 spot_angle = 31.872314
@@ -108,6 +109,7 @@ spot_angle = 31.872314
 [node name="Control" parent="PlrRigid/CameraMount/PlayerCamera" unique_id=536347271 instance=ExtResource("3_y30ri")]
 
 [node name="PhysicalBody" type="MeshInstance3D" parent="PlrRigid" unique_id=866019454]
+layers = 65536
 material_override = SubResource("StandardMaterial3D_vviyk")
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_si3wx")
@@ -148,9 +150,11 @@ volume_db = 2.0
 parameters/looping = true
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="PlrRigid" unique_id=818785541]
-stream = ExtResource("4_dc1pm")
-volume_db = -23.881
-pitch_scale = 1.2
+stream = ExtResource("9_oqto2")
+volume_db = -8.0
+unit_size = 1.94
+attenuation_filter_cutoff_hz = 4677.0
+attenuation_filter_db = -47.0
 parameters/looping = true
 
 [node name="Timer" type="Timer" parent="." unique_id=1315276468]

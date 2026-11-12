@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s1kircqsubcc"
+uid="uid://4irue7sg7sdn"
 path.s3tc="res://.godot/imported/EspressoMachine_espresso.png-eaf4eee03fbf9f7c51e1d4d79b36b233.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "0212befa5c912e61972eb63c30f3a784"
 }
 
 [deps]

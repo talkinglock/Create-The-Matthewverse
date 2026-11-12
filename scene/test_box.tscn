@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b33eodfv5gs2n"]
+
+[ext_resource type="PackedScene" uid="uid://dk4ral2bkco0n" path="res://DevStuff/TestBox.glb" id="1_0txci"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2i7uq"]
+albedo_color = Color(0.27752772, 0.27752772, 0.27752772, 1)
+
+[node name="TestBox" unique_id=970726179 instance=ExtResource("1_0txci")]
+
+[node name="Cube" parent="." index="0" unique_id=1256872507]
+transform = Transform3D(0.18, 0, 0, 0, 0.047999997, 0, 0, 0, 0.16, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_2i7uq")

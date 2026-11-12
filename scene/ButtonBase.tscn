@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://hbvhinui87g8"]
+
+[ext_resource type="PackedScene" uid="uid://bqpn8phduxptx" path="res://DevStuff/ButtonBase.glb" id="1_p3q2g"]
+[ext_resource type="PackedScene" uid="uid://dvr6ekop6pjs1" path="res://DevStuff/ButtonLight.glb" id="2_7vs14"]
+[ext_resource type="Script" uid="uid://bmrp70mkh64if" path="res://scripts/Button.cs" id="2_ejdh8"]
+[ext_resource type="PackedScene" uid="uid://dm4r1efsqis22" path="res://DevStuff/ButtonButton.glb" id="3_ejdh8"]
+[ext_resource type="AudioStream" uid="uid://buggm0f6sl7v5" path="res://audio/SoundEffects/Other/Buttonpress.mp3" id="5_3etnf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dlrbl"]
+albedo_color = Color(0.18717614, 0.18717614, 0.18717614, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tumnh"]
+albedo_color = Color(0.0035191667, 0.0035191681, 0.0035191672, 1)
+metallic = 0.71
+metallic_specular = 0.39
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpxxq"]
+transparency = 2
+alpha_scissor_threshold = 0.492
+alpha_antialiasing_mode = 0
+albedo_color = Color(1, 1, 1, 0.6901961)
+metallic_specular = 0.0
+roughness = 0.0
+subsurf_scatter_enabled = true
+refraction_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2i7uq"]
+albedo_color = Color(1, 0, 0, 1)
+metallic = 0.18
+metallic_specular = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2i7uq"]
+size = Vector3(0.755249, 0.35943604, 0.602478)
+
+[node name="ButtonBase" unique_id=161914689 instance=ExtResource("1_p3q2g")]
+
+[node name="Circle" parent="." index="0" unique_id=2124849912]
+transform = Transform3D(0.103923075, 0, 0, 0, 0.09976615, 0, 0, 0, 0.103923075, 0.13423568, 0.11614536, -0.009461716)
+
+[node name="Circle_002" parent="." index="1" unique_id=1657349622]
+transform = Transform3D(0.037080873, 0, 0, 0, 0.035597637, 0, 0, 0, 0.037080873, 0.28067458, 0.12632358, 0.13294041)
+
+[node name="Cube" parent="." index="2" unique_id=1865190357]
+transform = Transform3D(0.19999999, 0, 0, 0, 0.19199999, 0, 0, 0, 0.19999999, 0.13423568, -0.0018954948, -0.009461716)
+surface_material_override/0 = SubResource("StandardMaterial3D_dlrbl")
+
+[node name="Cube_001" parent="." index="3" unique_id=559840593]
+transform = Transform3D(0.19999999, 0, 0, 0, 0.19199999, 0, 0, 0, 0.19999999, 0.13423568, -0.0018954948, -0.009461716)
+surface_material_override/0 = SubResource("StandardMaterial3D_tumnh")
+
+[node name="ButtonLight" parent="." index="4" unique_id=1711538709 instance=ExtResource("2_7vs14")]
+transform = Transform3D(0.5, 0, 0, 0, 0.48, 0, 0, 0, 0.5, 0.061016217, 0.111159004, 0.059334222)
+
+[node name="Circle_003" parent="ButtonLight" index="0" unique_id=760697505]
+transform = Transform3D(0.074161746, 0, 0, 0, 0.0741618, 0, 0, 0, 0.074161746, 0.43931678, 0.031592995, 0.14721239)
+surface_material_override/0 = SubResource("StandardMaterial3D_kpxxq")
+
+[node name="ButtonButton2" parent="." index="5" unique_id=882313486 instance=ExtResource("3_ejdh8")]
+transform = Transform3D(0.5, 0, 0, 0, 0.48, 0, 0, 0, 0.5, 0.061016217, 0.111159004, 0.059334222)
+
+[node name="Circle_001" parent="ButtonButton2" index="0" unique_id=534918468]
+transform = Transform3D(0.20784615, 0, 0, 0, 0.20784627, 0, 0, 0, 0.20784615, 0.14643893, 0.01038827, -0.13759187)
+surface_material_override/0 = SubResource("StandardMaterial3D_2i7uq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="6" unique_id=994519504 node_paths=PackedStringArray("presser", "pressAudio")]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("2_ejdh8")
+presser = NodePath("../ButtonButton2")
+DownwardsDistance = 0.02
+minInteractDistance = 20.0
+pressAudio = NodePath("../AudioStreamPlayer3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1963175964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07635498, 0.16298899, -0.0093688965)
+shape = SubResource("BoxShape3D_2i7uq")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="7" unique_id=1822325681]
+stream = ExtResource("5_3etnf")
+
+[editable path="ButtonLight"]
+[editable path="ButtonButton2"]

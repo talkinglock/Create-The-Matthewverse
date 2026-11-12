@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk4dbu6alvbcg"
+uid="uid://hlfl5whd16q7"
 path.s3tc="res://.godot/imported/Spring_SpringBase.png-1757826329db937779ec3d947a64aec2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "60a36b1024a778d9eb701f7db94fb5c1"
 }
 
 [deps]

@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5kfmg24fje57"
+uid="uid://cw3ulo712l1nq"
 path.s3tc="res://.godot/imported/Box2_Cardboard.png-5d758dfe431f4c05271c3779108da92f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "c625e7ebe4529a5a44b1599d18695b48"
 }
 
 [deps]

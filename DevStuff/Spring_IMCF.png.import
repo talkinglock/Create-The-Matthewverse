@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7tabyd0w5c3i"
+uid="uid://d3v42k4nf6nps"
 path.s3tc="res://.godot/imported/Spring_IMCF.png-3cec44a8a23639fe1469b878cac5a115.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "157534091fc0506405f0dbe8b9051cbc"
 }
 
 [deps]

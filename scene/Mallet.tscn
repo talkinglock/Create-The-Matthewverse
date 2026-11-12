@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://de4vrgdh3yk4o"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_ihidv"]
+[ext_resource type="PackedScene" uid="uid://b4mgrbbxts70u" path="res://DevStuff/Mallet.glb" id="1_mf7uo"]
+[ext_resource type="AudioStream" uid="uid://cvd1q2fodea5e" path="res://audio/SoundEffects/Other/Impact.wav" id="2_ihidv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2i7uq"]
+size = Vector3(0.13845444, 0.09640503, 0.095214844)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ihidv"]
+size = Vector3(0.047908783, 0.36019516, 0.04335785)
+
+[node name="Mallet" type="Node3D" unique_id=360364209 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_ihidv")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1823932434]
+collision_layer = 44
+collision_mask = 44
+continuous_cd = true
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=868418240]
+stream = ExtResource("2_ihidv")
+volume_db = 1.882
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1009180042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003168106, 0.31604004, 0.0021972656)
+shape = SubResource("BoxShape3D_2i7uq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D" unique_id=297165688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0050144196, 0.09480858, -0.0019187927)
+shape = SubResource("BoxShape3D_ihidv")
+
+[node name="Mallet" parent="RigidBody3D" unique_id=2041992854 instance=ExtResource("1_mf7uo")]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, 0, 0.16542226, 0)

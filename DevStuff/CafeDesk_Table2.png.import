@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2jcehrfojkr2"
+uid="uid://bicyb56adhvhq"
 path.s3tc="res://.godot/imported/CafeDesk_Table2.png-ee1ec1997424e2fdefe3359e59b80ee5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "04b60b0364a59c1db5165dbe81e4e9a8"
 }
 
 [deps]

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bg63hohwyy4os"]
+
+[ext_resource type="Shader" uid="uid://btpqoe25j7kur" path="res://scripts/Sparke.gdshader" id="1_alju6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux0lf"]
+render_priority = 0
+shader = ExtResource("1_alju6")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wxu4s"]
+material = SubResource("ShaderMaterial_ux0lf")
+
+[node name="Spark" type="Node3D" unique_id=920199391]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=405630130]
+transform = Transform3D(0.094, 0, 0, 0, -4.1088706e-09, -0.094, 0, 0.094, -4.1088706e-09, 0, 0, 0)
+mesh = SubResource("BoxMesh_wxu4s")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1215510056]
+light_color = Color(3.6587863, 3.7040718, 2.843648, 1)
+light_indirect_energy = 3.14
+light_volumetric_fog_energy = 3.955
+shadow_enabled = true
+omni_attenuation = 2.28

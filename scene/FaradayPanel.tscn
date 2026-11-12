@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cfllxu46jpof"]
+
+[ext_resource type="PackedScene" uid="uid://yaxdsvelsdl" path="res://DevStuff/EMFPanel.glb" id="1_2asls"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jsocv"]
+albedo_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+metallic = 0.85
+metallic_specular = 1.0
+
+[node name="EMFPanel" unique_id=37405310 instance=ExtResource("1_2asls")]
+
+[node name="Cube" parent="." index="0" unique_id=140781177]
+surface_material_override/0 = SubResource("StandardMaterial3D_jsocv")

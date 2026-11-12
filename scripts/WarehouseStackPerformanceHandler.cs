@@ -1,13 +1,16 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Dynamic;
+using System.Net.Security;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using GArray = Godot.Collections.Array<Godot.Node>;
-
+using Line = WarehouseStackConnector.Line;
 public partial class WarehouseStackPerformanceHandler : Node
 {
 	[ExportGroup("Objects")]
+	[Export] public Hallucinator hallucinator;
 	[Export] public PlayerController plr;
 	[Export] public Node3D boxTemplate;
 	[Export] public Node3D warehouseLargeStackTemplate;
@@ -26,10 +29,86 @@ public partial class WarehouseStackPerformanceHandler : Node
 	
 	/*
 	Unsuprisingly having thousands of warehouse table things (called stacks in game) can cause performance issues
-	This script is fundementally a level of detail manager.
+	This script is fundamentally a level of detail manager.
 	*/
+	
+	public Vector3 GetNearestBiasedSpawnPosition(Vector3 reference, float fogPosition=0, float maxDistance =0)
+	{
+		// Get a spawn position of something the player is likely to stumble upon.
+		bool found = false;
+		Line playersLine = Line.None;
+		WarehouseStackConnector playerConnector = null;;
+		if (plr.rigidbody.LinearVelocity.Length() == 0)
+		{
+			return Vector3.Zero;
+		}
+		foreach (WarehouseStackConnector connector in LoadedWarehouseLargeStacksParent.GetChildren())
+		{
+			Line line = connector.GetPlayerLine();
+			if (line != Line.None)
+			{
+				playerConnector = connector;
+				playersLine = line;
+				found = true;
+			}
+		}
+		if (!found)
+		{
+			return Vector3.Zero;
+		}
 
+		GArray inLineConnectors = new GArray();
 
+		foreach (WarehouseStackConnector connector in LoadedWarehouseLargeStacksParent.GetChildren())
+		{
+			if (connector != playerConnector && connector.placeholder.acceptableSpawnArea == true)
+			{
+				
+				Vector3 localizedPosition =  connector.GlobalPosition - playerConnector.GlobalPosition;
+				
+				if (Mathf.Abs(localizedPosition.X) < 2)
+				{
+					GD.Print(localizedPosition.X);
+					Vector3 look = plr.camera.GlobalBasis.Z;
+					float alignment = look.Dot((connector.GlobalPosition - plr.camera.GlobalPosition).Normalized());
+					GD.Print(alignment);
+					if (alignment < 0)
+					{
+						inLineConnectors.Add(connector);
+					}
+				}	
+			}
+		}
+		Vector3 endPos = Vector3.Zero;
+		while (endPos == Vector3.Zero)
+		{
+			GD.Print("Looping, " + inLineConnectors.Count);
+			int randChildNum = (int)((GD.Randi() % inLineConnectors.Count));
+			WarehouseStackConnector connector = (WarehouseStackConnector)inLineConnectors[randChildNum];
+			Vector3 tempPos = connector.GetRandomInsidePosition(playersLine);
+			GD.Print(tempPos);
+			if (fogPosition != 0)
+			{
+				float distance = (tempPos - plr.rigidbody.GlobalPosition).Length();
+				if (distance > fogPosition)
+				{
+					if (maxDistance != 0 && distance < maxDistance)
+					{
+						endPos = tempPos;
+					}
+					else if (maxDistance == 0)
+					{
+						endPos = tempPos;
+					}
+				}
+			}
+			else
+			{
+				endPos = tempPos;
+			}
+		}
+		return endPos;
+	}
 	private Node3D GetRandomBox()
 	{
 		Node3D duplicateBox = (Node3D)boxTemplate.Duplicate(7);
@@ -46,11 +125,23 @@ public partial class WarehouseStackPerformanceHandler : Node
 		
 		foreach (Node3D spawnLocation in spawnLocationsParent.GetChildren())
 		{
-			await Task.Delay((int)timeBetweenBoxStackSpawnsMSECS);
-			Node3D box = GetRandomBox();
-			spawnedBoxesParent.AddChild(box);
-			box.Position = spawnLocation.Position;
-			box.RotateY(GD.RandRange(-5,5));
+			bool passed = true;
+			if (hallucinator.state == Hallucinator.ScareState.StalkingFromAfar)
+			{
+				if (((GD.Randi() % hallucinator.chanceForBoxFailAfar) + 1) == 1)
+				{
+					passed = false;
+				}
+			}
+
+			if (passed == true)
+			{
+				await Task.Delay((int)timeBetweenBoxStackSpawnsMSECS);
+				Node3D box = GetRandomBox();
+				spawnedBoxesParent.AddChild(box);
+				box.Position = spawnLocation.Position;
+				box.RotateY(GD.RandRange(-5,5));
+			}
 		}
 	}
 	private void HandleStackBoxDestruction()
@@ -84,16 +175,20 @@ public partial class WarehouseStackPerformanceHandler : Node
 			GArray stackArray = connector.GetChildStacks();
 
 			connector.BoxesBusy = true;
-			foreach (Node stackNode in stackArray)
+			if (connector.placeholder.doesHaveBox == true)
 			{
-				if (stackNode is not WarehouseStack) {continue;}
-				
-				//GD.Print("IsWarehouseStack");
-				
-				await HandleBoxLODForStack((WarehouseStack)stackNode);
+				foreach (Node stackNode in stackArray)
+				{
+					if (stackNode is not WarehouseStack) {continue;}
+					
+					//GD.Print("IsWarehouseStack");
+					
+					await HandleBoxLODForStack((WarehouseStack)stackNode);
+				}
 			}
 			connector.IsBoxed = true;
 			connector.BoxesBusy = false;
+			hallucinator.ConnectorFabricated(connector);
 		}
 	}
 
@@ -141,9 +236,7 @@ public partial class WarehouseStackPerformanceHandler : Node
 		placeholder.IsLoaded = true;
 		WarehouseStackConnector newConnector = (WarehouseStackConnector)warehouseLargeStackTemplate.Duplicate(7);
 		UnloadedWarehouseLargeStacksParent.AddChild(newConnector);
-		newConnector.Visible = true;
-		newConnector.GlobalPosition = placeholder.GlobalPosition;
-		newConnector.placeholder = placeholder;
+		newConnector.Materialize(hallucinator, placeholder);
 	}
 	private void CheckUnloadedWarehouseStacks()
 	{
@@ -155,12 +248,15 @@ public partial class WarehouseStackPerformanceHandler : Node
 			{
 				placeholder.DestroyMesh();
 			}
-			if (placeholder.IsLoaded == false)
+			if (placeholder.isDisabled == false)
 			{
-				float distanceSquared = (plr.rigidbody.GlobalPosition - placeholder.GlobalPosition).LengthSquared();
-				if (distanceSquared < distanceToLoadStacksSquared)
+				if (placeholder.IsLoaded == false)
 				{
-					LoadPlaceholder(placeholder);
+					float distanceSquared = (plr.rigidbody.GlobalPosition - placeholder.GlobalPosition).LengthSquared();
+					if (distanceSquared < distanceToLoadStacksSquared)
+					{
+						LoadPlaceholder(placeholder);
+					}
 				}
 			}
 		}

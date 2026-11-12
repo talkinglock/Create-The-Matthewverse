@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bhyi6vxuksp47"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_jup0d"]
+[ext_resource type="PackedScene" uid="uid://bhbsve84lhcj3" path="res://DevStuff/Projector.glb" id="1_uj2gi"]
+[ext_resource type="AudioStream" uid="uid://cvd1q2fodea5e" path="res://audio/SoundEffects/Other/Impact.wav" id="2_uj2gi"]
+[ext_resource type="Script" uid="uid://bwmiclsmyvl32" path="res://scripts/DigitalProjectorAnimationHandler.cs" id="2_ywaxc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mglvv"]
+size = Vector3(0.4159851, 0.19836426, 0.37945557)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3glni"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0kmu"]
+shading_mode = 0
+albedo_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+
+[sub_resource type="Gradient" id="Gradient_ywaxc"]
+colors = PackedColorArray(0.71849793, 0.71849793, 0.71849793, 0.3882353, 0.32156864, 0.32156864, 0.32156864, 0.003921569)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_epihf"]
+gradient = SubResource("Gradient_ywaxc")
+
+[sub_resource type="Curve" id="Curve_d00ui"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6417234, 0.2905028), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6ajfq"]
+curve = SubResource("Curve_d00ui")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2i7uq"]
+lifetime_randomness = 0.07
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 61.129982
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 0.2750001
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 0.09997764
+gravity = Vector3(0, -0.1, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 16.979998
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = 13.209997
+use_scale_3d = true
+scale_3d_min = Vector3(1, 1, 1)
+scale_3d_max = Vector3(1, 1, 1)
+scale_curve = SubResource("CurveTexture_6ajfq")
+color_ramp = SubResource("GradientTexture1D_epihf")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rm671"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_kpxxq"]
+material = SubResource("StandardMaterial3D_rm671")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="DestroyedProjector" type="Node3D" unique_id=1278871626 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_jup0d")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1978077763]
+collision_layer = 44
+collision_mask = 44
+continuous_cd = true
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=116661105]
+stream = ExtResource("2_uj2gi")
+volume_db = 1.882
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1729211896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011087418, 0.12322998, 0.0005187988)
+shape = SubResource("BoxShape3D_mglvv")
+
+[node name="DigitalProjector" parent="RigidBody3D" unique_id=1963929454 instance=ExtResource("1_uj2gi")]
+transform = Transform3D(0.0998953, 0.0045746556, 0, -0.0045746556, 0.0998953, 0, 0, -1.3877788e-17, 0.1, 0, 0.10613704, 0)
+script = ExtResource("2_ywaxc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/DigitalProjector" unique_id=2066039188]
+transform = Transform3D(-0.01206113, 0.023700224, 0, -1.1893771, -0.00024033722, 0, 0, 0, 1.140945, -2.2743063, -0.017145038, -1)
+mesh = SubResource("CylinderMesh_3glni")
+surface_material_override/0 = SubResource("StandardMaterial3D_c0kmu")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="RigidBody3D/DigitalProjector" unique_id=1604116983]
+transform = Transform3D(0.99998236, -0.0059326813, 0, 0.0059326813, 0.99998236, 0, 0, 0, 1, 0, 0, 0)
+amount = 7
+process_material = SubResource("ParticleProcessMaterial_2i7uq")
+draw_pass_1 = SubResource("BoxMesh_kpxxq")

@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dewku5imvgjsp"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.492
+alpha_antialiasing_mode = 0
+albedo_color = Color(2.517331, 0, 0, 0.7137255)
+metallic_specular = 0.0
+roughness = 0.0
+subsurf_scatter_enabled = true
+refraction_enabled = true

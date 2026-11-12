@@ -1,0 +1,80 @@
+using Godot;
+using System;
+using System.Threading.Tasks;
+
+public partial class ProjectorAnimationHandler : StaticBody3D, IInteractable
+{
+    [ExportGroup("Objects")]
+    [Export] public SpotLight3D EquipmentLight;
+    [Export] public AudioStreamPlayer3D MainsSound;
+    [Export] public AudioStreamPlayer3D StartClicks;
+    [ExportGroup("Misc")]
+    [Export] public float StartTime;
+	[Export] public float minInteractDistance;
+	[Export] public FilmProjectorAnimationHandler FilmProjector;
+	private bool isHovering = false;
+	private PlayerController plr;
+	private ChapterTitle title;
+	private bool doHoverCheck = false;
+	private bool busy = false;
+	public void OnInteract(PlayerController plrcon)
+	{
+		plr = plrcon;
+		title = plr.GetChapterTitle();
+		if (busy == false)
+		{
+			Hide();
+		}
+	}
+	public void OnHover(PlayerController plrcon)
+	{
+		GD.Print("Hovering");
+		plr = plrcon;
+		doHoverCheck = true;
+	}
+	public void OnHoverStop(PlayerController plrcon)
+	{
+		doHoverCheck = false;
+		plr = plrcon;
+		title = plr.GetChapterTitle();
+		if (isHovering)
+		{
+			isHovering = false;
+			title.StopInteract();
+		}
+	}
+	public override void _PhysicsProcess(double delta)
+	{
+		if (doHoverCheck)
+		{
+			title = plr.GetChapterTitle();
+			float distance = (plr.rigidbody.GlobalPosition - GlobalPosition).Length();
+			if (!isHovering && distance < minInteractDistance && busy == false)
+			{
+				isHovering = true;
+				doHoverCheck = false;
+				title.Interact("E - Press Button");
+			}
+		}
+
+		if (busy == false && isHovering == true)
+		{
+			if (Input.IsKeyPressed(Key.E))
+			{
+				title.StopInteract();
+				Start();
+			}
+		}
+	}
+	public async Task Start() {
+		busy = true;
+
+        StartClicks.Play();
+        await Task.Delay(750);
+        Tween startTween = GetTree().CreateTween();
+        startTween.SetParallel(true);
+        startTween.TweenProperty(MainsSound, "pitch_scale", 1.0f, StartTime)
+
+		FilmProjector.Begin();
+	}
+}

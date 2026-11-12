@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b52ffr0nj2ayw"]
+
+[ext_resource type="PackedScene" uid="uid://ejjwron04633" path="res://DevStuff/AnalogGaugeNeedle.glb" id="1_mhggl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dvj38"]
+albedo_color = Color(0.3654029, 3.6699697e-07, 2.6471912e-07, 1)
+
+[node name="AnalogGaugeNeedle" unique_id=135439724 instance=ExtResource("1_mhggl")]
+
+[node name="Cube" parent="." index="0" unique_id=1652750244]
+surface_material_override/0 = SubResource("StandardMaterial3D_dvj38")

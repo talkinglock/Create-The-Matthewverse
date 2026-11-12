@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b3b075g70w23i"]
+
+[ext_resource type="PackedScene" uid="uid://by36ge3pvwwgb" path="res://DevStuff/FilmProjectorLens.glb" id="1_7g8ym"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wf2c"]
+albedo_color = Color(1.0416296, 1.0416296, 1.0416296, 1)
+metallic = 1.0
+metallic_specular = 1.0
+refraction_enabled = true
+refraction_scale = 1.0
+
+[node name="FilmProjectorLens" unique_id=887664519 instance=ExtResource("1_7g8ym")]
+
+[node name="Lens" parent="." index="0" unique_id=656342977]
+surface_material_override/0 = SubResource("StandardMaterial3D_5wf2c")

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dley3ingkbvfj"]
+
+[ext_resource type="Script" uid="uid://de4awqa57gjet" path="res://scripts/Impact.cs" id="1_tm27d"]
+[ext_resource type="PackedScene" uid="uid://bweljqhge3pvl" path="res://DevStuff/TapeMeasure.glb" id="1_xwokp"]
+[ext_resource type="AudioStream" uid="uid://cvd1q2fodea5e" path="res://audio/SoundEffects/Other/Impact.wav" id="2_tm27d"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yn5dt"]
+height = 0.061820984
+radius = 0.053710938
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tm27d"]
+size = Vector3(0.033691406, 0.057754517, 0.068496704)
+
+[node name="Node3D" type="Node3D" unique_id=1683599100 node_paths=PackedStringArray("rigid")]
+script = ExtResource("1_tm27d")
+rigid = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1068593149]
+collision_layer = 44
+collision_mask = 44
+continuous_cd = true
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="RigidBody3D" unique_id=1486026146]
+stream = ExtResource("2_tm27d")
+volume_db = 1.882
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D" unique_id=1601113018]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.001613617, 7.0533426e-11, 0)
+shape = SubResource("CylinderShape3D_yn5dt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D" unique_id=1521853962]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.00070953555, -0.036865234, 0.033851624)
+shape = SubResource("BoxShape3D_tm27d")
+
+[node name="TapeMeasure" parent="RigidBody3D" unique_id=1086780485 instance=ExtResource("1_xwokp")]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)

@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://woi7uhuygf4j"
+uid="uid://djfax7l7dyhdo"
 path.s3tc="res://.godot/imported/Projector_IMCF.png-16c1e4f40d9ed2f90ee195f2c40b5d6b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "157534091fc0506405f0dbe8b9051cbc"
 }
 
 [deps]
